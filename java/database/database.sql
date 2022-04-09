@@ -25,6 +25,7 @@ CREATE TABLE decks (
 	deck_id serial NOT NULL,
 	user_id int NOT NULL,
 	deck_name varchar(50) NOT NULL,
+	click_count int DEFAULT 0,
 	CONSTRAINT PK_deck PRIMARY KEY (deck_id),
 	CONSTRAINT FK_deck_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
