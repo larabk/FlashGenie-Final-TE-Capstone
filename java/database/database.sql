@@ -36,9 +36,7 @@ CREATE TABLE cards (
 	front_text varchar(500) NOT NULL,
 	back_text varchar(500) NOT NULL,
 	keywords varchar(50) NOT NULL,
-	user_id int NOT NULL,
 	CONSTRAINT PK_card PRIMARY KEY (card_id),
-	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT FK_deck FOREIGN KEY(deck_id) REFERENCES decks(deck_id)
 );
 
@@ -71,5 +69,17 @@ TO final_capstone_appuser;
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
+
+--User setup above this line 
+
+INSERT INTO decks (user_id, deck_name)
+VALUES (1, 'Cars');
+
+INSERT INTO cards (deck_id, front_text, back_text, keywords)
+VALUES(1, 'Ford Sports Car', 'Mustang', 'Ford');
+
+INSERT INTO cards (deck_id, front_text, back_text, keywords)
+VALUES (1, 'Chevy Sports Car', 'Corvette', 'Chevrolet');
+
 
 COMMIT TRANSACTION;
