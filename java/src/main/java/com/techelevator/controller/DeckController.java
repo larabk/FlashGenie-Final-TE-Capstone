@@ -18,14 +18,14 @@ public class DeckController {
         this.deckDao = deckdao;
     }
 
-    @RequestMapping(value = "user/{userId}/decks", method = RequestMethod.GET)
-    public List<Deck> getDecksByUser(@PathVariable Long userId){
-        return deckDao.getAllDecks(userId);
+    @RequestMapping(value = "/decks", method = RequestMethod.GET)
+    public List<Deck> getDecksByUser(Principal userName){
+        return deckDao.getAllDecks(userName.getName());
     }
 
-    @RequestMapping(value = "user/{userId}/decks/{deckId}", method = RequestMethod.GET)
-    public Deck getDeckById(@PathVariable Long userId, @PathVariable Long deckId) {
-        return deckDao.getDeck(userId, deckId);
+    @RequestMapping(value = "/decks/{deckId}", method = RequestMethod.GET)
+    public Deck getDeckById(Principal userName, @PathVariable Long deckId) {
+        return deckDao.getDeck(userName.getName(), deckId);
     }
 
 }

@@ -17,14 +17,14 @@ public class JdbcDeckDao implements DeckDao {
     }
 
 
-    public List<Deck> getAllDecks(Long userId) {
+    public List<Deck> getAllDecks(String userName) {
         List<Deck> decks = new ArrayList<>();
 
-        String sql = "SELECT deck_id, user_id, click_count, deck_name " +
-                "FROM decks " +
-                "WHERE user_id = ?; ";
+        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name " +
+                "FROM decks JOIN users ON users.user_id = decks.user_id " +
+                "WHERE username = ?; ";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
         while (results.next()) {
             decks.add(mapRowToDeck(results));
         }
@@ -32,14 +32,14 @@ public class JdbcDeckDao implements DeckDao {
         return decks;
     }
 
-    public Deck getDeck(Long userId, Long deckId) {
+    public Deck getDeck(String userName, Long deckId) {
         Deck resultDeck = null;
 
         String sql = "SELECT deck_id, decks.user_id, click_count, deck_name " +
                 "FROM decks JOIN users ON decks.user_id = users.user_id " +
-                "WHERE deck_id = ? AND decks.user_id = ?;";
+                "WHERE deck_id = ? AND users.username = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId, userId);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId, userName);
 
         if (results.next()) {
             resultDeck = mapRowToDeck(results);

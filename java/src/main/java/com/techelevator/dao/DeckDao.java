@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface DeckDao {
 
-    List<Deck> getAllDecks(Long userId);
+    List<Deck> getAllDecks(String userName);
 
-    Deck getDeck(Long userId, Long deckId);
+    Deck getDeck(String userName, Long deckId);
 
 
 
