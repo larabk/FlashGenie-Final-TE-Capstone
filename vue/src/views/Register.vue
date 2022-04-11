@@ -1,11 +1,12 @@
 <template>
   <div id="register" class="text-center">
+     <img id="logo" src="/excalidraw_logo.png" alt=""/>
+    
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
-      <label for="username" class="sr-only">Username</label>
+     <h1 id="h1-register">Create Account</h1>
+
+
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -15,7 +16,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -32,10 +33,19 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+
+      <div class="alert alert-danger" id="alert" role="alert" v-if="registrationErrors">
+        {{ registrationErrorMsg }}
+      </div>
+
+      <div id="register-buttons">
+      <button id="create-account"><router-link :to="{ name: 'login' }" id="router-account">
+        Have an account?</router-link></button>
+      <button id="sign-in" type="submit">
         Create Account
       </button>
+
+      </div>
     </form>
   </div>
 </template>
@@ -90,4 +100,105 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped> 
+
+h1#h1-register {
+  text-align: center;
+  font-size: small;
+  margin-bottom: 10px;
+}
+
+div#register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 50px 50px 50px;
+
+}
+
+form.form-register {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+div#register-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button#create-account, 
+button#sign-in {
+  width: 250px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 4vh;
+  
+  background-color: #a0f3d5;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 16px;
+  margin: 4px 2px;
+  font-size: x-small;
+  font-weight: bold;
+  margin-bottom: 100px;
+
+  box-shadow: 0px 1px 0px #ccc, 0px 2px 0px #c9c9c9, 
+  0px 3px 0px #bbb, 0px 4px 0px #b9b9b9, 
+  0px 5px 0px #aaa, 0px 6px 1px rgba(0,0,0,0.1), 
+  0px 0px 5px rgba(0,0,0,0.1), 0px 1px 3px rgba(0,0,0,0.3), 
+  0px 3px 5px rgba(0,0,0,0.2), -4px 8px 8px rgba(0,0,0,0.1), 
+  -8px 16px 16px rgba(0,0,0,0.37), -16px 32px 32px rgba(0,0,0,0.25), 
+  -32px 64px 64px rgba(0,0,0,0.25);
+
+}
+
+button#create-account:visited,
+button#sign-in:visited {
+text-decoration: none;
+}
+
+button#create-account:hover,
+button#sign-in:hover {
+  background-color: rgb(204, 250, 244);
+}
+
+a#router-account:visited {
+  text-decoration: none;
+  color:rgb(0, 0, 0)
+}
+
+a#router-account {
+text-align: center;
+text-decoration: none;
+}
+
+input#username, 
+input#password, 
+input#confirmPassword {
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: x-small;
+}
+
+div#alert {
+  font-size: x-small;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+img#logo {
+    width: 175px;
+    height: auto;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+</style>
