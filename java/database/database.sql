@@ -26,6 +26,7 @@ CREATE TABLE decks (
 	user_id int NOT NULL,
 	deck_name varchar(50) NOT NULL,
 	click_count int DEFAULT 0,
+	topics varchar(50) NOT NULL,
 	CONSTRAINT PK_deck PRIMARY KEY (deck_id),
 	CONSTRAINT FK_deck_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
@@ -72,8 +73,9 @@ TO final_capstone_appuser;
 
 --User setup above this line 
 
-INSERT INTO decks (user_id, deck_name)
-VALUES (1, 'Cars');
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (1, 'Cars', 'Vehicles');
+
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES(1, 'Ford Sports Car', 'Mustang', 'Ford');
