@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface CardDao {
     List<Card> getAllCards(Long deckId, String username);
+
 }

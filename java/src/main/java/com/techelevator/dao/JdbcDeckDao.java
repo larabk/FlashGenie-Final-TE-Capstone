@@ -16,11 +16,11 @@ public class JdbcDeckDao implements DeckDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
+    @Override
     public List<Deck> getAllDecks(String userName) {
         List<Deck> decks = new ArrayList<>();
 
-        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name " +
+        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name, topics " +
                 "FROM decks JOIN users ON users.user_id = decks.user_id " +
                 "WHERE username = ?; ";
 
@@ -33,6 +33,7 @@ public class JdbcDeckDao implements DeckDao {
     }
 
 //Maybe needed later?
+    @Override
     public Deck getDeck(String userName, Long deckId) {
         Deck resultDeck = null;
 
@@ -48,12 +49,21 @@ public class JdbcDeckDao implements DeckDao {
         return resultDeck;
     }
 
+    @Override
+    public Deck createDeck(String userName, Deck deck){
+        String sql = "INSERT INTO decks (user_id, deck_name, topics) " +
+                "VALUES ((SELECT user_id FROM users WHERE username = ?), ?, ?) RETURNING deck_id";
+        Long decks_id = jdbcTemplate.queryForObject(sql, Long.class, userName, deck.getName(), deck.getTopics());
+        deck.setDeckId(decks_id);
+        return deck;
+    }
 
     private Deck mapRowToDeck(SqlRowSet rowSet) {
         Deck deck = new Deck();
         deck.setDeckId(rowSet.getLong("deck_id"));
         deck.setUserId(rowSet.getLong("user_id"));
         deck.setClickCount(rowSet.getInt("click_count"));
+        deck.setTopics(rowSet.getString("topics"));
         deck.setName((rowSet.getString("deck_name")));
         return deck;
     }

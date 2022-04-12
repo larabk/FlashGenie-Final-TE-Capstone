@@ -5,13 +5,13 @@
         <h3>My Cards</h3>
       </div>
       <div class="cards">
-        <p
+        <div
           class="card"
           v-for="card in this.$store.state.cards"
           v-bind:key="card.cardId"
         >
-          {{ card.frontText }}
-        </p>
+         {{card.frontText}}
+        </div>
         <div class="plusSignContainer">
           <div class="addCard addCardDetails">+</div>
         </div>
@@ -27,8 +27,10 @@ export default {
   data() {
     return {
       deckId: 0,
+      active: false,
     };
   },
+  computed: {},
   methods: {
     getCards() {
       cardService.getAllCards(this.$route.params.id).then((response) => {
@@ -68,7 +70,8 @@ export default {
   margin-left: 45px;
 }
 
-.card, .addCard {
+.card,
+.addCard {
   display: flex;
   flex-wrap: wrap;
   width: 200px;
@@ -94,5 +97,4 @@ export default {
   color: grey;
   border-radius: 90;
 }
-
 </style>

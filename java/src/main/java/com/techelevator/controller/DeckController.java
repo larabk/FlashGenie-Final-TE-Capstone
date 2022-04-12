@@ -5,6 +5,7 @@ import com.techelevator.model.Deck;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -27,6 +28,11 @@ public class DeckController {
     @RequestMapping(value = "/decks/{deckId}", method = RequestMethod.GET)
     public Deck getDeckById(Principal userName, @PathVariable Long deckId) {
         return deckDao.getDeck(userName.getName(), deckId);
+    }
+
+    @RequestMapping(value = "/decks", method = RequestMethod.POST)
+    public Deck postDeck(@RequestBody Deck newDeck, Principal userName){
+        return deckDao.createDeck(userName.getName(), newDeck);
     }
 
 }

@@ -12,6 +12,8 @@ public interface DeckDao {
     //Maybe needed later?
     Deck getDeck(String userName, Long deckId);
 
+    Deck createDeck(String userName, Deck passedDeck);
+
 
 
 }
