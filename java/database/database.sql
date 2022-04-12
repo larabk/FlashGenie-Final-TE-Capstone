@@ -73,8 +73,6 @@ TO final_capstone_appuser;
 
 --User setup above this line 
 
-INSERT INTO decks (user_id, deck_name, topics)
-VALUES (1, 'Cars', 'Vehicles');
 
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
@@ -85,3 +83,31 @@ VALUES (1, 'Chevy Sports Car', 'Corvette', 'Chevrolet');
 
 
 COMMIT TRANSACTION;
+
+START TRANSACTION;
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Cars', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Buses', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Boats', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Planes', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Scooters', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Trains', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Bicycles', 'Vehicles');
+
+INSERT INTO decks (user_id, deck_name, topics)
+VALUES (3, 'Motorcycles', 'Vehicles');
+
+COMMIT;

@@ -19,7 +19,8 @@ div#app {
   background-color: #f9ea8f;
   background-image: linear-gradient(360deg, 
   #f9ea8f 0%, #aff1da 74%);
-}
+  
+  }
 
 
 </style>
