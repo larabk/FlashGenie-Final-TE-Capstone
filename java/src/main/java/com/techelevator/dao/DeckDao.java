@@ -9,6 +9,7 @@ public interface DeckDao {
 
     List<Deck> getAllDecks(String userName);
 
+    //Maybe needed later?
     Deck getDeck(String userName, Long deckId);
 
 

@@ -23,6 +23,7 @@ public class DeckController {
         return deckDao.getAllDecks(userName.getName());
     }
 
+    //Maybe needed later?
     @RequestMapping(value = "/decks/{deckId}", method = RequestMethod.GET)
     public Deck getDeckById(Principal userName, @PathVariable Long deckId) {
         return deckDao.getDeck(userName.getName(), deckId);

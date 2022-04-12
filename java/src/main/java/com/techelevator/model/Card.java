@@ -7,10 +7,12 @@ public class Card {
     private String backText;
     private String keyWords;
 
-    public Card(String frontText, String backText, String keyWords) {
+    public Card(Long cardId, Long deckId, String frontText, String backText, String keyWords) {
         this.frontText = frontText;
         this.backText = backText;
         this.keyWords = keyWords;
+        this.cardId = cardId;
+        this.deckId = deckId;
     }
 
     public Card(){
@@ -56,6 +58,7 @@ public class Card {
     public void setKeyWords(String keyWords) {
         this.keyWords = keyWords;
     }
+
 
     @Override
     public String toString() {
