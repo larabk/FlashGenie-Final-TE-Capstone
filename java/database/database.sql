@@ -41,6 +41,9 @@ CREATE TABLE cards (
 	CONSTRAINT FK_deck FOREIGN KEY(deck_id) REFERENCES decks(deck_id)
 );
 
+-- Sets deck_id serial to 1 again --
+ALTER SEQUENCE decks_deck_id_seq RESTART WITH 1;
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
@@ -73,15 +76,6 @@ TO final_capstone_appuser;
 
 --User setup above this line 
 
-
-
-INSERT INTO cards (deck_id, front_text, back_text, keywords)
-VALUES(1, 'Ford Sports Car', 'Mustang', 'Ford');
-
-INSERT INTO cards (deck_id, front_text, back_text, keywords)
-VALUES (1, 'Chevy Sports Car', 'Corvette', 'Chevrolet');
-
-
 COMMIT TRANSACTION;
 
 START TRANSACTION;
@@ -109,5 +103,17 @@ VALUES (3, 'Bicycles', 'Vehicles');
 
 INSERT INTO decks (user_id, deck_name, topics)
 VALUES (3, 'Motorcycles', 'Vehicles');
+
+INSERT INTO cards (deck_id, front_text, back_text, keywords)
+VALUES(1, 'Ford Sports Car', 'Mustang', 'Ford');
+
+INSERT INTO cards (deck_id, front_text, back_text, keywords)
+VALUES (1, 'Chevy Sports Car', 'Corvette', 'Chevrolet');
+
+INSERT INTO cards (deck_id, front_text, back_text, keywords)
+VALUES(2, 'Blue Bus', 'Mustang', 'Ford');
+
+INSERT INTO cards (deck_id, front_text, back_text, keywords)
+VALUES (2, 'Red Bus', 'Corvette', 'Chevrolet');
 
 COMMIT;

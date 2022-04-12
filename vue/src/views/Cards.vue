@@ -1,59 +1,56 @@
 <template>
-  <div class="landingPage">
-    <div class="deck-container">
-      <div class="my-decks">
-        <h3>My Decks</h3>
+  <div class="cardsPage">
+    <div class="cards-container">
+      <div class="my-cards">
+        <h3>My Cards</h3>
       </div>
-      <div class="decks">
-        <router-link
-          class="deck"
-          v-for="deck in this.$store.state.decks"
-          v-bind:key="deck.deckId"
-          :to="{ name: 'cards', params: { id: deck.deckId } }"
-          >{{ deck.name }}
-        </router-link>
-        <p class="addDeck addDeckDetails">+</p>
+      <div class="cards">
+        <p
+          class="card"
+          v-for="card in this.$store.state.cards"
+          v-bind:key="card.cardId"
+        >
+          {{ card.frontText }}
+        </p>
+        <div class="plusSignContainer">
+          <div class="addCard addCardDetails">+</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import deckService from "@/services/DeckService";
+import cardService from "@/services/CardService";
 export default {
-  name: "landingPage",
+  name: "cardsPage",
   data() {
     return {
-      deck: {
-        deckId: 0,
-        userId: 0,
-        deckName: "",
-        clickCount: 0,
-      },
+      deckId: 0,
     };
   },
   methods: {
-    getDecks() {
-      deckService.getAllDecks().then((response) => {
-        this.$store.commit("SET_DECKS", response.data);
+    getCards() {
+      cardService.getAllCards(this.$route.params.id).then((response) => {
+        this.$store.commit("SET_CARDS", response.data);
       });
     },
   },
   created() {
-    this.getDecks();
+    this.getCards();
   },
 };
 </script>
 
 <style scoped>
-.landingPage {
+.cardsPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
 }
 
-.deck-container {
+.cards-container {
   background-color: cornsilk;
   justify-content: center;
   min-width: 600px;
@@ -65,14 +62,13 @@ export default {
   max-width: 1200px;
 }
 
-.decks {
+.cards {
   display: flex;
   flex-wrap: wrap;
   margin-left: 45px;
 }
 
-.deck,
-.addDeck {
+.card, .addCard {
   display: flex;
   flex-wrap: wrap;
   width: 200px;
@@ -92,9 +88,11 @@ export default {
   text-transform: uppercase;
 }
 
-.addDeckDetails {
+.addCardDetails {
   font-size: 3em;
   font-weight: 1000;
   color: grey;
+  border-radius: 90;
 }
+
 </style>

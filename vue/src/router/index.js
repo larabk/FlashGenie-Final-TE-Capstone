@@ -5,6 +5,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import LandingPage from '../views/LandingPage.vue'
+import Cards from '../views/Cards.vue'
 Vue.use(Router)
 
 /**
@@ -52,6 +53,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/deck/:id/cards",
+      name: "cards",
+      component: Cards,
+      meta:{
+        requiresAuth: true
+      }
+    }
   ]
 })
 
