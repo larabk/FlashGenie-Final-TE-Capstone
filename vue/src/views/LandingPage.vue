@@ -38,6 +38,7 @@ export default {
       deckService.getAllDecks().then((response) => {
         this.$store.commit("SET_DECKS", response.data);
       });
+      this.$router.push("/");
     },
   },
   created() {
