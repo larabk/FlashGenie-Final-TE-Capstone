@@ -1,10 +1,20 @@
 <template>
   <div id="register" class="text-center">
-     <img id="logo" src="/excalidraw_logo.png" alt=""/>
+     <img id="logo" src="/flash-genie-logo.png" alt=""/>
     
     <form class="form-register" @submit.prevent="register">
      <h1 id="h1-register">Create Account</h1>
 
+    <label for="email" class="sr-only"></label>
+      <input
+        type="text"
+        id="email"
+        class="form-control"
+        placeholder="Email"
+        v-model="user.email"
+        required
+        autofocus
+      />
 
       <label for="username" class="sr-only"></label>
       <input
@@ -103,8 +113,11 @@ export default {
 <style scoped> 
 
 h1#h1-register {
-  text-align: center;
-  font-size: small;
+  font-family: monospace;
+  text-align: left;
+  margin-left: 3px;
+  margin-top: 50px;
+  font-size: medium;
   margin-bottom: 10px;
 }
 
@@ -119,12 +132,14 @@ div#register {
 form.form-register {
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  max-width: 300px;
 }
 
 div#register-buttons {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+  column-gap: 25px;
 }
 
 button#create-account, 
@@ -133,8 +148,8 @@ button#sign-in {
   margin: 10px 10px 20px 10px;
   text-decoration: none;
   text-align: center;
-  font-size: 4vh;
-  
+  font-size: 1.75vh;
+  font-family: monospace;
   background-color: #a0f3d5;
   border: none;
   color: rgb(0, 0, 0);
@@ -143,9 +158,7 @@ button#sign-in {
   text-decoration: none;
   display: inline-block;
   border-radius: 12px;
-  font-size: 16px;
   margin: 4px 2px;
-  font-size: x-small;
   font-weight: bold;
   margin-bottom: 100px;
 
@@ -162,6 +175,7 @@ button#sign-in {
 button#create-account:visited,
 button#sign-in:visited {
 text-decoration: none;
+
 }
 
 button#create-account:hover,
@@ -177,15 +191,18 @@ a#router-account:visited {
 a#router-account {
 text-align: center;
 text-decoration: none;
+ 
 }
 
-input#username, 
+input#username,
+input#email, 
 input#password, 
 input#confirmPassword {
+  font-family: monospace;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 8px;
   border-radius: 8px;
-  font-size: x-small;
+  font-size: medium;
 }
 
 div#alert {
@@ -195,10 +212,10 @@ div#alert {
 }
 
 img#logo {
-    width: 175px;
+    width: 200px;
     height: auto;
-    margin-bottom: 15px;
-    margin-top: 30px;
+    margin-bottom: 5px;
+    margin-top: 60px;
 }
 
 </style>

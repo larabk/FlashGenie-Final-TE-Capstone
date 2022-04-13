@@ -2,7 +2,7 @@
   <div id="login" class="text-center">
     
     
-    <img id="logo" src="/excalidraw_logo.png" alt=""/>
+    <img id="logo" src="/flash-genie-logo.png" alt=""/>
 
     <form class="form-signin" @submit.prevent="login">
       <h1 id="sign-in">Please Sign In</h1>
@@ -93,8 +93,11 @@ export default {
 
 <style scoped>
 h1#sign-in {
-  text-align: center;
-  font-size: small;
+  font-family: monospace;
+  text-align: left;
+  margin-left: 3px;
+  margin-top: 50px;
+  font-size: medium;
   margin-bottom: 10px;
 }
 
@@ -108,12 +111,14 @@ div#login {
 .form-signin {
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  max-width: 300px;
 }
 
 div#login-buttons {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+  column-gap: 25px;
 }
 
 button#create-account,
@@ -122,8 +127,8 @@ button#sign-in {
   margin: 10px 10px 20px 10px;
   text-decoration: none;
   text-align: center;
-  font-size: 4vh;
-
+  font-size: 1.75vh;  
+  font-family: monospace;
   background-color: #a0f3d5;
   border: none;
   color: rgb(0, 0, 0);
@@ -132,9 +137,7 @@ button#sign-in {
   text-decoration: none;
   display: inline-block;
   border-radius: 12px;
-  font-size: 16px;
   margin: 4px 2px;
-  font-size: x-small;
   font-weight: bold;
   margin-bottom: 100px;
 
@@ -170,17 +173,18 @@ a#router-account {
 
 input#username,
 input#password {
+  font-family: monospace;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 8px;
   border-radius: 8px;
-  font-size: x-small;
+  font-size: medium;
 }
 
 img#logo {
-    width: 175px;
+    width: 200px;
     height: auto;
-    margin-bottom: 15px;
-    margin-top: 30px;
+    margin-bottom: 5px;
+    margin-top: 60px;
 
 }
 </style>
