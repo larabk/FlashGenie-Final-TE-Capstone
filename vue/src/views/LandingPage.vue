@@ -29,6 +29,7 @@ export default {
         userId: 0,
         deckName: "",
         clickCount: 0,
+        topics: ""
       },
     };
   },

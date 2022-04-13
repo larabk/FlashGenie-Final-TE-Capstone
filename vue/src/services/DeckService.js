@@ -5,10 +5,11 @@ export default {
 
     getAllDecks(){
         return http.get('/decks');
+    },
+
+    create(deck){
+        return http.post(`/decks/`, deck);
     }
-//   login(user) {
-//     return axios.post('/login', user)
-//   },
 
 //   register(user) {
 //     return axios.post('/register', user)

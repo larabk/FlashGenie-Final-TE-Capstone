@@ -6,6 +6,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import LandingPage from '../views/LandingPage.vue'
 import Cards from '../views/Cards.vue'
+import CreateNewDeck from '../views/CreateNewDeck.vue'
 Vue.use(Router)
 
 /**
@@ -58,6 +59,14 @@ const router = new Router({
       name: "cards",
       component: Cards,
       meta:{
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/deck/new-deck",
+      name: "new-deck",
+      component: CreateNewDeck,
+      meta : {
         requiresAuth: true
       }
     }
