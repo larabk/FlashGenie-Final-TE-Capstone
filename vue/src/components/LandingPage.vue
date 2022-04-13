@@ -7,13 +7,16 @@
       <div class="decks">
         <router-link
           class="deck"
-          v-for="deck in this.$store.state.decks"
+          v-for="deck in decks.slice(0, displayLength)"
           v-bind:key="deck.deckId"
           :to="{ name: 'cards', params: { id: deck.deckId } }"
           >{{ deck.name }}
         </router-link>
-        <p class="addDeck addDeckDetails">+</p>
+        <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }"
+          >+</router-link
+        >
       </div>
+      <button @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
     </div>
   </div>
 </template>
@@ -24,6 +27,7 @@ export default {
   name: "landingPage",
   data() {
     return {
+      partialDisplay: true,
       deck: {
         deckId: 0,
         userId: 0,
@@ -32,6 +36,18 @@ export default {
         topics: "",
       },
     };
+  },
+  computed: {
+    displayLength() {
+      if (this.partialDisplay) {
+        return 7;
+      } else {
+        return this.$store.state.decks.length;
+      }
+    },
+    decks() {
+      return this.$store.state.decks;
+    },
   },
   methods: {
     getDecks() {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Create New Deck</h1>
     <new-deck-form></new-deck-form>
   </div>
 </template>

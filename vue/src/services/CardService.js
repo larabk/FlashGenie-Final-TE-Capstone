@@ -5,7 +5,12 @@ export default {
 
     getAllCards(id){
         return http.get(`decks/${id}/cards`);
+    },
+
+    create(id, card){
+        return http.post(`decks/${id}/cards`, card);
     }
+
 //   login(user) {
 //     return axios.post('/login', user)
 //   },

@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.DeckDao;
 import com.techelevator.model.Deck;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,7 @@ public class DeckController {
     }
 
     @RequestMapping(value = "/decks", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public Deck postDeck(@RequestBody Deck newDeck, Principal userName){
         return deckDao.createDeck(userName.getName(), newDeck);
     }

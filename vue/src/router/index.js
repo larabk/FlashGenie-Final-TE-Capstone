@@ -78,7 +78,7 @@ const router = new Router({
       }
     },
     {
-      path: "/deck/new-card",
+      path: "/deck/:id/new-card",
       name: "new-card",
       component: CreateNewCard,
       meta: {
