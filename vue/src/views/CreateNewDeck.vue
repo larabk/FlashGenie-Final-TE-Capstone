@@ -1,34 +1,18 @@
 <template>
-  <div class ="create-deck">
-      <form class="deck-form"></form>
+  <div>
+    <create-new-deck></create-new-deck>
   </div>
 </template>
 
 <script>
-import deckService from "@/services/DeckService";
-
+import CreateNewDeck from '@/components/CreateNewDeck.vue'
 export default {
-  name: "createNewDeck",
-  data() {
-    return {
-      deck: {
-        deckName: "",
-        clickCount: 0,
-        topics: ""
-      },
-    };
-  },
-  methods: {
-      saveDeck() {
-          deckService.create(this.deck).then(response => {
-              if (response.status === 201) {
-                  this.$router.push('/');
-              }
-          });
-      }
+  components: {
+    CreateNewDeck
   }
-};
+}
 </script>
 
 <style>
+
 </style>
