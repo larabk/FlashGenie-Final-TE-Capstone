@@ -8,7 +8,7 @@
 import deckService from "@/services/DeckService";
 
 export default {
-  name: "createNewDeck",
+  name: "newDeckForm",
   data() {
     return {
       deck: {

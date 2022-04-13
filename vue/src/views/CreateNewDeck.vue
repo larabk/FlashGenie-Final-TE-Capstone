@@ -1,14 +1,14 @@
 <template>
   <div>
-    <create-new-deck></create-new-deck>
+    <new-deck-form></new-deck-form>
   </div>
 </template>
 
 <script>
-import CreateNewDeck from '@/components/CreateNewDeck.vue'
+import NewDeckForm from '@/components/NewDeckForm.vue'
 export default {
   components: {
-    CreateNewDeck
+    NewDeckForm
   }
 }
 </script>
