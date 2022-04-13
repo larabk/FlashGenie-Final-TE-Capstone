@@ -5,8 +5,15 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Home from '../views/Home.vue'
-import CardsView from '../views/CardsView.vue'
+import Cards from '../views/Cards.vue'
 import CreateNewDeck from '../views/CreateNewDeck.vue'
+import ScoreSummary from '@/views/ScoreSummary.vue'
+import StudySession from '@/views/StudySession.vue'
+import EditCard from '@/views/EditCard.vue'
+import EditDeck from '@/views/EditDeck.vue'
+import CreateNewCard from '@/views/CreateNewCard.vue'
+
+
 Vue.use(Router)
 
 /**
@@ -57,7 +64,7 @@ const router = new Router({
     {
       path: "/deck/:id/cards",
       name: "cards",
-      component: CardsView,
+      component: Cards,
       meta:{
         requiresAuth: true
       }
@@ -69,6 +76,43 @@ const router = new Router({
       meta : {
         requiresAuth: true
       }
+    },
+    {
+      path: "/deck/new-card",
+      name: "new-card",
+      component: CreateNewCard,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/deck/study-session/score-summary",
+      name: "score-summary",
+      component: ScoreSummary,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/deck/cards/edit-card",
+      name: "edit-card",
+      component: EditCard,
+      meta : {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "deck/edit-deck",
+      name: "edit-deck",
+      component: EditDeck,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "deck/study-session",
+      name: "study-session",
+      component: StudySession
     }
   ]
 })
