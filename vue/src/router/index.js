@@ -4,8 +4,8 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import LandingPage from '../views/LandingPage.vue'
-import Cards from '../views/Cards.vue'
+import Home from '../views/Home.vue'
+import CardsView from '../views/CardsView.vue'
 import CreateNewDeck from '../views/CreateNewDeck.vue'
 Vue.use(Router)
 
@@ -25,7 +25,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: LandingPage,
+      component: Home,
       meta: {
         requiresAuth: true
       }
@@ -57,7 +57,7 @@ const router = new Router({
     {
       path: "/deck/:id/cards",
       name: "cards",
-      component: Cards,
+      component: CardsView,
       meta:{
         requiresAuth: true
       }
