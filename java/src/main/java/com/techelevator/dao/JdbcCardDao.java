@@ -34,6 +34,14 @@ public class JdbcCardDao implements CardDao {
         return cards;
     }
 
+    public Card createCard(Long deckId, Card card) {
+        String sql = "INSERT INTO cards (deck_id, front_text, back_text, keywords) " +
+                "VALUES (?, ?, ?, ?) RETURNING cards.card_id; ";
+        Long card_id = jdbcTemplate.queryForObject(sql, Long.class, deckId, card.getFrontText(), card.getBackText(), card.getKeyWords());
+        card.setCardId(card_id);
+        return card;
+    }
+
     private Card mapRowToCard(SqlRowSet rowSet) {
         Card card = new Card();
         card.setCardId(rowSet.getLong("card_id"));

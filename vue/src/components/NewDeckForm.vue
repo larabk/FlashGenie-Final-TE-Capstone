@@ -1,6 +1,11 @@
 <template>
-  <div class ="create-deck">
-      <form class="deck-form"></form>
+  <div class="create-deck">
+    <form @submit.prevent="saveDeck" class="deck-form">
+      <input type="text" id="deck-name" placeholder="Deck Name" v-model="deck.name"/>
+      <input type="text" id="topics" placeholder="Deck Topics" v-model="deck.topics">
+      <button type="submit">Submit</button>
+      <button type="cancel" @click.prevent="cancelForm">Cancel</button>
+    </form>
   </div>
 </template>
 
@@ -12,21 +17,27 @@ export default {
   data() {
     return {
       deck: {
-        deckName: "",
+        name: "",
         clickCount: 0,
-        topics: ""
+        topics: "",
       },
     };
   },
   methods: {
-      saveDeck() {
-          deckService.create(this.deck).then(response => {
-              if (response.status === 201) {
-                  this.$router.push('/');
-              }
-          });
-      }
-  }
+    saveDeck() {
+      
+      deckService.create(this.deck).then((response) => {
+        if (response.status === 201) {
+          this.$router.push("/");
+        }
+      });
+    },
+    cancelForm(){
+      this.deck.name = "";
+      this.deck.topics = "";
+      this.$router.push("/");
+    }
+  },
 };
 </script>
 

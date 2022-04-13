@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CardDao;
 import com.techelevator.model.Card;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,5 +21,11 @@ public class CardController {
     @RequestMapping (value = "/decks/{deckId}/cards", method = RequestMethod.GET)
     public List<Card> getAllCards(@PathVariable Long deckId, Principal userName) {
         return cardDao.getAllCards(deckId, userName.getName());
+    }
+
+    @RequestMapping(value = "/decks/{deckId}/cards", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Card postCard(@RequestBody Card newCard, @PathVariable Long deckId){
+        return cardDao.createCard(deckId, newCard);
     }
 }

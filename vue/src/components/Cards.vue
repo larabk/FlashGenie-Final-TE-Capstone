@@ -10,11 +10,9 @@
           v-for="card in this.$store.state.cards"
           v-bind:key="card.cardId"
         >
-         {{card.frontText}}
+          {{ card.frontText }}
         </div>
-        <div class="plusSignContainer">
-          <div class="addCard addCardDetails">+</div>
-        </div>
+        <router-link :to="{name: 'new-card', params: {id: this.$route.params.id}}" class="addCard addCardDetails">+</router-link>
       </div>
     </div>
   </div>
