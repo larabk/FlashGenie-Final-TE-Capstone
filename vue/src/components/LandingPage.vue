@@ -2,7 +2,9 @@
   <div class="landingPage">
     <div class="deck-container">
       <div class="my-decks">
+         <img id="bolt" src="/bolt.png" alt="">
         <h3>My Decks</h3>
+         <img id="bolt" src="/bolt.png" alt="">
       </div>
       <div class="decks">
         <router-link
@@ -16,7 +18,9 @@
           >+</router-link
         >
       </div>
-      <button @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+      <div id="button">
+      <button id="show-all" @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -70,16 +74,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .deck-container {
-  background-color: cornsilk;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, 
+  #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
   border-radius: 30px;
-  margin: 30px 0px 200px 0px;
+  margin: 30px 0px 0px 0px;
   padding: 30px;
   padding-top: 40px;
   width: 75%;
@@ -89,7 +97,8 @@ export default {
 .decks {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 45px;
+  margin: 30px 45px 30px 45px;
+  justify-content: center;
 }
 
 .deck,
@@ -102,7 +111,6 @@ export default {
   padding: 20px;
   margin: 15px;
   margin-left: 20px;
-  background-color: pink;
   border: none;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -116,6 +124,70 @@ export default {
 .addDeckDetails {
   font-size: 3em;
   font-weight: 1000;
-  color: grey;
+  color: rgb(95, 95, 95);
 }
+
+h3 {
+  color: white;
+  font-size: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.75px;
+  margin: 15px;
+}
+
+a.deck {
+	width: [object Object]px; 
+	height: [object Object]px; 
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  border: solid #BDBDBD 1px; 
+	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  font-size: x-large;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+}
+
+.addDeck {
+  width: [object Object]px; 
+	height: [object Object]px; 
+	background-color: white;
+  border: solid #BDBDBD 1px; 
+	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+}
+
+img {
+  width: 30px;
+  opacity: 0.5;
+}
+
+div.my-decks {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    vertical-align: middle;
+    margin-top:10px;
+}
+
+button#show-all {
+  font-family: monospace;
+  letter-spacing: 1px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  margin-right: 60px;
+}
+div#button {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px;
+  
+}
+
 </style>
