@@ -1,8 +1,6 @@
 <template>
   <div id="login" class="text-center">
-    
-    
-    <img id="logo" src="/flash-genie-logo.png" alt=""/>
+    <img id="logo" src="/flash-genie-logo.png" alt="" />
 
     <form class="form-signin" @submit.prevent="login">
       <h1 id="sign-in">Please Sign In</h1>
@@ -53,6 +51,7 @@
 
 <script>
 import authService from "../services/AuthService";
+import deckService from "../services/DeckService";
 
 export default {
   name: "login",
@@ -63,7 +62,6 @@ export default {
         username: "",
         password: "",
       },
-
 
       invalidCredentials: false,
     };
@@ -76,7 +74,11 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            deckService.getAllDecks().then((response) => {
+              this.$store.commit("SET_DECKS", response.data);
+            this.$router.push('/');
+            });
+            
           }
         })
         .catch((error) => {
@@ -127,7 +129,7 @@ button#sign-in {
   margin: 10px 10px 20px 10px;
   text-decoration: none;
   text-align: center;
-  font-size: 1.75vh;  
+  font-size: 1.75vh;
   font-family: monospace;
   background-color: #a0f3d5;
   border: none;
@@ -141,18 +143,17 @@ button#sign-in {
   font-weight: bold;
   margin-bottom: 100px;
 
-  box-shadow: 0px 1px 0px #ccc, 0px 2px 0px #c9c9c9, 
-  0px 3px 0px #bbb, 0px 4px 0px #b9b9b9, 
-  0px 5px 0px #aaa, 0px 6px 1px rgba(0,0,0,0.1), 
-  0px 0px 5px rgba(0,0,0,0.1), 0px 1px 3px rgba(0,0,0,0.3), 
-  0px 3px 5px rgba(0,0,0,0.2), -4px 8px 8px rgba(0,0,0,0.1), 
-  -8px 16px 16px rgba(0,0,0,0.37), -16px 32px 32px rgba(0,0,0,0.25), 
-  -32px 64px 64px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 0px #ccc, 0px 2px 0px #c9c9c9, 0px 3px 0px #bbb,
+    0px 4px 0px #b9b9b9, 0px 5px 0px #aaa, 0px 6px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 5px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.3),
+    0px 3px 5px rgba(0, 0, 0, 0.2), -4px 8px 8px rgba(0, 0, 0, 0.1),
+    -8px 16px 16px rgba(0, 0, 0, 0.37), -16px 32px 32px rgba(0, 0, 0, 0.25),
+    -32px 64px 64px rgba(0, 0, 0, 0.25);
 }
 
 button#create-account:visited,
 button#sign-in:visited {
-text-decoration: none;
+  text-decoration: none;
 }
 
 button#create-account:hover,
@@ -162,9 +163,8 @@ button#sign-in:hover {
 
 a#router-account:visited {
   text-decoration: none;
-  color:rgb(0, 0, 0)
+  color: rgb(0, 0, 0);
 }
-
 
 a#router-account {
   text-align: center;
@@ -181,10 +181,9 @@ input#password {
 }
 
 img#logo {
-    width: 200px;
-    height: auto;
-    margin-bottom: 5px;
-    margin-top: 60px;
-
+  width: 200px;
+  height: auto;
+  margin-bottom: 5px;
+  margin-top: 60px;
 }
 </style>

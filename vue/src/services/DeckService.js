@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const http = axios.create({baseURL: "http://localhost:3000"});
 export default {
 
     getAllDecks(){
-        return http.get('/decks');
+        return axios.get('/decks');
     },
 
     create(deck){
-        return http.post(`/decks/`, deck);
+        return axios.post(`/decks/`, deck);
     }
 
 //   register(user) {
