@@ -51,7 +51,7 @@
 
 <script>
 import authService from "../services/AuthService";
-import deckService from "../services/DeckService";
+
 
 export default {
   name: "login",
@@ -74,11 +74,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            deckService.getAllDecks().then((response) => {
-              this.$store.commit("SET_DECKS", response.data);
             this.$router.push('/');
-            });
-            
           }
         })
         .catch((error) => {
@@ -131,9 +127,11 @@ button#sign-in {
   text-align: center;
   font-size: 1.75vh;
   font-family: monospace;
-  background-color: #a0f3d5;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, 
+  #537895 0%, #09203f 74%);
   border: none;
-  color: rgb(0, 0, 0);
+  color: white;
   padding: 10px;
   text-align: center;
   text-decoration: none;
@@ -142,33 +140,27 @@ button#sign-in {
   margin: 4px 2px;
   font-weight: bold;
   margin-bottom: 100px;
-
-  box-shadow: 0px 1px 0px #ccc, 0px 2px 0px #c9c9c9, 0px 3px 0px #bbb,
-    0px 4px 0px #b9b9b9, 0px 5px 0px #aaa, 0px 6px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 5px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.3),
-    0px 3px 5px rgba(0, 0, 0, 0.2), -4px 8px 8px rgba(0, 0, 0, 0.1),
-    -8px 16px 16px rgba(0, 0, 0, 0.37), -16px 32px 32px rgba(0, 0, 0, 0.25),
-    -32px 64px 64px rgba(0, 0, 0, 0.25);
-}
-
-button#create-account:visited,
-button#sign-in:visited {
-  text-decoration: none;
-}
-
-button#create-account:hover,
-button#sign-in:hover {
-  background-color: rgb(204, 250, 244);
-}
-
-a#router-account:visited {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
+  box-shadow: 10px 10px 53px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 10px 10px 53px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 10px 10px 53px 0px rgba(0,0,0,0.7);
 }
 
 a#router-account {
-  text-align: center;
   text-decoration: none;
+  color: white;
+}
+a#router-account:visited {
+  text-decoration: none;
+
+}
+a#router-account:hover {
+  text-decoration: none;
+  color: #ebeb85; 
+}
+
+button#create-account:hover, 
+button#sign-in:hover {
+  color: #ebeb85;  
 }
 
 input#username,
@@ -178,10 +170,11 @@ input#password {
   padding: 8px;
   border-radius: 8px;
   font-size: medium;
+  border-color: #05445e;
 }
 
 img#logo {
-  width: 200px;
+  width: 250px;
   height: auto;
   margin-bottom: 5px;
   margin-top: 60px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="landingPage">
+  <div class="decksPage">
     <div class="deck-container">
       <div class="my-decks">
         <h3>My Decks</h3>
@@ -24,7 +24,7 @@
 <script>
 import deckService from "@/services/DeckService";
 export default {
-  name: "landingPage",
+  name: "decksPage",
   data() {
     return {
       partialDisplay: true,
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-.landingPage {
+/* .landingPage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +72,13 @@ export default {
 }
 
 .deck-container {
-  background-color: cornsilk;
+
+  background-color: #537895;
+  background-image: linear-gradient(315deg, 
+  #537895 0%, #09203f 74%);
+
+
+
   justify-content: center;
   min-width: 600px;
   border-radius: 30px;
@@ -114,5 +120,5 @@ export default {
   font-size: 3em;
   font-weight: 1000;
   color: grey;
-}
+} */
 </style>

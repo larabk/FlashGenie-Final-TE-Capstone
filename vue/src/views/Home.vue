@@ -1,14 +1,15 @@
 <template>
   <div class="container">
-      <landing-page></landing-page>
+      <decks></decks>
   </div>
 </template>
 
 <script>
-import LandingPage from '@/components/LandingPage.vue'
+
+import Decks from '../components/Decks.vue'
 export default {
     components: {
-        LandingPage
+        Decks
     }
 }
 </script>

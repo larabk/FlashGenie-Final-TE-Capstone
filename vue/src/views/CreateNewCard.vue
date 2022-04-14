@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Add a New Card</h1>
     <new-card-form></new-card-form>
   </div>
 </template>

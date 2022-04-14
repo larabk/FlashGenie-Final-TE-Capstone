@@ -8,6 +8,9 @@ export default {
 
     create(deck){
         return axios.post(`/decks/`, deck);
+    },
+    update(deck){
+        return axios.put('/decks/edit-deck', deck);
     }
 
 }
