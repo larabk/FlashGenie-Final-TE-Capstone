@@ -46,7 +46,7 @@ ALTER SEQUENCE decks_deck_id_seq RESTART WITH 1;
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-
+INSERT INTO users (username,password_hash,role) VALUES ('test','$2a$10$L4S7LccUIOgyDIW4dZlCfO8BpDzSxk4rtAdQB/Ly7dZarQjfKQljK','ROLE_USER');
 
 --- USER SETUP (Do Not Modify)
 DROP USER IF EXISTS final_capstone_owner;
@@ -103,6 +103,9 @@ VALUES (3, 'Bicycles', 'Vehicles');
 
 INSERT INTO decks (user_id, deck_name, topics)
 VALUES (3, 'Motorcycles', 'Vehicles');
+
+COMMIT;
+START TRANSACTION;
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES(1, 'Ford Sports Car', 'Mustang', 'Ford');
