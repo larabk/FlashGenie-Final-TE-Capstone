@@ -1,5 +1,7 @@
 <template>
   <div class="cardsPage">
+    <router-link :to="{name: 'home'}">Back to Decks</router-link>
+    <router-link :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit current deck properties</router-link>
     <div class="cards-container">
       <div class="my-cards">
         <h3>My Cards</h3>
@@ -7,13 +9,15 @@
       <div class="cards">
         <div
           class="card"
-          v-for="card in this.$store.state.cards"
+          v-for="card in cards.slice(0, displayLength)"
           v-bind:key="card.cardId"
         >
+        <router-link :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Edit this Card</router-link>
           {{ card.frontText }}
         </div>
         <router-link :to="{name: 'new-card', params: {id: this.$route.params.id}}" class="addCard addCardDetails">+</router-link>
       </div>
+      <button v-if="deckSize > minDisplayLength" @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
     </div>
   </div>
 </template>
@@ -24,11 +28,28 @@ export default {
   name: "cardsPage",
   data() {
     return {
+      minDisplayLength: 11,
+      partialDisplay: true,
       deckId: 0,
       active: false,
+
     };
   },
-  computed: {},
+  computed: {
+    deckSize(){
+      return this.$store.state.cards.length;
+    },
+    displayLength() {
+      if (this.partialDisplay) {
+        return 11;
+      } else {
+        return this.$store.state.cards.length;
+      }
+    },
+    cards(){
+      return this.$store.state.cards
+    }
+  },
   methods: {
     getCards() {
       cardService.getAllCards(this.$route.params.id).then((response) => {

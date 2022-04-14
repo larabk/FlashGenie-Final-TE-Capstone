@@ -51,7 +51,7 @@
 
 <script>
 import authService from "../services/AuthService";
-import deckService from "../services/DeckService";
+
 
 export default {
   name: "login",
@@ -74,11 +74,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            deckService.getAllDecks().then((response) => {
-              this.$store.commit("SET_DECKS", response.data);
             this.$router.push('/');
-            });
-            
           }
         })
         .catch((error) => {

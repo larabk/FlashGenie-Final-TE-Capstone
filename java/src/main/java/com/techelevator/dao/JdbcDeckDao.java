@@ -28,7 +28,6 @@ public class JdbcDeckDao implements DeckDao {
         while (results.next()) {
             decks.add(mapRowToDeck(results));
         }
-
         return decks;
     }
 
@@ -56,6 +55,15 @@ public class JdbcDeckDao implements DeckDao {
         Long decks_id = jdbcTemplate.queryForObject(sql, Long.class, userName, deck.getName(), deck.getTopics());
         deck.setDeckId(decks_id);
         return deck;
+    }
+
+    @Override
+    public boolean updateDeck(String userName, Deck deck){
+        String sql = "UPDATE decks SET deck_name = ?, topics = ? " +
+                "WHERE decks.user_id = (SELECT users.user_id FROM users WHERE username = ?) AND decks.deck_id = ?; ";
+        int count = jdbcTemplate.update(sql, deck.getName(), deck.getTopics(), userName, deck.getDeckId());
+
+       return count == 1;
     }
 
     private Deck mapRowToDeck(SqlRowSet rowSet) {
