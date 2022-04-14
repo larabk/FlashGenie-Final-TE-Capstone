@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style scoped>
-.landingPage {
+/* .landingPage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,6 +188,6 @@ div#button {
   justify-content: right;
   margin-bottom: 10px;
   
-}
+} */
 
 </style>
