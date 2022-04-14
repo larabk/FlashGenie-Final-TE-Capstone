@@ -94,7 +94,7 @@ const router = new Router({
       }
     },
     {
-      path: "/deck/cards/edit-card",
+      path: "/deck/:deckId/cards/:cardId/edit-card",
       name: "edit-card",
       component: EditCard,
       meta : {
@@ -102,7 +102,7 @@ const router = new Router({
       }
     },
     {
-      path: "deck/edit-deck",
+      path: "/deck/:id/edit-deck",
       name: "edit-deck",
       component: EditDeck,
       meta: {
@@ -110,7 +110,7 @@ const router = new Router({
       }
     },
     {
-      path: "deck/study-session",
+      path: "/deck/study-session",
       name: "study-session",
       component: StudySession
     }

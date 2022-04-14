@@ -12,13 +12,13 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @PreAuthorize("isAuthenticated()")
-
 public class CardController {
     private CardDao cardDao;
 
     public CardController(CardDao cardDao) { this.cardDao = cardDao; }
 
     @RequestMapping (value = "/decks/{deckId}/cards", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     public List<Card> getAllCards(@PathVariable Long deckId, Principal userName) {
         return cardDao.getAllCards(deckId, userName.getName());
     }
@@ -27,5 +27,11 @@ public class CardController {
     @ResponseStatus(HttpStatus.CREATED)
     public Card postCard(@RequestBody Card newCard, @PathVariable Long deckId){
         return cardDao.createCard(deckId, newCard);
+    }
+
+    @RequestMapping(value = "/deck/card/edit-card", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateCard(@RequestBody Card card){
+        cardDao.updateCard(card);
     }
 }

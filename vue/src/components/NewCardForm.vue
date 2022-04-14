@@ -22,7 +22,8 @@
           v-model="card.backText"
         />
         <input type="text" id="card-keywords" placeholder="Keywords (separate with commas)" v-model="card.keywords">
-          <div class="buttons">  
+          <div class="buttons">
+            <div class="alert" v-if="creationErrors">{{ creationErrorMessage }}</div>  
             <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>
             <button id="save" type="submit">Submit</button>
           </div>
@@ -41,26 +42,34 @@ export default {
   name: "newCardForm",
   data() {
     return {
+      creationErrors: false,
+      creationErrorMessage: "There was a problem creating this card",
       card: {
         frontText: "",
         backText: "",
-        keywords: "",
+        keyWords: "",
       },
+      id: this.$route.params.id,
     };
   },
   methods: {
     saveCard() {
-      cardService.create(Number(this.$route.param.id), this.card).then((response) => {
-        if (response.status === 201) {
-          this.$router.push("/");
-        }
-      });
+      if (this.card.frontText === "" || this.card.backText === "" || this.card.keyWords === "") {
+        this.creationErrors = true;
+        this.creationErrorMessage = "All Fields Required";
+      } else {
+        cardService.create(this.id, this.card).then((response) => {
+          if (response.status === 201) {
+            this.$router.push(`/deck/${this.id}/cards`);
+          }
+        });
+      }
     },
     cancelForm() {
       this.card.frontText = "";
       this.card.backText = "";
-      this.card.keywords = "";
-      this.$router.push("/");
+      this.card.keyWords = "";
+      this.$router.push(`/deck/${this.id}/cards`);
     },
   },
 };

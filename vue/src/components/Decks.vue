@@ -1,5 +1,5 @@
 <template>
-  <div class="landingPage">
+  <div class="decksPage">
     <div class="deck-container">
       <div class="my-decks">
         <h3>My Decks</h3>
@@ -24,7 +24,7 @@
 <script>
 import deckService from "@/services/DeckService";
 export default {
-  name: "landingPage",
+  name: "decksPage",
   data() {
     return {
       partialDisplay: true,
