@@ -10,8 +10,4 @@ export default {
         return axios.post(`/decks/`, deck);
     }
 
-//   register(user) {
-//     return axios.post('/register', user)
-//   }
-
 }
