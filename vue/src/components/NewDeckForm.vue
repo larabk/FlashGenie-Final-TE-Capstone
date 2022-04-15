@@ -144,6 +144,11 @@ input#deck-name, input#topics {
   border-radius: 8px;
   font-size: medium;
   border-color: #05445e;
+  background-color: rgba(241, 241, 241, 0.959);
+}
+
+input#deck-name:hover, input#topics:hover {
+      background-color: white;
 
 }
 

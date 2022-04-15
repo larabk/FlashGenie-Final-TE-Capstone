@@ -140,7 +140,9 @@ div.form {
   /* margin: 10px 50px 50px 50px; */
 }
 
-input#card-front-text, input#card-back-text, input#card-keywords {
+input#card-front-text, 
+input#card-back-text, 
+input#card-keywords {
   width: 100%;
   font-family: monospace;
   margin-bottom: 10px;
@@ -148,7 +150,13 @@ input#card-front-text, input#card-back-text, input#card-keywords {
   border-radius: 8px;
   font-size: medium;
   border-color: #05445e;
+  background-color: rgba(241, 241, 241, 0.959);
+}
 
+input#card-front-text:hover, 
+input#card-back-text:hover, 
+input#card-keywords:hover {
+  background-color: white;
 }
 
 div.buttons {

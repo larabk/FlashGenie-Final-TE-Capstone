@@ -1,4 +1,5 @@
 <template>
+
   <div id="app">
     <div id="site-nav" v-if="$store.state.token != ''">
       <nav id="site-nav">
@@ -17,8 +18,7 @@
             </li>
             <li id="home-logout">
               <router-link v-bind:to="{ name: 'home' }">Home</router-link
-              >&nbsp;|&nbsp;
-              <router-link
+              ><img id="pipe-bolt" src="bolt.png" alt=""><router-link id="logout"
                 v-bind:to="{ name: 'logout' }"
               >
                 Logout</router-link
@@ -32,30 +32,15 @@
   </div>
 </template>
 
-
-
-
-
-
 <style scoped>
 div#app {
-  /* gradient background */
-  /* background-color: #f9ea8f;
-  background-image: linear-gradient(360deg, 
-  #f9ea8f 0%, #aff1da 74%); */
-
   background-color: #b8c6db;
   background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
   font-family: monospace;
-
+  background-size: cover, contain;
   padding: 0;
-  margin: 0;
-  /* width: 100vw; */
-  min-height: 100vh;
-}
-
-nav#site-nav {
-  background-color: white;
+  margin: -8px !important;
+    min-height: 100vh;
 }
 
 nav ul {
@@ -63,9 +48,23 @@ nav ul {
   flex-direction: row;
   list-style: none;
   justify-content: space-between;
-  margin: 10px;
+  margin: 0px;
   align-items: center;
+  padding-left: 0px;
+  color: yellow;
+  border: double 6px transparent;
+  border-radius: 15px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, 
+  #09203f 0%, #bed1eb 74%);
+
+  /* border gradient
+  background-image: linear-gradient(white, white), 
+  radial-gradient(circle at top left, rgb(34, 53, 114), #537895); */
 }
+
 
 div#search-home {
   display: flex;
@@ -73,35 +72,65 @@ div#search-home {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+  font-family: monospace;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #ebeb85;
+
+}
+
+a:hover{
+  color: yellow;
+}
+a#logout {
+  padding-right: 20px;
+  padding-left: 10px;
 }
 
 #search {
-  width: 240px;
+  width: 260px;
   border: 3px solid #ccc;
   border-radius: 5px;
   background-color: rgba(241, 241, 241, 0.959);
   padding: 5px;
   box-sizing: border-box;
   resize: vertical;
+  text-transform: uppercase;
+  font-family: monospace;
+  letter-spacing: 1px;
+  margin-right: 12px;
 }
 #search:hover {
   background-color: white;
 }
 
 a:hover {
-  /* font-style:oblique; */
   font-weight: bold;
 }
 
 img {
   width: 90px;
   height: auto;
-  padding: 10px 0px 10px 0px;
-  margin-left: -40px;
+  padding: 10px 0px 10px 20px;
+  
 }
+
+img#pipe-bolt {
+  width: 10px;
+  padding: 0px 0px 0px 10px;
+  margin: 0px;
+}
+
+li#home-logout {
+  display: flex;
+  justify-content: center;
+}
+
+
+
 </style>

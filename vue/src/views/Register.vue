@@ -117,8 +117,8 @@ h1#h1-register {
   text-align: left;
   margin-left: 3px;
   margin-top: 50px;
-  font-size: medium;
-  margin-bottom: 10px;
+  font-size: large;
+  margin-bottom: 15px;
 }
 
 div#register {
@@ -132,7 +132,7 @@ div#register {
 form.form-register {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 div#register-buttons {
@@ -148,14 +148,14 @@ button#sign-in {
   margin: 10px 10px 20px 10px;
   text-decoration: none;
   text-align: center;
-  font-size: 1.75vh;
+  font-size: 2vh;
   font-family: monospace;
   background-color: #537895;
   background-image: linear-gradient(315deg, 
   #537895 0%, #09203f 74%);
   border: none;
   color: white;
-  padding: 10px;
+  padding: 15px 10px 15px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -163,9 +163,9 @@ button#sign-in {
   margin: 4px 2px;
   font-weight: bold;
   margin-bottom: 100px;
-  box-shadow: 10px 10px 53px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 10px 10px 53px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 10px 10px 53px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
 
 a#router-account {
@@ -193,10 +193,18 @@ input#password,
 input#confirmPassword {
   font-family: monospace;
   margin-bottom: 20px;
-  padding: 8px;
+  padding: 12px;
   border-radius: 8px;
-  font-size: medium;
+  font-size: larger;
   border-color: #05445e;
+  background-color: rgba(241, 241, 241, 0.959);
+}
+
+input#username:hover,
+input#email:hover, 
+input#password:hover, 
+input#confirmPassword:hover {
+  background-color: white;
 }
 
 div#alert {
@@ -206,10 +214,10 @@ div#alert {
 }
 
 img#logo {
-    width: 250px;
+    width: 350px;
     height: auto;
     margin-bottom: 5px;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 </style>

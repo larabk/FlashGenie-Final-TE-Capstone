@@ -1,26 +1,40 @@
 <template>
   <div class="cardsPage">
-    <router-link :to="{name: 'home'}">Back to Decks</router-link>
-    <router-link :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit</router-link>
+    
+    
     <div class="cards-container">
+
+      <div id="title-links">
+        
       <div class="my-cards">
         <img id="bolt" src="/bolt.png" alt="">
         <h3>My Cards</h3>
         <img id="bolt" src="/bolt.png" alt="">
       </div>
+        <router-link class="back-to-decks" :to="{name: 'home'}">Back to Decks</router-link>
+        <router-link class="edit-deck" :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit</router-link>
+    </div>
+      
+      
       <div class="cards">
         <div
           class="card"
           v-for="card in cards.slice(0, displayLength)"
           v-bind:key="card.cardId"
         >
-        <router-link :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Edit this Card</router-link>
+        <div id="flex-text">
           {{ card.frontText }}
+          <router-link class="edit-card" :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Edit</router-link>
+            
         </div>
+
+        </div>
+
         <router-link :to="{name: 'new-card', params: {id: this.$route.params.id}}" class="addCard addCardDetails">+</router-link>
       </div>
       <div id="button">
       <button id="show-all" v-if="deckSize > minDisplayLength" @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+
       </div>
     </div>
   </div>
@@ -84,18 +98,19 @@ export default {
   #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
+  max-width: 1080px;
   border-radius: 30px;
   margin: 30px 0px 0px 0px;
   padding: 30px;
   padding-top: 40px;
   width: 75%;
-  max-width: 1200px;
+
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
-  margin: 30px 45px 30px 45px;
+  margin: 30px 0px 30px 0px;
   justify-content: center;
 }
 
@@ -103,10 +118,10 @@ export default {
 .addCard {
   display: flex;
   flex-wrap: wrap;
-  width: 200px;
-  height: 75px;
+  width: 150px;
+  height: 50px;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   margin: 15px;
   margin-left: 20px;
   border: none;
@@ -117,6 +132,20 @@ export default {
   justify-content: center;
   font-size: larger;
   text-transform: uppercase;
+}
+
+div.card {
+  /* width: [object Object]px; 
+	height: [object Object]px;  */
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  border: solid #BDBDBD 1px; 
+	box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+  font-size: x-large;
+  letter-spacing: 1.75px;
+  font-weight: bold;
 }
 
 .addCardDetails {
@@ -134,27 +163,15 @@ h3 {
   margin: 15px;
 }
 
-div.card {
-  width: [object Object]px; 
-	height: [object Object]px; 
-  background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-  font-size: x-large;
-  letter-spacing: 1.75px;
-  font-weight: bold;
-}
+
 .addCard {
-  width: [object Object]px; 
-	height: [object Object]px; 
+  /* width: [object Object]px; 
+	height: [object Object]px;  */
 	background-color: white;
   border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
 }
 
 img {
@@ -188,5 +205,52 @@ div#button {
 }
 
 
+a.card-name, a {
+  text-decoration: none;
+  color: black;
+  
+}
+
+a.card-name:visited, a:visited {
+   color: black;
+
+}
+a.card-name {
+  padding-top: 10px;
+  
+}
+
+a.edit-card {
+  font-size: 10px;
+  text-align: right;
+  padding-top: 0px;
+}
+
+div#flex-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: 20px;
+}
+
+a.back-to-decks, a.edit-deck {
+  text-align: center;
+}
+
+div#title-links {
+  display: flex;
+  flex-direction: column;
+}
+
+a.back-to-decks, a.edit-deck {
+  color: #ebeb85;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+a.back-to-decks:hover,
+a.edit-deck:hover {
+  color: yellow;
+}
 
 </style>
