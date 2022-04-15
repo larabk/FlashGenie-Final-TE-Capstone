@@ -1,7 +1,7 @@
 <template>
   <div class="cardsPage">
     <router-link :to="{name: 'home'}">Back to Decks</router-link>
-    <router-link :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit current deck properties</router-link>
+    <router-link :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit</router-link>
     <div class="cards-container">
       <div class="my-cards">
         <img id="bolt" src="/bolt.png" alt="">

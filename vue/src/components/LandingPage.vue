@@ -2,9 +2,9 @@
   <div class="landingPage">
     <div class="deck-container">
       <div class="my-decks">
-         <img id="bolt" src="/bolt.png" alt="">
+        <img id="bolt" src="/bolt.png" alt="" />
         <h3>My Decks</h3>
-         <img id="bolt" src="/bolt.png" alt="">
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
       <div class="decks">
         <router-link
@@ -19,7 +19,9 @@
         >
       </div>
       <div id="button">
-      <button id="show-all" @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+        <button id="show-all" @click="partialDisplay = !partialDisplay">
+          {{ partialDisplay ? "Show All" : "Show Less" }}
+        </button>
       </div>
     </div>
   </div>
@@ -189,5 +191,4 @@ div#button {
   margin-bottom: 10px;
   
 } */
-
 </style>

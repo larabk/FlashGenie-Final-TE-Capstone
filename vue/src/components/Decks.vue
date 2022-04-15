@@ -2,21 +2,36 @@
   <div class="decksPage">
     <div class="deck-container">
       <div class="my-decks">
+        <img id="bolt" src="/bolt.png" alt="" />
         <h3>My Decks</h3>
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
       <div class="decks">
-        <router-link
+        <div
           class="deck"
           v-for="deck in decks.slice(0, displayLength)"
           v-bind:key="deck.deckId"
-          :to="{ name: 'cards', params: { id: deck.deckId } }"
-          >{{ deck.name }}
-        </router-link>
+        >
+          <router-link
+            :to="{ name: 'edit-deck', params: { id: deck.deckId } }"
+            >Edit</router-link
+          >
+          <router-link
+            class="deck-name"
+            :to="{ name: 'cards', params: { id: deck.deckId } }"
+            >{{ deck.name }}
+          </router-link>
+        </div>
+
         <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }"
           >+</router-link
         >
       </div>
-      <button @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+      <div id="button">
+        <button id="show-all" @click="partialDisplay = !partialDisplay">
+          {{ partialDisplay ? "Show All" : "Show Less" }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +78,7 @@ export default {
 </script>
 
 <style scoped>
-.landingPage {
+.decksPage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,8 +90,7 @@ export default {
 
 .deck-container {
   background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
   border-radius: 30px;
@@ -129,28 +143,28 @@ h3 {
   margin: 15px;
 }
 
-a.deck {
-	width: [object Object]px; 
-	height: [object Object]px; 
+.deck {
+  width: [object Object]px;
+  height: [object Object]px;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
 }
 
 .addDeck {
-  width: [object Object]px; 
-	height: [object Object]px; 
-	background-color: white;
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  width: [object Object]px;
+  height: [object Object]px;
+  background-color: white;
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
 
 img {
@@ -159,13 +173,13 @@ img {
 }
 
 div.my-decks {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    vertical-align: middle;
-    margin-top:10px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  vertical-align: middle;
+  margin-top: 10px;
 }
 
 button#show-all {
@@ -180,6 +194,5 @@ div#button {
   display: flex;
   justify-content: right;
   margin-bottom: 10px;
-  
 }
 </style>
