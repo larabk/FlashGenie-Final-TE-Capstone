@@ -9,4 +9,6 @@ public interface CardDao {
     Card createCard(Long deckId, Card card);
 
     void updateCard(Card card);
+
+    void deleteCard(Long cardId);
 }

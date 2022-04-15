@@ -22,6 +22,7 @@ public class DeckController {
     }
 
     @RequestMapping(value = "/decks", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     public List<Deck> getDecksByUser(Principal userName){
         return deckDao.getAllDecks(userName.getName());
     }
@@ -44,8 +45,12 @@ public class DeckController {
     public void updateDeck(@RequestBody Deck deck, Principal userName){
         deckDao.updateDeck(userName.getName(), deck);
 
+    }
 
-
+    @RequestMapping(value = "/decks/{deckId}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteDeck(@PathVariable Long deckId){
+        deckDao.deleteDeck(deckId);
     }
 
 }

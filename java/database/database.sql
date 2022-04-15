@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS cards, decks, users;
+DROP TABLE IF EXISTS cards, decks, users, user_details;
 
 
 DROP SEQUENCE IF EXISTS seq_user_id;
@@ -10,7 +10,6 @@ CREATE SEQUENCE seq_user_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
-
 
 
 CREATE TABLE users (
@@ -26,7 +25,7 @@ CREATE TABLE decks (
 	user_id int NOT NULL,
 	deck_name varchar(50) NOT NULL,
 	click_count int DEFAULT 0,
-	topics varchar(50) NOT NULL,
+	subject varchar(50) NOT NULL,
 	CONSTRAINT PK_deck PRIMARY KEY (deck_id),
 	CONSTRAINT FK_deck_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
@@ -39,6 +38,13 @@ CREATE TABLE cards (
 	keywords varchar(50) NOT NULL,
 	CONSTRAINT PK_card PRIMARY KEY (card_id),
 	CONSTRAINT FK_deck FOREIGN KEY(deck_id) REFERENCES decks(deck_id)
+);
+
+CREATE TABLE user_details (
+	user_id int NOT NULL,
+	email varchar(254) NOT NULL,
+	CONSTRAINT PK_email PRIMARY KEY (email),
+	CONSTRAINT FK_users_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 -- Sets deck_id serial to 1 again --
@@ -80,28 +86,28 @@ COMMIT TRANSACTION;
 
 START TRANSACTION;
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Cars', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Buses', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Boats', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Planes', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Scooters', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Trains', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Bicycles', 'Vehicles');
 
-INSERT INTO decks (user_id, deck_name, topics)
+INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Motorcycles', 'Vehicles');
 
 COMMIT;

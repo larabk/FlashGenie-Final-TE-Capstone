@@ -34,4 +34,10 @@ public class CardController {
     public void updateCard(@RequestBody Card card){
         cardDao.updateCard(card);
     }
+
+    @RequestMapping(value = "/card/{cardId}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCard(@PathVariable Long cardId){
+        cardDao.deleteCard(cardId);
+    }
 }

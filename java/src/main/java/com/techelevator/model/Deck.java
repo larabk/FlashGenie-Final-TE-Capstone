@@ -4,15 +4,15 @@ public class Deck {
     private Long deckId;
     private Long userId;
     private String name;
-    private String topics;
+    private String subject;
     private Integer clickCount;
 
 
-    public Deck(Long deckId, Long userId, String name, String topics, Integer clickCount) {
+    public Deck(Long deckId, Long userId, String name, String subject, Integer clickCount) {
         this.deckId = deckId;
         this.userId = userId;
         this.name = name;
-        this.topics = topics;
+        this.subject = subject;
         this.clickCount = clickCount;
     }
 
@@ -40,12 +40,12 @@ public class Deck {
         this.name = name;
     }
 
-    public String getTopics() {
-        return topics;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setTopics(String topics) {
-        this.topics = topics;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public int getClickCount() {
@@ -56,13 +56,13 @@ public class Deck {
         this.clickCount = clickCount;
     }
 
-
     @Override
     public String toString() {
         return "Deck{" +
                 "deckId=" + deckId +
                 ", userId=" + userId +
                 ", name='" + name + '\'' +
+                ", subject='" + subject + '\'' +
                 ", clickCount=" + clickCount +
                 '}';
     }

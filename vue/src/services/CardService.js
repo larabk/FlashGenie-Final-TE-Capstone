@@ -11,6 +11,9 @@ export default {
     },
     update(card){
         return axios.put('/deck/card/edit-card', card);
+    },
+    delete(cardId){
+        return axios.delete(`/card/${cardId}`);
     }
 
 
