@@ -28,7 +28,7 @@
         >
       </div>
       <div id="button">
-        <button id="show-all" @click="partialDisplay = !partialDisplay">
+        <button id="show-all" @click="partialDisplay = !partialDisplay" v-if="decksAvailable > minDisplayLength">
           {{ partialDisplay ? "Show All" : "Show Less" }}
         </button>
       </div>
@@ -42,13 +42,14 @@ export default {
   name: "decksPage",
   data() {
     return {
+      minDisplayLength: 7,
       partialDisplay: true,
       deck: {
         deckId: 0,
         userId: 0,
         deckName: "",
         clickCount: 0,
-        topics: "",
+        subject: "",
       },
     };
   },
@@ -63,6 +64,9 @@ export default {
     decks() {
       return this.$store.state.decks;
     },
+    decksAvailable(){
+      return this.$store.state.decks.length;
+    }
   },
   methods: {
     getDecks() {

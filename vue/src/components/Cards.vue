@@ -12,6 +12,7 @@
         <div
           class="card"
           v-for="card in cards.slice(0, displayLength)"
+  
           v-bind:key="card.cardId"
         >
         <router-link :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Edit this Card</router-link>
@@ -51,8 +52,8 @@ export default {
       }
     },
     cards(){
-      return this.$store.state.cards
-    }
+      return this.$store.state.cards;
+    },
   },
   methods: {
     getCards() {
@@ -60,6 +61,14 @@ export default {
         this.$store.commit("SET_CARDS", response.data);
       });
     },
+    // --- Still trying to figure this thing out
+    // sortCards(){
+    //   this.cards.sort((a, b) => {
+    //     let nameA = a.frontText.toUpperCase();
+    //     let nameB = b.frontText.toUpperCase();
+    //     return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+    //   })
+    // }
   },
   created() {
     this.getCards();

@@ -11,7 +11,7 @@
         id="email"
         class="form-control"
         placeholder="Email"
-        v-model="user.email"
+        v-model="userDetails.email"
         required
         autofocus
       />
@@ -62,6 +62,7 @@
 
 <script>
 import authService from '../services/AuthService';
+import userDetailsService from '../services/UserDetailsService';
 
 export default {
   name: 'register',
@@ -73,6 +74,9 @@ export default {
         confirmPassword: '',
         role: 'user',
       },
+      userDetails: {
+        email: ''
+      },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
     };
@@ -82,11 +86,17 @@ export default {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
-      } else {
+      }else if (!this.validate()){
+        this.registrationErrors = true;
+        this.registrationErrorMsg = 'Please enter a valid email address.'
+      }
+      
+      else {
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
+              userDetailsService.create(this.userDetails, this.user.username);
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
@@ -97,7 +107,7 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = 'Username already exists. Please select another one.';
             }
           });
       }
@@ -106,6 +116,9 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
+    validate(){
+      return (this.userDetails.email.includes('@') && this.userDetails.email.includes('.'));
+    }
   },
 };
 </script>

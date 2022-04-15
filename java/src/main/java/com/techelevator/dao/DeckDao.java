@@ -14,6 +14,8 @@ public interface DeckDao {
 
     Deck createDeck(String userName, Deck passedDeck);
 
-    boolean updateDeck(String userName, Deck deck);
+    void updateDeck(String userName, Deck deck);
+
+    void deleteDeck(Long deckId);
 
 }

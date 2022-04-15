@@ -21,7 +21,7 @@
           placeholder="Definition"
           v-model="card.backText"
         />
-        <input type="text" id="card-keywords" placeholder="Keywords (separate with commas)" v-model="card.keywords">
+        <input type="text" id="card-keywords" placeholder="Keywords (separate with commas)" v-model="card.keyWords">
           <div class="buttons">
             <div class="alert" v-if="creationErrors">{{ creationErrorMessage }}</div>  
             <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>

@@ -9,12 +9,13 @@
       />
       <input
         type="text"
-        class="topics"
-        placeholder="New topics"
-        v-model="deck.topics"
+        class="subject"
+        placeholder="New subject"
+        v-model="deck.subject"
       />
       <button type="submit">Submit</button>
       <button type="cancel" @click.prevent="cancelUpdate">Cancel</button>
+      <button class="delete" @click.prevent="deleteDeck">DELETE DECK</button>
     </form>
   </div>
 </template>
@@ -27,7 +28,7 @@ export default {
       deck: {
         deckId: Number(this.$route.params.id),
         name: "",
-        topics: "",
+        subject: "",
         clickCount: 0,
       },
     };
@@ -41,6 +42,19 @@ export default {
         }
       });
     },
+    cancelUpdate(){
+      this.deck.name = '';
+      this.deck.subject = '';
+      this.$router.push('/');
+    },
+    deleteDeck(){
+      if(confirm("Do you really want to delete the deck? It will delete all cards in the deck.")){
+        if(confirm("Are you sure? This action cannot be undone!")){
+          deckService.delete(this.deck.deckId);
+          this.$router.push('/');
+        }
+      }
+    }
   },
 };
 </script>

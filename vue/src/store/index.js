@@ -24,7 +24,8 @@ export default new Vuex.Store({
     activeDeck: {
       deckId: 0,
       userId: 0,
-      deckName: "",
+      deckName: '',
+      subject: '',
       clickCount: 0,
     },
     cards:[],

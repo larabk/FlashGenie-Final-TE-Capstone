@@ -20,7 +20,7 @@ public class JdbcDeckDao implements DeckDao {
     public List<Deck> getAllDecks(String userName) {
         List<Deck> decks = new ArrayList<>();
 
-        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name, topics " +
+        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name, subject " +
                 "FROM decks JOIN users ON users.user_id = decks.user_id " +
                 "WHERE username = ?; ";
 
@@ -36,9 +36,10 @@ public class JdbcDeckDao implements DeckDao {
     public Deck getDeck(String userName, Long deckId) {
         Deck resultDeck = null;
 
-        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name " +
+        String sql = "SELECT deck_id, decks.user_id, click_count, deck_name, subject " +
                 "FROM decks JOIN users ON decks.user_id = users.user_id " +
-                "WHERE deck_id = ? AND users.username = ?;";
+                "WHERE deck_id = ? AND users.username = ? " +
+                "ORDER BY deck_name; ";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId, userName);
 
@@ -50,20 +51,28 @@ public class JdbcDeckDao implements DeckDao {
 
     @Override
     public Deck createDeck(String userName, Deck deck){
-        String sql = "INSERT INTO decks (user_id, deck_name, topics) " +
+        String sql = "INSERT INTO decks (user_id, deck_name, subject) " +
                 "VALUES ((SELECT user_id FROM users WHERE username = ?), ?, ?) RETURNING deck_id";
-        Long decks_id = jdbcTemplate.queryForObject(sql, Long.class, userName, deck.getName(), deck.getTopics());
+        Long decks_id = jdbcTemplate.queryForObject(sql, Long.class, userName, deck.getName(), deck.getSubject());
         deck.setDeckId(decks_id);
         return deck;
     }
 
     @Override
-    public boolean updateDeck(String userName, Deck deck){
-        String sql = "UPDATE decks SET deck_name = ?, topics = ? " +
+    public void updateDeck(String userName, Deck deck){
+        String sql = "UPDATE decks SET deck_name = ?, subject = ? " +
                 "WHERE decks.user_id = (SELECT users.user_id FROM users WHERE username = ?) AND decks.deck_id = ?; ";
-        int count = jdbcTemplate.update(sql, deck.getName(), deck.getTopics(), userName, deck.getDeckId());
+        jdbcTemplate.update(sql, deck.getName(), deck.getSubject(), userName, deck.getDeckId());
 
-       return count == 1;
+    }
+
+    @Override
+    public void deleteDeck(Long deckId){
+        String sql = "DELETE FROM cards WHERE deck_id = ?; ";
+        jdbcTemplate.update(sql, deckId);
+
+        sql = "DELETE FROM decks WHERE deck_id = ?; ";
+        jdbcTemplate.update(sql, deckId);
     }
 
     private Deck mapRowToDeck(SqlRowSet rowSet) {
@@ -71,7 +80,7 @@ public class JdbcDeckDao implements DeckDao {
         deck.setDeckId(rowSet.getLong("deck_id"));
         deck.setUserId(rowSet.getLong("user_id"));
         deck.setClickCount(rowSet.getInt("click_count"));
-        deck.setTopics(rowSet.getString("topics"));
+        deck.setSubject(rowSet.getString("subject"));
         deck.setName((rowSet.getString("deck_name")));
         return deck;
     }

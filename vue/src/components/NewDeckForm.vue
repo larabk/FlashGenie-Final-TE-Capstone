@@ -17,9 +17,9 @@
       />
       <input
         type="text"
-        id="topics"
-        placeholder="Deck Topics"
-        v-model="deck.topics"
+        id="subject"
+        placeholder="Deck Subject"
+        v-model="deck.subject"
       />
       
       <div class="buttons">
@@ -43,7 +43,7 @@ export default {
       deck: {
         name: "",
         clickCount: 0,
-        topics: "",
+        subject: "",
       },
       creationErrors: false,
       creationErrorMessage: "There was a problem creating this deck",
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     saveDeck() {
-      if (this.deck.name === "" || this.deck.topics === "") {
+      if (this.deck.name === "" || this.deck.subject === "") {
         this.creationErrors = true;
         this.creationErrorMessage = "All Fields Required";
       } else {
@@ -64,7 +64,7 @@ export default {
     },
     cancelForm() {
       this.deck.name = "";
-      this.deck.topics = "";
+      this.deck.subject = "";
       this.$router.push("/");
     },
   },
@@ -136,7 +136,7 @@ div.form {
   /* margin: 10px 50px 50px 50px; */
 }
 
-input#deck-name, input#topics {
+input#deck-name, input#subject {
   width: 100%;
   font-family: monospace;
   margin-bottom: 10px;

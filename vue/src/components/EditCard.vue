@@ -13,9 +13,17 @@
         placeholder="New definition"
         v-model="card.backText"
       />
-      <input type="text" class="key-words" v-model="card.keyWords" />
+      <input
+        type="text"
+        class="key-words"
+        v-model="card.keyWords"
+        placeholder="New keywords (Separate with commas)"
+      />
       <button type="submit">Submit</button>
       <button type="cancel" @click.prevent="cancelUpdate">Cancel</button>
+      <button class="delete" @click.prevent="deleteCard">
+        DELETE THIS CARD
+      </button>
     </form>
   </div>
 </template>
@@ -41,6 +49,20 @@ export default {
           this.$router.push(`/deck/${this.card.deckId}/cards`);
         }
       });
+    },
+    cancelUpdate() {
+      this.card.frontText = "";
+      this.card.backText = "";
+      this.card.keyWords = "";
+      this.$router.push(`/deck/${this.card.deckId}/cards`);
+    },
+    deleteCard() {
+      if (
+        confirm("Do you really want to delete the card? This cannot be undone.")
+      ) {
+        cardService.delete(this.card.cardId);
+        this.$router.push(`/deck/${this.card.deckId}/cards`);
+      }
     },
   },
 };
