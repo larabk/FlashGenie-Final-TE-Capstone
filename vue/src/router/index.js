@@ -12,7 +12,7 @@ import StudySession from '@/views/StudySession.vue'
 import EditCard from '@/views/EditCard.vue'
 import EditDeck from '@/views/EditDeck.vue'
 import CreateNewCard from '@/views/CreateNewCard.vue'
-
+import SearchResults from "@/views/SearchResults";
 
 Vue.use(Router)
 
@@ -113,6 +113,13 @@ const router = new Router({
       path: "/deck/study-session",
       name: "study-session",
       component: StudySession
+    },{
+      path: "/search/:searchInput",
+      name: "search-results",
+      component: SearchResults,
+      meta: {
+        requiresAuth: true,
+      }
     }
   ]
 })

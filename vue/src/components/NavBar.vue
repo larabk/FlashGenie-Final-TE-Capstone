@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+  <div class="container">
     <div id="site-nav" v-if="$store.state.token != ''">
       <nav id="site-nav">
         <ul id-site-nav>
@@ -11,13 +11,16 @@
               <input
                 id="search"
                 name="search"
-                placeholder="Search"
+                placeholder="SEARCH"
                 type="text"
+                v-model="searchInput"
+                v-on:keyup.enter="submitSearch(searchInput)"
               />
             </li>
             <li id="home-logout">
               <router-link v-bind:to="{ name: 'home' }">Home</router-link
-              ><img id="pipe-bolt" src="bolt.png" alt=""><router-link id="logout"
+              ><img id="pipe-bolt" src="bolt.png" alt="" /><router-link
+                id="logout"
                 v-bind:to="{ name: 'logout' }"
               >
                 Logout</router-link
@@ -27,19 +30,28 @@
         </ul>
       </nav>
     </div>
-
-
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
-
-}
+  data() {
+    return {
+      searchInput: "",
+    };
+  },
+  methods: {
+    submitSearch(searchInput) {
+      if (searchInput !== "") {
+        this.searchInput = "";
+        this.$router.push(`/search/${searchInput}`);
+      }
+    },
+  },
+};
 </script>
 
 <style>
-
 nav ul {
   display: flex;
   flex-direction: row;
@@ -54,14 +66,12 @@ nav ul {
   background-origin: border-box;
   background-clip: content-box, border-box;
   background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #09203f 0%, #bed1eb 74%);
+  background-image: linear-gradient(315deg, #09203f 0%, #bed1eb 74%);
 
   /* border gradient
   background-image: linear-gradient(white, white), 
   radial-gradient(circle at top left, rgb(34, 53, 114), #537895); */
 }
-
 
 div#search-home {
   display: flex;
@@ -78,10 +88,9 @@ div#search-home {
 a {
   text-decoration: none;
   color: #ebeb85;
-
 }
 
-a:hover{
+a:hover {
   color: yellow;
 }
 a#logout {
@@ -97,7 +106,7 @@ a#logout {
   padding: 5px;
   box-sizing: border-box;
   resize: vertical;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-family: monospace;
   letter-spacing: 1px;
   margin-right: 12px;
@@ -114,7 +123,6 @@ img {
   width: 90px;
   height: auto;
   padding: 10px 0px 10px 20px;
-  
 }
 
 img#pipe-bolt {
@@ -127,7 +135,4 @@ li#home-logout {
   display: flex;
   justify-content: center;
 }
-
-
-
 </style>

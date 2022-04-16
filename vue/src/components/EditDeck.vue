@@ -137,7 +137,7 @@ div.form {
 }
 
 
-input.name, input.topics {
+input.name, input.subject {
   width: 100%;
   font-family: monospace;
   margin-bottom: 10px;
@@ -148,7 +148,7 @@ input.name, input.topics {
   background-color: rgba(241, 241, 241, 0.959);
 
 }
-input.name:hover, input.topics:hover {
+input.name:hover, input.subject:hover {
     background-color: white;
 
 }
