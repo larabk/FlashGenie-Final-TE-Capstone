@@ -17,10 +17,16 @@ public class CardController {
 
     public CardController(CardDao cardDao) { this.cardDao = cardDao; }
 
+    @RequestMapping (value = "/decks/cards", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Card> getAllCards(Principal userName) {
+        return cardDao.getAllCards(userName.getName());
+    }
+
     @RequestMapping (value = "/decks/{deckId}/cards", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<Card> getAllCards(@PathVariable Long deckId, Principal userName) {
-        return cardDao.getAllCards(deckId, userName.getName());
+    public List<Card> getAllCardsByDeckId(@PathVariable Long deckId, Principal userName) {
+        return cardDao.getAllCardsByDeckId(deckId, userName.getName());
     }
 
     @RequestMapping(value = "/decks/{deckId}/cards", method = RequestMethod.POST)
@@ -40,4 +46,5 @@ public class CardController {
     public void deleteCard(@PathVariable Long cardId){
         cardDao.deleteCard(cardId);
     }
+
 }

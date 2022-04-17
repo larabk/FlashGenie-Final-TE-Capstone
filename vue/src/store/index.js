@@ -29,6 +29,7 @@ export default new Vuex.Store({
       clickCount: 0,
     },
     cards:[],
+    allCards:[],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -50,8 +51,11 @@ export default new Vuex.Store({
     SET_DECKS(state, data){
       state.decks = data;
     },
-    SET_CARDS(state, data){
+    SET_CARDS_BY_DECK_ID(state, data){
       state.cards = data;
+    },
+    SET_ALL_CARDS(state, data){
+      state.allCards = data;
     }
   }
 })

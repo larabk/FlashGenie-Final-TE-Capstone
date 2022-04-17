@@ -1,41 +1,48 @@
 <template>
   <div class="editCardPage">
+    <div class="card-details-container">
+      <h3>Term: {{ currentCard.frontText }}</h3>
+      <h3>Definition: {{currentCard.backText}}</h3>
+      <h3>KeyWords: {{currentCard.keyWords.split(" ").join(", ")}}</h3>
+    </div>
     <div class="form-container">
-        <div class="header">
-          <img id="bolt" src="/bolt.png" alt="">  
-          <h3>Edit Card</h3>
-          <img id="bolt" src="/bolt.png" alt="">
-        </div>
-
-     <div class="form">   
-    <form @submit.prevent="updateCard" class="update-card-form">
-      <input
-        type="text"
-        class="front-text"
-        placeholder="New term"
-        v-model="card.frontText"
-      />
-      <input
-        type="text"
-        class="back-text"
-        placeholder="New definition"
-        v-model="card.backText"
-      />
-      <input
-        type="text"
-        class="key-words"
-        v-model="card.keyWords"
-        placeholder="New keywords (Separate with commas)"
-      />
-      <div class="buttons">
-        <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
-        <button id="save" type="submit">Submit</button>
-        <button id="delete"  @click.prevent="deleteCard">
-        DELETE THIS CARD
-      </button>
+      <div class="header">
+        <img id="bolt" src="/bolt.png" alt="" />
+        <h3>Edit Card</h3>
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
-    </form>
-     </div>
+
+      <div class="form">
+        <form @submit.prevent="updateCard" class="update-card-form">
+          <input
+            type="text"
+            class="front-text"
+            placeholder="New term"
+            v-model="card.frontText"
+          />
+          <input
+            type="text"
+            class="back-text"
+            placeholder="New definition"
+            v-model="card.backText"
+          />
+          <input
+            type="text"
+            class="key-words"
+            v-model="card.keyWords"
+            placeholder="New keywords (Separate with commas)"
+          />
+          <div class="buttons">
+            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
+              Cancel
+            </button>
+            <button id="save" type="submit">Submit</button>
+            <button id="delete" @click.prevent="deleteCard">
+              DELETE THIS CARD
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -46,13 +53,19 @@ export default {
   data() {
     return {
       card: {
-        cardId: this.$route.params.cardId,
-        deckId: this.$route.params.deckId,
+        cardId: Number(this.$route.params.cardId),
+        deckId: Number(this.$route.params.deckId),
         frontText: "",
         backText: "",
         keyWords: "",
       },
+      cards: this.$store.state.cards,
     };
+  },
+  computed: {
+    currentCard() {
+      return this.cards.find((card) => card.cardId === this.card.cardId);
+    },
   },
   methods: {
     updateCard() {
@@ -93,8 +106,7 @@ export default {
 
 .form-container {
   background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   min-width: 600px;
   border-radius: 30px;
   margin: 30px 0px 0px 0px;
@@ -111,7 +123,7 @@ div.header {
   align-items: center;
   color: white;
   vertical-align: middle;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 img#bolt {
@@ -143,8 +155,9 @@ div.form {
   row-gap: 20px;
 }
 
-
-input.front-text, input.back-text, input.key-words  {
+input.front-text,
+input.back-text,
+input.key-words {
   width: 100%;
   font-family: monospace;
   margin-bottom: 10px;
@@ -153,10 +166,9 @@ input.front-text, input.back-text, input.key-words  {
   font-size: medium;
   border-color: #05445e;
   background-color: rgba(241, 241, 241, 0.959);
-
 }
-input.front-text:hover, 
-input.back-text:hover, 
+input.front-text:hover,
+input.back-text:hover,
 input.key-words:hover {
   background-color: white;
 }
@@ -166,13 +178,14 @@ div.buttons {
   column-gap: 10px;
 }
 
-button#save, button#cancel {
+button#save,
+button#cancel {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
   width: 120px;
   margin: 10px 10px 20px 10px;
   text-decoration: none;

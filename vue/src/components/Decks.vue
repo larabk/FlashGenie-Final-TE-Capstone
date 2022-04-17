@@ -23,7 +23,7 @@
 
           <router-link class="edit-deck"
             :to="{ name: 'edit-deck', params: { id: deck.deckId } }"
-            >Edit</router-link
+            >Details/Edit</router-link
           >
         </div>
         </div>
@@ -45,6 +45,7 @@
 
 <script>
 import deckService from "@/services/DeckService";
+import cardService from "@/services/CardService";
 export default {
   name: "decksPage",
   data() {
@@ -81,9 +82,15 @@ export default {
         this.$store.commit("SET_DECKS", response.data);
       });
     },
+    getAllCards(){
+      cardService.getAllCards().then((response) =>{
+        this.$store.commit("SET_ALL_CARDS", response.data);
+      })
+    }
   },
   created() {
     this.getDecks();
+    this.getAllCards();
   },
 };
 </script>
