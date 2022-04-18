@@ -1,38 +1,50 @@
 <template>
   <div class="decksPage">
     <div class="deck-container">
-          <div class="my-decks">
-            <img id="bolt" src="/bolt.png" alt="" />
-            <h3>My Decks</h3>
-            <img id="bolt" src="/bolt.png" alt="" />
-          </div>
+      <div class="my-decks">
+        <img id="bolt" src="/bolt.png" alt="" />
+        <h3>My Decks</h3>
+        <img id="bolt" src="/bolt.png" alt="" />
+      </div>
 
       <div class="decks">
-        <div class="deck" v-for="deck in decks.slice(0, displayLength)" v-bind:key="deck.deckId">
-          
+        <div
+          class="deck"
+          v-for="deck in decks.slice(0, displayLength)"
+          v-bind:key="deck.deckId"
+        >
           <div id="flex-text">
             <router-link
               class="deck-name"
               :to="{ name: 'cards', params: { id: deck.deckId } }"
-              >{{ deck.name }}</router-link>
+              >{{ deck.name }}</router-link
+            >
 
             <div id="edit">
-              <router-link class="edit-deck"
+              <router-link
+                class="edit-deck"
                 :to="{ name: 'edit-deck', params: { id: deck.deckId } }"
-                >Details/Edit</router-link>
+                >Details/Edit</router-link
+              >
             </div>
           </div>
         </div>
 
-          <div id="flex-show-button">
-            <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }">+</router-link>
+        <div id="flex-show-button">
+          <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }"
+            >+</router-link
+          >
 
-            <div id="button">
-              <button id="show-all" @click="partialDisplay = !partialDisplay" v-if="decksAvailable > minDisplayLength">
-                {{ partialDisplay ? "Show All" : "Show Less" }}
-              </button>
-            </div>
+          <div id="button">
+            <button
+              id="show-all"
+              @click="partialDisplay = !partialDisplay"
+              v-if="decksAvailable > minDisplayLength"
+            >
+              {{ partialDisplay ? "Show All" : "Show Less" }}
+            </button>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +52,6 @@
 
 <script>
 import deckService from "@/services/DeckService";
-import cardService from "@/services/CardService";
 export default {
   name: "decksPage",
   data() {
@@ -67,9 +78,9 @@ export default {
     decks() {
       return this.$store.state.decks;
     },
-    decksAvailable(){
+    decksAvailable() {
       return this.$store.state.decks.length;
-    }
+    },
   },
   methods: {
     getDecks() {
@@ -77,21 +88,15 @@ export default {
         this.$store.commit("SET_DECKS", response.data);
       });
     },
-    getAllCards(){
-      cardService.getAllCards().then((response) =>{
-        this.$store.commit("SET_ALL_CARDS", response.data);
-      })
-    }
   },
+
   created() {
     this.getDecks();
-    this.getAllCards();
   },
 };
 </script>
 
 <style scoped>
-
 .decksPage {
   display: flex;
   flex-direction: column;
@@ -104,8 +109,7 @@ export default {
 
 .deck-container {
   background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
   max-width: 1080px;
@@ -128,7 +132,7 @@ div.my-decks {
 
 img#bolt {
   width: 30px;
-  opacity: .85;
+  opacity: 0.85;
   padding: 0px;
   margin: 0px;
 }
@@ -173,9 +177,9 @@ h3 {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #bdbdbd 1px;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, .93);
-  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93);
-  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93);
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
@@ -184,9 +188,9 @@ h3 {
 .addDeck {
   background-color: white;
   border: solid #bdbdbd 1px;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, .93);
-  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93);
-  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93);
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
 }
 
 .addDeckDetails {
@@ -206,13 +210,15 @@ a.deck-name {
   padding: 15px;
 }
 
-a.deck-name, a {
+a.deck-name,
+a {
   text-decoration: none;
   color: black;
 }
 
-a.deck-name:visited, a:visited {
-   color: black;
+a.deck-name:visited,
+a:visited {
+  color: black;
 }
 
 div#edit {
@@ -224,10 +230,10 @@ a.edit-deck {
   font-size: 10px;
   padding-top: 0px;
   margin-top: -5px;
-  color:rgb(134, 134, 134)
+  color: rgb(134, 134, 134);
 }
 
-a.edit-deck:hover{
+a.edit-deck:hover {
   color: black;
 }
 
@@ -246,7 +252,4 @@ button#show-all {
   margin-left: 102px;
   margin-top: 15px;
 }
-
-
-
 </style>
