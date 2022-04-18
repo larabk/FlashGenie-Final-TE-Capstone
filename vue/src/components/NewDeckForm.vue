@@ -132,7 +132,6 @@ div.form {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin: 10px 50px 50px 50px; */
 }
 
 input#deck-name, input#subject {
@@ -146,9 +145,8 @@ input#deck-name, input#subject {
   background-color: rgba(241, 241, 241, 0.959);
 }
 
-input#deck-name:hover, input#topics:hover {
+input#deck-name:hover, input#subject:hover {
       background-color: white;
-
 }
 
 div.buttons {
@@ -156,10 +154,12 @@ div.buttons {
   column-gap: 10px;
 }
 
-button#save, button#cancel, button#delete {
+button#save, button#cancel {
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #BDBDBD 1px; 
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px; 
+  
 	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
 	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
 	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
@@ -178,11 +178,40 @@ button#save, button#cancel, button#delete {
   font-size: large;
   letter-spacing: 1.75px;
   font-weight: bold;
+
+/* READD ME */
+  /* width: 120px;
+  margin: 10px 10px 20px 10px;
+  display: inline-block;
+  padding: 12px;
+  text-decoration: none;
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  margin-bottom: 100px;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7); */
 }
 
-/* button#save:hover, button#cancel:hover {
-
+/* button#save:hover, button#save:focus,
+button#cancel:hover, button#cancel:focus {
+  text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
+  
 } */
+
+
 
 
 </style>

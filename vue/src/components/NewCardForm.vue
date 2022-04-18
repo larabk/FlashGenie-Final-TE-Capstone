@@ -174,7 +174,7 @@ div.buttons {
 }
 
 button#save, button#cancel {
-  background-color: #f8f9d2;
+  /* background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #BDBDBD 1px; 
 	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
@@ -194,7 +194,7 @@ button#save, button#cancel {
   border-radius: 12px;
   font-size: large;
   letter-spacing: 1.75px;
-  font-weight: bold;
+  font-weight: bold; */
 }
 
 </style>

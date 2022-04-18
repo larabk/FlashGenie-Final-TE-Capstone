@@ -172,7 +172,7 @@ h3 {
   border-radius: 10px;
   justify-content: center;
   font-size: larger;
-  text-transform: uppercase;
+  
 }
 
 .deck {
@@ -187,6 +187,11 @@ h3 {
   font-weight: bold;
 }
 
+.deck:hover {
+  background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
+  cursor: pointer; 
+}
+
 .addDeck {
   background-color: white;
   border: solid #bdbdbd 1px;
@@ -194,6 +199,10 @@ h3 {
   -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
 }
+
+.addDeck:hover {
+  background-color: rgb(236, 231, 231);
+ }
 
 .addDeckDetails {
   font-size: 3em;
@@ -209,7 +218,14 @@ div#flex-text {
 }
 
 a.deck-name {
-  padding: 15px;
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a.deck-name,
@@ -226,17 +242,22 @@ a:visited {
 div#deck-title {
   display: flex;
   justify-content: center;
+  
 }
 div#edit {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  vertical-align: bottom;
 }
 
 a.edit-deck {
+  /* position: absolute; */
   font-size: 10px;
+  text-align: right;
   padding-top: 0px;
-  margin-top: -5px;
-  color: rgb(134, 134, 134);
+  color:rgb(134, 134, 134);
+  margin-right: -8px;
+  margin-top: 3px;
 }
 
 a.edit-deck:hover {
@@ -257,5 +278,40 @@ button#show-all {
   border-radius: 10px;
   margin-left: 102px;
   margin-top: 15px;
+
+  background-color: #ffffff;
+  /* background-image: linear-gradient(315deg, 
+  #537895 0%, #09203f 74%); */
+  border: none;
+  color:#09203f;
+  margin-bottom: 100px;
+
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
+
+button#show-all:hover, button#show-all:focus {
+  text-decoration: none;
+  color: #09203f;
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+button#show-all:hover, button#show-all:focus {
+  color:#09203f;
+  cursor: pointer; 
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+
+
+/* a.deck-name:hover {
+  overflow:visible;
+  text-overflow: none;
+  white-space: pre-wrap;
+  font-size: 1vw;
+  padding: 0px;
+  line-height: 1;
+  text-align: center;
+} */
 </style>

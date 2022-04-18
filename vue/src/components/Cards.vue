@@ -175,7 +175,6 @@ hr {
   border-radius: 10px;
   justify-content: center;
   font-size: larger;
-  /* text-transform: uppercase; */
 }
 
 .card {
@@ -190,18 +189,45 @@ hr {
   font-weight: bold;
 }
 
+.card:hover {
+  background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
+  cursor: pointer; 
+}
+
+.addCard {
+  background-color: white;
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+}
+
+.addCard:hover {
+  background-color: rgb(236, 231, 231);
+}
+
 .addCardDetails {
   font-size: 3em;
   font-weight: 1000;
   color: rgb(95, 95, 95);
 }
 
-.addCard {
-	background-color: white;
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+div#flex-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: 20px;
+}
+
+#card-title {
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a.card-name, a {
@@ -209,9 +235,6 @@ a.card-name, a {
   color: black;
 }
 
-a.card-name {
-  padding: 15px;
-}
 
 a.card-name:visited, a:visited {
    color: black;
@@ -224,25 +247,25 @@ div#card-title {
   
 }
 
-div#flex-text {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  line-height: 20px;
-}
-
 div#edit {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   vertical-align: bottom;
+  
 }
 
 a.edit-card {
-  position: absolute;
+  /* position: absolute; */
   font-size: 10px;
   text-align: right;
   padding-top: 0px;
-  color:rgb(134, 134, 134)
+  color:rgb(134, 134, 134);
+  margin-right: -8px;
+  margin-top: 3px;
+}
+
+a.edit-card:hover {
+  color: black;
 }
 
 div#flex-show-button {
@@ -250,6 +273,7 @@ div#flex-show-button {
   flex-direction: column;
   align-items: right;
 }
+
 
 button#show-all {
   font-family: monospace;
@@ -259,6 +283,29 @@ button#show-all {
   border-radius: 10px;
   margin-left: 102px;
   margin-top: 15px;
+
+  background-color: #ffffff;
+  /* background-image: linear-gradient(315deg, 
+  #537895 0%, #09203f 74%); */
+  border: none;
+  color:#09203f;
+  margin-bottom: 100px;
+
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+}
+
+button#show-all:hover, button#show-all:focus {
+  text-decoration: none;
+  color: #09203f;
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+button#show-all:hover, button#show-all:focus {
+  color:#09203f;
+  cursor: pointer; 
+  box-shadow: inset 0 0 0 2em var(--hover);
 }
 
 a.back-to-decks, a.edit-deck {
@@ -276,5 +323,18 @@ a.back-to-decks:hover,
 a.edit-deck:hover {
   color: yellow;
 }
+
+
+
+/* a.card-name:hover {
+  overflow:visible;
+  text-overflow: none;
+  white-space: pre-wrap;
+  font-size: 1vw;
+  padding: 0px;
+  line-height: 1;
+  text-align: center;
+} */
+
 
 </style>

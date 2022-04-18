@@ -37,7 +37,7 @@
             placeholder="New keywords (Separate with commas)"/>
 
             <div class="buttons">
-              <button id="delete"  @click.prevent="deleteCard">DELETE THIS CARD</button>
+              <button id="delete"  @click.prevent="deleteCard">DELETE CARD</button>
               <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
               <button id="save" type="submit">Submit</button>
             </div>
