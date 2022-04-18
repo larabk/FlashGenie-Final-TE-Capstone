@@ -122,7 +122,7 @@ div.header {
 
 img#bolt {
   width: 30px;
-  opacity: 0.5;
+  opacity: .85;
 }
 
 h3 {

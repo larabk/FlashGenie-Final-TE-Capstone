@@ -1,8 +1,7 @@
 <template>
   <div class="editDeckPage">
     <div class="details-container">
-      <h3>Deck Name: {{currentDeck.name}}</h3>
-      <h3>Deck Subject: {{currentDeck.subject}}</h3>
+      
     </div>
     <div class="form-container">
       <div class="header">
@@ -10,6 +9,9 @@
         <h3>Edit Deck</h3>
         <img id="bolt" src="/bolt.png" alt="">
       </div>
+
+      <h4>Deck Name: {{currentDeck.name}}</h4>
+      <h4>Deck Subject: {{currentDeck.subject}}</h4>
 
      <div class="form">   
         <form @submit.prevent="updateDeck" class="update-deck-form">
@@ -125,7 +127,7 @@ div.header {
 
 img#bolt {
   width: 30px;
-  opacity: 0.5;
+  opacity: .85;
 }
 
 h3 {
@@ -136,18 +138,28 @@ h3 {
   letter-spacing: 1.75px;
   margin: 15px;
 }
+
+h4 {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0px;
+  margin-top: 15px;
+  line-height: 1px;
+}
+
 div.form {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin: 10px 50px 50px 50px; */
 }
 
 .update-deck-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px;
+  margin: 20px 50px 50px 50px;
   width: 325px;
   row-gap: 20px;
 }
