@@ -64,6 +64,7 @@
         </div>
       </div>
     </div>
+    <div class="study-session"><router-link :to="{name: 'study-session', params: {id: this.$route.params.id}}">Begin Study Session</router-link></div>
   </div>
 </template>
 

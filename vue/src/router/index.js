@@ -65,7 +65,7 @@ const router = new Router({
       path: "/deck/:id/cards",
       name: "cards",
       component: Cards,
-      meta:{
+      meta: {
         requiresAuth: true
       }
     },
@@ -73,7 +73,7 @@ const router = new Router({
       path: "/deck/new-deck",
       name: "new-deck",
       component: CreateNewDeck,
-      meta : {
+      meta: {
         requiresAuth: true
       }
     },
@@ -86,7 +86,7 @@ const router = new Router({
       }
     },
     {
-      path: "/deck/study-session/score-summary",
+      path: "/deck/:id/score-summary",
       name: "score-summary",
       component: ScoreSummary,
       meta: {
@@ -97,7 +97,7 @@ const router = new Router({
       path: "/deck/:deckId/cards/:cardId/edit-card",
       name: "edit-card",
       component: EditCard,
-      meta : {
+      meta: {
         requiresAuth: true
       }
     },
@@ -110,17 +110,17 @@ const router = new Router({
       }
     },
     {
-      path: "/deck/study-session",
+      path: "/deck/:id/study-session",
       name: "study-session",
       component: StudySession
-    },{
+    }, {
       path: "/search/:searchInput",
       name: "search-results",
       component: SearchResults,
       meta: {
         requiresAuth: true,
       }
-    }
+    },
   ]
 })
 

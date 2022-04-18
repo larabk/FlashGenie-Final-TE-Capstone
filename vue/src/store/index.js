@@ -30,6 +30,8 @@ export default new Vuex.Store({
     },
     cards:[],
     allCards:[],
+    currentScore: 0,
+    maxScore: 0,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -59,6 +61,12 @@ export default new Vuex.Store({
     },
     UPDATE_ALL_CARDS(state, card){
       state.allCards.push(card)
+    },
+    SET_SCORE(state, score){
+      state.currentScore = score;
+    },
+    SET_MAX_SCORE(state,score){
+      state.maxScore = score;
     }
   }
 })
