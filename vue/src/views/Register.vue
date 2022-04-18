@@ -136,7 +136,7 @@ img#logo {
 form.form-register {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  width: 375px;
 }
 
 h1#h1-register {
@@ -181,20 +181,23 @@ div#register-buttons {
   column-gap: 25px;
 }
 
-a#router-account.button, 
 button#sign-in {
-  width: 200px;
-  height: 45px;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px; 
+  width: 150px;
+  height: 50px;
   margin: 10px 10px 20px 10px;
+  padding: 8px 12px 8px 12px;
   text-decoration: none;
+  letter-spacing: 1.75px;
   text-align: center;
+  
   font-size: 14px;
   font-family: monospace;
   border-radius: 12px;
   font-weight: bold;
-  background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
   border: none;
   color: white;
   margin-bottom: 100px;
@@ -212,22 +215,46 @@ a#router-account.button {
   padding-top: 0px; 
 }
 
-button#sign-in {
-  display: block;
-  justify-content: center;
-  padding: 0px;  
-}
-
-a#router-account:hover, a#router-account:focus {
+a#router-account.button {
+  width: 150px;
+  height: 50px;
+  margin: 10px 10px 20px 10px;
   text-decoration: none;
-  color: #ebeb85;
-  box-shadow: inset 0 0 0 2em var(--hover);
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  text-decoration: none;
+  color: white;
+  margin-bottom: 100px;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
 
 button#sign-in:hover, button#sign-in:focus {
-  color: #ebeb85; 
-  cursor: pointer; 
+  text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
+}
+
+a#router-account.button:hover, a#router-account.button:focus {
+  text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
 }
 
 

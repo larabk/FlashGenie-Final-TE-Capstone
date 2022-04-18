@@ -159,28 +159,7 @@ button#save, button#cancel {
   background-image: linear-gradient(315deg, 
   #d2e6f9 0%, #6b8fa7 74%);
   border: solid #747474 1px; 
-  
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
   width: 120px;
-  margin: 10px 10px 20px 10px;
-  text-decoration: none;
-  text-align: center;
-  font-family: monospace;
-  border: none;
-  color: rgb(0, 0, 0);
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 12px;
-  font-size: large;
-  letter-spacing: 1.75px;
-  font-weight: bold;
-
-/* READD ME */
-  /* width: 120px;
   margin: 10px 10px 20px 10px;
   display: inline-block;
   padding: 12px;
@@ -196,10 +175,10 @@ button#save, button#cancel {
   margin-bottom: 100px;
   box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7); */
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
 
-/* button#save:hover, button#save:focus,
+button#save:hover, button#save:focus,
 button#cancel:hover, button#cancel:focus {
   text-decoration: none;
   background-image: linear-gradient(315deg, 
@@ -209,7 +188,7 @@ button#cancel:hover, button#cancel:focus {
   font-weight: bold;
   cursor: pointer; 
   
-} */
+}
 
 
 

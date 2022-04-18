@@ -102,7 +102,8 @@ img#logo {
 .form-signin {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  width: 375px;
+
 }
 
 h1#sign-in {
@@ -138,20 +139,23 @@ div#login-buttons {
   column-gap: 25px;
 }
 
-a#router-account.button,
 button#sign-in {
-  width: 200px;
-  height: 45px;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px; 
+  width: 150px;
+  height: 50px;
   margin: 10px 10px 20px 10px;
+  display: inline-block;
+  padding: 8px;
   text-decoration: none;
+  letter-spacing: 1.75px;
   text-align: center;
   font-size: 14px;
   font-family: monospace;
   border-radius: 12px;
   font-weight: bold;
-  background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
   border: none;
   color: white;
   margin-bottom: 100px;
@@ -166,144 +170,48 @@ a#router-account.button {
   justify-content: center;
   text-decoration: none;
   color: white;
-  padding-top: 0px;
+  padding-top: 0px; 
 }
 
-button#sign-in {
-  display: block;
-  justify-content: center;
-  padding: 0px;  
-}
-
-a#router-account:hover, a#router-account:focus {
+a#router-account.button {
+  width: 150px;
+  height: 50px;
+  margin: 10px 10px 20px 10px;
   text-decoration: none;
-  color: #ebeb85; 
-  box-shadow: inset 0 0 0 2em var(--hover);
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  text-decoration: none;
+  color: white;
+  margin-bottom: 100px;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
 
 button#sign-in:hover, button#sign-in:focus {
-  color: #ebeb85; 
-  cursor: pointer; 
-  box-shadow: inset 0 0 0 2em var(--hover);
-}
-
-/* playing with fill-in buttons 041822 AM */
-
-/* a#router-account.button {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  background: #ebeb85; 
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  color: #ebeb85; 
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-decoration: none;
-  padding-top: 0px;
-  font-weight: bold;
-}
-
-button#sign-in {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  background: #ebeb85; 
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  color: #ebeb85; 
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  font-weight: bold;
-}
-
-a#router-account.button:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #537895;
   background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-  border-radius: 12px;
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
   font-weight: bold;
+  cursor: pointer; 
 }
 
-button#sign-in:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #537895;
+a#router-account.button:hover, a#router-account.button:focus {
+  text-decoration: none;
   background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-  border-radius: 12px;
-  font-weight: bold;
-}
-
-a#router-account.button:hover, a#router-account.button:focus, a#router-account.button:active {
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
   color:#09203f;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
   font-weight: bold;
+  cursor: pointer; 
 }
-
-button#sign-in:hover, button#sign-in:focus, button#sign-in:active {
-  color:#09203f;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  font-weight: bold;
-}
-
-a#router-account.button:hover:before, a#router-account.button:focus:before, a#router-account.button:active:before {
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  font-weight: bold;
-}
-button#sign-in:hover:before, button#sign-in:focus:before, button#sign-in:active:before {
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  font-weight: bold;
-} */
-
-
 </style>

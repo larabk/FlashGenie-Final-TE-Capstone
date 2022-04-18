@@ -163,27 +163,38 @@ div.buttons {
 }
 
 button#save, button#cancel {
-  /* background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px; 
   width: 120px;
   margin: 10px 10px 20px 10px;
-  text-decoration: none;
-  text-align: center;
-  font-family: monospace;
-  border: none;
-  color: rgb(0, 0, 0);
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
-  border-radius: 12px;
-  font-size: large;
+  padding: 12px;
+  text-decoration: none;
   letter-spacing: 1.75px;
-  font-weight: bold; */
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  margin-bottom: 100px;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
 
+button#save:hover, button#save:focus,
+button#cancel:hover, button#cancel:focus {
+  text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
+  
+}
 </style>
