@@ -86,6 +86,7 @@ div#search-home {
 }
 
 a {
+  padding-top: 5px;
   text-decoration: none;
   color: #ebeb85;
 }
@@ -119,7 +120,7 @@ a:hover {
   font-weight: bold;
 }
 
-img {
+img#logo {
   width: 90px;
   height: auto;
   padding: 10px 0px 10px 20px;

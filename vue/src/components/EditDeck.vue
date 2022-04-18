@@ -1,34 +1,33 @@
 <template>
   <div class="editDeckPage">
     <div class="form-container">
-        <div class="header">
-          <img id="bolt" src="/bolt.png" alt="">  
-          <h3>Edit Deck</h3>
-          <img id="bolt" src="/bolt.png" alt="">
-        </div>
-
-     <div class="form">   
-    <form @submit.prevent="updateDeck" class="update-deck-form">
-      <input
-        type="text"
-        class="name"
-        placeholder="New deck name"
-        v-model="deck.name"
-      />
-      <input
-        type="text"
-        class="subject"
-        placeholder="New subject"
-        v-model="deck.subject"
-      />
-
-      <div class="buttons">
-        <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
-        <button id="save" type="submit">Submit</button>
-        <button id="delete" @click.prevent="deleteDeck">DELETE DECK</button>
+      <div class="header">
+        <img id="bolt" src="/bolt.png" alt="">  
+        <h3>Edit Deck</h3>
+        <img id="bolt" src="/bolt.png" alt="">
       </div>
 
-    </form>
+     <div class="form">   
+        <form @submit.prevent="updateDeck" class="update-deck-form">
+          <input
+            type="text"
+            class="name"
+            placeholder="New deck name"
+            v-model="deck.name"/>
+          
+          <input
+            type="text"
+            class="subject"
+            placeholder="New subject"
+            v-model="deck.subject"/>
+
+          <div class="buttons">
+            <button id="delete" @click.prevent="deleteDeck">DELETE DECK</button>
+            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
+            <button id="save" type="submit">Submit</button>
+          </div>
+
+        </form>
      </div>
     </div>
   </div>
@@ -173,8 +172,6 @@ button#save, button#cancel {
   border: none;
   color: rgb(0, 0, 0);
   padding: 10px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
   border-radius: 12px;
   font-size: large;
@@ -182,9 +179,45 @@ button#save, button#cancel {
   font-weight: bold;
 }
 
-/* button#save:hover, button#cancel:hover {
-
-} */
-
+button#delete {
+   background-color: #b8b8b8;
+  /* background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%); */
+  border: solid #BDBDBD 1px; 
+  width: 80px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  font-family: monospace;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 12px;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+}
+button#delete:hover {
+  background-color: red;
+  width: 80px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  font-family: monospace;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 12px;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+}
 
 </style>

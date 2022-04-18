@@ -1,62 +1,56 @@
 <template>
   <div id="register" class="text-center">
-     <img id="logo" src="/flash-genie-logo.png" alt=""/>
+    <img id="logo" src="/flash-genie-logo.png" alt=""/>
     
-    <form class="form-register" @submit.prevent="register">
-     <h1 id="h1-register">Create Account</h1>
+      <form class="form-register" @submit.prevent="register">
+        <h1 id="h1-register">Create Account</h1>
 
-    <label for="email" class="sr-only"></label>
-      <input
-        type="text"
-        id="email"
-        class="form-control"
-        placeholder="Email"
-        v-model="userDetails.email"
-        required
-        autofocus
-      />
+      <label for="email" class="sr-only"></label>
+        <input
+          type="text"
+          id="email"
+          class="form-control"
+          placeholder="Email"
+          v-model="userDetails.email"
+          required
+          autofocus/>
 
       <label for="username" class="sr-only"></label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder="Username"
+          v-model="user.username"
+          required
+          autofocus/>
+
       <label for="password" class="sr-only"></label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          v-model="user.password"
+          required/>
+        
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+          v-model="user.confirmPassword"
+          required/>
 
-      <div class="alert alert-danger" id="alert" role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
+        <div class="alert alert-danger" id="alert" role="alert" v-if="registrationErrors">
+          {{ registrationErrorMsg }}
+        </div>
 
-      <div id="register-buttons">
-      <button id="create-account"><router-link :to="{ name: 'login' }" id="router-account">
-        Have an account?</router-link></button>
-      <button id="sign-in" type="submit">
-        Create Account
-      </button>
-
-      </div>
-    </form>
+        <div id="register-buttons">
+          <router-link :to="{ name: 'login' }" id="router-account" class='button'>Have an account?</router-link>
+          <button id="sign-in" type="submit">Create Account</button>
+        </div>
+      </form>
   </div>
 </template>
 
@@ -125,21 +119,18 @@ export default {
 
 <style scoped> 
 
-h1#h1-register {
-  font-family: monospace;
-  text-align: left;
-  margin-left: 3px;
-  margin-top: 50px;
-  font-size: large;
-  margin-bottom: 15px;
-}
-
 div#register {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0px 50px 50px 50px;
+}
 
+img#logo {
+  width: 350px;
+  height: auto;
+  margin: 40px 0px 5px 0px;
+  padding: 0px;
 }
 
 form.form-register {
@@ -148,56 +139,13 @@ form.form-register {
   max-width: 400px;
 }
 
-div#register-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  column-gap: 25px;
-}
-
-button#create-account, 
-button#sign-in {
-  width: 250px;
-  margin: 10px 10px 20px 10px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 2vh;
+h1#h1-register {
   font-family: monospace;
-  background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
-  border: none;
-  color: white;
-  padding: 15px 10px 15px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 12px;
-  margin: 4px 2px;
-  font-weight: bold;
-  margin-bottom: 100px;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-}
-
-a#router-account {
-  text-decoration: none;
-  color: white
-}
-
-a#router-account:visited {
-  text-decoration: none;
-}
-
-a#router-account:hover {
-  text-decoration: none;
-  color: #ebeb85; 
-}
-
-button#create-account:hover, 
-button#sign-in:hover {
-  color: #ebeb85; 
+  text-align: left;
+  margin-left: 3px;
+  margin-top: 50px;
+  font-size: large;
+  margin-bottom: 15px;
 }
 
 input#username,
@@ -226,11 +174,64 @@ div#alert {
   margin-bottom: 7px;
 }
 
-img#logo {
-    width: 350px;
-    height: auto;
-    margin-bottom: 5px;
-    margin-top: 40px;
+div#register-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  column-gap: 25px;
 }
+
+a#router-account.button, 
+button#sign-in {
+  width: 200px;
+  height: 45px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, 
+  #537895 0%, #09203f 74%);
+  border: none;
+  color: white;
+  margin-bottom: 100px;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+}
+
+a#router-account.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  padding-top: 0px; 
+}
+
+button#sign-in {
+  display: block;
+  justify-content: center;
+  padding: 0px;  
+}
+
+a#router-account:hover, a#router-account:focus {
+  text-decoration: none;
+  color: #ebeb85;
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+button#sign-in:hover, button#sign-in:focus {
+  color: #ebeb85; 
+  cursor: pointer; 
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+
+
+
 
 </style>

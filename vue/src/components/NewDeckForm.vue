@@ -1,35 +1,34 @@
 <template>
   <div class="create-deck">
     <div class="form-container">
-        <div class="header">
-          <img id="bolt" src="/bolt.png" alt="">  
-          <h3>Create New Deck</h3>
-          <img id="bolt" src="/bolt.png" alt="">
-        </div>
-
-    <div class="form">  
-    <form @submit.prevent="saveDeck" class="deck-form">
-      <input
-        type="text"
-        id="deck-name"
-        placeholder="Deck Name"
-        v-model="deck.name"
-      />
-      <input
-        type="text"
-        id="subject"
-        placeholder="Deck Subject"
-        v-model="deck.subject"
-      />
-      
-      <div class="buttons">
-        <div class="alert" v-if="creationErrors">{{creationErrorMessage}}</div>
-        <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>
-        <button id="save" type="submit">Submit</button>
+      <div class="header">
+        <img id="bolt" src="/bolt.png" alt="">  
+        <h3>Create New Deck</h3>
+        <img id="bolt" src="/bolt.png" alt="">
       </div>
-    </form>
+
+      <div class="form">  
+        <form @submit.prevent="saveDeck" class="deck-form">
+          <input
+            type="text"
+            id="deck-name"
+            placeholder="Deck Name"
+            v-model="deck.name"/>
+
+          <input
+            type="text"
+            id="subject"
+            placeholder="Deck Subject"
+            v-model="deck.subject"/>
+          
+            <div class="buttons">
+              <div class="alert" v-if="creationErrors">{{creationErrorMessage}}</div>
+              <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>
+              <button id="save" type="submit">Submit</button>
+            </div>
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -157,7 +156,7 @@ div.buttons {
   column-gap: 10px;
 }
 
-button#save, button#cancel {
+button#save, button#cancel, button#delete {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #BDBDBD 1px; 

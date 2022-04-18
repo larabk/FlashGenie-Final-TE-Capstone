@@ -1,41 +1,38 @@
 <template>
   <div class="cardsPage">
-    
-    
     <div class="cards-container">
-
       <div id="title-links">
         
-      <div class="my-cards">
-        <img id="bolt" src="/bolt.png" alt="">
-        <h3>My Cards</h3>
-        <img id="bolt" src="/bolt.png" alt="">
-      </div>
+        <div class="my-cards">
+          <img id="bolt" src="/bolt.png" alt="">
+          <h3>My Cards</h3>
+          <img id="bolt" src="/bolt.png" alt="">
+        </div>
         <router-link class="back-to-decks" :to="{name: 'home'}">Back to Decks</router-link>
-        <router-link class="edit-deck" :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit</router-link>
-    </div>
-      
+        <hr>
+        <router-link class="edit-deck" :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit Deck</router-link>
+      </div>
       
       <div class="cards">
-        <div
-          class="card"
-          v-for="card in cards.slice(0, displayLength)"
-  
-          v-bind:key="card.cardId"
-        >
+        <div class="card" v-for="card in cards.slice(0, displayLength)" v-bind:key="card.cardId">
         <div id="flex-text">
+          
           {{ card.frontText }}
+
+        <div id="edit">
           <router-link class="edit-card" :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Edit</router-link>
-            
+        </div>
         </div>
 
         </div>
 
-        <router-link :to="{name: 'new-card', params: {id: this.$route.params.id}}" class="addCard addCardDetails">+</router-link>
-      </div>
-      <div id="button">
-      <button id="show-all" v-if="deckSize > minDisplayLength" @click="partialDisplay = !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
-
+        <div id="flex-show-button">
+          <router-link :to="{name: 'new-card', params: {id: this.$route.params.id}}" class="addCard addCardDetails">+</router-link>
+          <div id="button">
+            <button id="show-all" v-if="deckSize > minDisplayLength" @click="partialDisplay = 
+            !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -101,6 +98,11 @@ export default {
   min-height: 100vh;
 }
 
+div#title-links {
+  display: flex;
+  flex-direction: column;
+}
+
 .cards-container {
   background-color: #537895;
   background-image: linear-gradient(315deg, 
@@ -115,6 +117,37 @@ export default {
   width: 75%;
 
 }
+div.my-cards {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    vertical-align: middle;
+    margin-top:10px;
+}
+
+img#bolt {
+  width: 30px;
+  opacity: .85;
+  padding: 0px;
+  margin: 0px;
+}
+
+h3 {
+  color: white;
+  font-size: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.75px;
+  margin: 15px;
+}
+
+hr {
+  width: 150px;
+  color: #ebeb85;
+}
+
 
 .cards {
   display: flex;
@@ -143,9 +176,7 @@ export default {
   text-transform: uppercase;
 }
 
-div.card {
-  /* width: [object Object]px; 
-	height: [object Object]px;  */
+.card {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #BDBDBD 1px; 
@@ -163,19 +194,7 @@ div.card {
   color: rgb(95, 95, 95);
 }
 
-h3 {
-  color: white;
-  font-size: 45px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1.75px;
-  margin: 15px;
-}
-
-
 .addCard {
-  /* width: [object Object]px; 
-	height: [object Object]px;  */
 	background-color: white;
   border: solid #BDBDBD 1px; 
 	box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
@@ -183,56 +202,18 @@ h3 {
 	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
 }
 
-img {
-  width: 30px;
-  opacity: 0.5;
-}
-
-div.my-cards {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    vertical-align: middle;
-    margin-top:10px;
-}
-
-button#show-all {
-  font-family: monospace;
-  letter-spacing: 1px;
-  width: 100px;
-  height: 40px;
-  border-radius: 10px;
-  margin-right: 60px;
-}
-div#button {
-  display: flex;
-  justify-content: right;
-  margin-bottom: 10px;
-  
-}
-
-
 a.card-name, a {
   text-decoration: none;
   color: black;
-  
+}
+
+a.card-name {
+  padding: 15px;
 }
 
 a.card-name:visited, a:visited {
    color: black;
 
-}
-a.card-name {
-  padding-top: 10px;
-  
-}
-
-a.edit-card {
-  font-size: 10px;
-  text-align: right;
-  padding-top: 0px;
 }
 
 div#flex-text {
@@ -242,19 +223,45 @@ div#flex-text {
   line-height: 20px;
 }
 
-a.back-to-decks, a.edit-deck {
-  text-align: center;
+div#edit {
+  display: flex;
+  justify-content: flex-end;
+  vertical-align: bottom;
 }
 
-div#title-links {
+a.edit-card {
+  position: absolute;
+  font-size: 10px;
+  text-align: right;
+  padding-top: 0px;
+  color:rgb(134, 134, 134)
+}
+
+div#flex-show-button {
   display: flex;
   flex-direction: column;
+  align-items: right;
+}
+
+button#show-all {
+  font-family: monospace;
+  letter-spacing: 1px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  margin-left: 102px;
+  margin-top: 15px;
+}
+
+a.back-to-decks, a.edit-deck {
+  text-align: center;
 }
 
 a.back-to-decks, a.edit-deck {
   color: #ebeb85;
   text-transform: uppercase;
   letter-spacing: 1px;
+  padding: 0px;
 }
 
 a.back-to-decks:hover,

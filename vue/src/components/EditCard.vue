@@ -1,41 +1,39 @@
 <template>
   <div class="editCardPage">
     <div class="form-container">
-        <div class="header">
-          <img id="bolt" src="/bolt.png" alt="">  
-          <h3>Edit Card</h3>
-          <img id="bolt" src="/bolt.png" alt="">
-        </div>
-
-     <div class="form">   
-    <form @submit.prevent="updateCard" class="update-card-form">
-      <input
-        type="text"
-        class="front-text"
-        placeholder="New term"
-        v-model="card.frontText"
-      />
-      <input
-        type="text"
-        class="back-text"
-        placeholder="New definition"
-        v-model="card.backText"
-      />
-      <input
-        type="text"
-        class="key-words"
-        v-model="card.keyWords"
-        placeholder="New keywords (Separate with commas)"
-      />
-      <div class="buttons">
-        <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
-        <button id="save" type="submit">Submit</button>
-        <button id="delete"  @click.prevent="deleteCard">
-        DELETE THIS CARD
-      </button>
+      <div class="header">
+        <img id="bolt" src="/bolt.png" alt="">  
+        <h3>Edit Card</h3>
+        <img id="bolt" src="/bolt.png" alt="">
       </div>
-    </form>
-     </div>
+
+      <div class="form">   
+        <form @submit.prevent="updateCard" class="update-card-form">
+          <input
+            type="text"
+            class="front-text"
+            placeholder="New term"
+            v-model="card.frontText"/>
+          
+          <input
+            type="text"
+            class="back-text"
+            placeholder="New definition"
+            v-model="card.backText"/>
+
+          <input
+            type="text"
+            class="key-words"
+            v-model="card.keyWords"
+            placeholder="New keywords (Separate with commas)"/>
+
+            <div class="buttons">
+              <button id="delete"  @click.prevent="deleteCard">DELETE THIS CARD</button>
+              <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
+              <button id="save" type="submit">Submit</button>
+            </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -127,11 +125,11 @@ h3 {
   letter-spacing: 1.75px;
   margin: 15px;
 }
+
 div.form {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin: 10px 50px 50px 50px; */
 }
 
 .update-card-form {
@@ -143,7 +141,6 @@ div.form {
   row-gap: 20px;
 }
 
-
 input.front-text, input.back-text, input.key-words  {
   width: 100%;
   font-family: monospace;
@@ -153,8 +150,8 @@ input.front-text, input.back-text, input.key-words  {
   font-size: medium;
   border-color: #05445e;
   background-color: rgba(241, 241, 241, 0.959);
-
 }
+
 input.front-text:hover, 
 input.back-text:hover, 
 input.key-words:hover {
@@ -181,8 +178,6 @@ button#save, button#cancel {
   border: none;
   color: rgb(0, 0, 0);
   padding: 10px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
   border-radius: 12px;
   font-size: large;
@@ -190,7 +185,46 @@ button#save, button#cancel {
   font-weight: bold;
 }
 
-/* button#save:hover, button#cancel:hover {
+button#delete {
+   background-color: #b8b8b8;
+  /* background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%); */
+  border: solid #BDBDBD 1px; 
+  width: 80px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  font-family: monospace;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 12px;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+}
 
-} */
+button#delete:hover {
+  background-color: red;
+  width: 80px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  text-align: center;
+  font-family: monospace;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 12px;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+}
+
 </style>
