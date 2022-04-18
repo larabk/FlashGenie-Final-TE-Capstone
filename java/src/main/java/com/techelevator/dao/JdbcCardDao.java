@@ -18,7 +18,25 @@ public class JdbcCardDao implements CardDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Card> getAllCards(Long deckId, String username) {
+    public List<Card> getAllCards(String username){
+        List<Card> cards= new ArrayList<>();
+
+        String sql = "SELECT card_id, cards.deck_id, front_text, back_text, keywords " +
+                "FROM cards JOIN decks ON decks.deck_id = cards.deck_id " +
+                "JOIN users ON users.user_id = decks.user_id " +
+                "WHERE username = ? " +
+                "ORDER BY front_text; ";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        while (results.next()) {
+            cards.add(mapRowToCard(results));
+        }
+
+        return cards;
+
+    }
+
+    public List<Card> getAllCardsByDeckId(Long deckId, String username) {
         List<Card> cards = new ArrayList<>();
 
         String sql = "SELECT card_id, cards.deck_id, front_text, back_text, keywords " +

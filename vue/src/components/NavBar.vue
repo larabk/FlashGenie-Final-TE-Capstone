@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 nav ul {
   display: flex;
   flex-direction: row;

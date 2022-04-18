@@ -5,7 +5,7 @@
         
         <div class="my-cards">
           <img id="bolt" src="/bolt.png" alt="">
-          <h3>My Cards</h3>
+          <h3>cards about {{currentDeckName}}</h3>
           <img id="bolt" src="/bolt.png" alt="">
         </div>
         <router-link class="back-to-decks" :to="{name: 'home'}">Back to Decks</router-link>
@@ -20,7 +20,7 @@
           {{ card.frontText }}
 
         <div id="edit">
-          <router-link class="edit-card" :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Edit</router-link>
+          <router-link class="edit-card" :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Details/Edit</router-link>
         </div>
         </div>
 
@@ -48,7 +48,7 @@ export default {
       partialDisplay: true,
       deckId: 0,
       active: false,
-
+      currentDeck: this.$store.state.decks,
     };
   },
   computed: {
@@ -65,21 +65,21 @@ export default {
     cards(){
       return this.$store.state.cards;
     },
+    currentDeckId(){
+      return Number(this.$route.params.id);
+    },
+    currentDeckName(){
+      return this.currentDeck.find(deck => 
+        deck.deckId === this.currentDeckId
+      ).name;
+    }
   },
   methods: {
     getCards() {
-      cardService.getAllCards(this.$route.params.id).then((response) => {
-        this.$store.commit("SET_CARDS", response.data);
+      cardService.getAllCardsByDeckId(this.$route.params.id).then((response) => {
+        this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
       });
     },
-    // --- Still trying to figure this thing out
-    // sortCards(){
-    //   this.cards.sort((a, b) => {
-    //     let nameA = a.frontText.toUpperCase();
-    //     let nameB = b.frontText.toUpperCase();
-    //     return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
-    //   })
-    // }
   },
   created() {
     this.getCards();
@@ -173,7 +173,7 @@ hr {
   border-radius: 10px;
   justify-content: center;
   font-size: larger;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .card {

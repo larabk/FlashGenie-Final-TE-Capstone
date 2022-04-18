@@ -7,13 +7,26 @@
         <img id="bolt" src="/bolt.png" alt="">
       </div>
 
-      <div class="form">    
-        <form @submit.prevent="saveCard" class="card-form">
-          <input
-            type="text"
-            id="card-front-text"
-            placeholder="Term"
-            v-model="card.frontText"/>
+     <div class="form">    
+      <form @submit.prevent="saveCard" class="card-form">
+        <input
+          type="text"
+          id="card-front-text"
+          placeholder="Term"
+          v-model="card.frontText"
+        />
+        <input
+          type="text"
+          id="card-back-text"
+          placeholder="Definition"
+          v-model="card.backText"
+        />
+        <input type="text" id="card-keywords" placeholder="Keywords (separate with spaces)" v-model="card.keyWords">
+          <div class="buttons">
+            <div class="alert" v-if="creationErrors">{{ creationErrorMessage }}</div>  
+            <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>
+            <button id="save" type="submit">Submit</button>
+          </div>
 
           <input
             type="text"

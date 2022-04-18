@@ -1,10 +1,36 @@
 <template>
   <div class="decksPage">
     <div class="deck-container">
-      <div class="my-decks">
-        <img id="bolt" src="/bolt.png" alt="" />
-        <h3>My Decks</h3>
-        <img id="bolt" src="/bolt.png" alt="" />
+          <div class="my-decks">
+            <img id="bolt" src="/bolt.png" alt="" />
+            <h3>My Decks</h3>
+            <img id="bolt" src="/bolt.png" alt="" />
+          </div>
+      <div class="decks">
+        <div
+          class="deck"
+          v-for="deck in decks.slice(0, displayLength)"
+          v-bind:key="deck.deckId"
+        >
+
+        <div id="flex-text">
+          
+          <router-link
+            class="deck-name"
+            :to="{ name: 'cards', params: { id: deck.deckId } }"
+            >{{ deck.name }}
+          </router-link>
+
+          <router-link class="edit-deck"
+            :to="{ name: 'edit-deck', params: { id: deck.deckId } }"
+            >Details/Edit</router-link
+          >
+        </div>
+        </div>
+
+        <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }"
+          >+</router-link
+        >
       </div>
       
       <div class="decks">
@@ -40,6 +66,7 @@
 
 <script>
 import deckService from "@/services/DeckService";
+import cardService from "@/services/CardService";
 export default {
   name: "decksPage",
   data() {
@@ -76,9 +103,15 @@ export default {
         this.$store.commit("SET_DECKS", response.data);
       });
     },
+    getAllCards(){
+      cardService.getAllCards().then((response) =>{
+        this.$store.commit("SET_ALL_CARDS", response.data);
+      })
+    }
   },
   created() {
     this.getDecks();
+    this.getAllCards();
   },
 };
 </script>
