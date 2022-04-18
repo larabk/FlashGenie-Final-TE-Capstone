@@ -1,46 +1,49 @@
 <template>
   <div class="editCardPage">
-    <div class="card-details-container">
-      
-    </div>
+    <div class="card-details-container"></div>
     <div class="form-container">
       <div class="header">
-        <img id="bolt" src="/bolt.png" alt="">  
+        <img id="bolt" src="/bolt.png" alt="" />
         <h3>Edit Card</h3>
-        <img id="bolt" src="/bolt.png" alt="">
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
 
-    
       <h4>Term: {{ currentCard.frontText }}</h4>
-      <h4>Definition: {{currentCard.backText}}</h4>
-      <h4>KeyWords: {{currentCard.keyWords.split(" ").join(", ")}}</h4>
+      <h4>Definition: {{ currentCard.backText }}</h4>
+      <h4>KeyWords: {{ currentCard.keyWords.split(" ").join(", ") }}</h4>
 
-
-      <div class="form">   
+      <div class="form">
         <form @submit.prevent="updateCard" class="update-card-form">
           <input
             type="text"
             class="front-text"
             placeholder="New term"
-            v-model="card.frontText"/>
-          
+            v-model="card.frontText"
+          />
+
           <input
             type="text"
             class="back-text"
             placeholder="New definition"
-            v-model="card.backText"/>
+            v-model="card.backText"
+          />
 
           <input
             type="text"
             class="key-words"
             v-model="card.keyWords"
-            placeholder="New keywords (Separate with commas)"/>
+            placeholder="New keywords (Separate with commas)"
+          />
 
-            <div class="buttons">
-              <button id="delete"  @click.prevent="deleteCard">DELETE THIS CARD</button>
-              <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
-              <button id="save" type="submit">Submit</button>
-            </div>
+          <div class="buttons">
+            <button id="delete" @click.prevent="deleteCard">
+              DELETE THIS CARD
+            </button>
+            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
+              Cancel
+            </button>
+            <button id="save" type="submit">Submit</button>
+          </div>
         </form>
       </div>
     </div>
@@ -71,6 +74,7 @@ export default {
     updateCard() {
       cardService.update(this.card).then((response) => {
         if (response.status === 200) {
+          this.$store.commit("UPDATE_ALL_CARDS", this.card);
           this.$router.push(`/deck/${this.card.deckId}/cards`);
         }
       });
@@ -128,7 +132,7 @@ div.header {
 
 img#bolt {
   width: 30px;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 h3 {
@@ -165,7 +169,9 @@ div.form {
   row-gap: 20px;
 }
 
-input.front-text, input.back-text, input.key-words  {
+input.front-text,
+input.back-text,
+input.key-words {
   width: 100%;
   font-family: monospace;
   margin-bottom: 10px;
@@ -176,8 +182,8 @@ input.front-text, input.back-text, input.key-words  {
   background-color: rgba(241, 241, 241, 0.959);
 }
 
-input.front-text:hover, 
-input.back-text:hover, 
+input.front-text:hover,
+input.back-text:hover,
 input.key-words:hover {
   background-color: white;
 }
@@ -211,9 +217,9 @@ button#cancel {
 }
 
 button#delete {
-   background-color: #b8b8b8;
+  background-color: #b8b8b8;
   /* background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%); */
-  border: solid #BDBDBD 1px; 
+  border: solid #bdbdbd 1px;
   width: 80px;
   margin: 10px 10px 20px 10px;
   text-decoration: none;
@@ -227,9 +233,9 @@ button#delete {
   font-size: 12px;
   letter-spacing: 1.75px;
   font-weight: bold;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
 
 button#delete:hover {
@@ -247,9 +253,8 @@ button#delete:hover {
   font-size: 12px;
   letter-spacing: 1.75px;
   font-weight: bold;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
-
 </style>

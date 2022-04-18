@@ -22,7 +22,7 @@
       <div class="cards" v-for="card in filteredCards" v-bind:key="card.id">
         <div class="card-link">
           <router-link :to="{ name: 'cards', params: { id: card.deckId } }">
-            Deck Name: {{ deckName(card.deckId).name }} | Term:
+            Deck Name: {{ deckName(card.deckId) }} | Term:
             {{ card.frontText }} | Definition: {{ card.backText }} | Keywords:
             {{ card.keyWords.split(" ").join(", ") }}</router-link
           >
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import cardService from '@/services/CardService.js'
 
 export default {
   data() {
@@ -45,7 +44,10 @@ export default {
   computed: {
     filteredDecks() {
       return this.decks.filter((deck) => {
-        return deck.subject.toLowerCase().includes(this.filterTerm);
+        return (
+          deck.subject.toLowerCase().includes(this.filterTerm) ||
+          deck.name.toLowerCase().includes(this.filterTerm)
+        );
       });
     },
     filterTerm() {
@@ -53,25 +55,18 @@ export default {
     },
     filteredCards() {
       return this.cards.filter((card) => {
-        return card.keyWords.toLowerCase().includes(this.filterTerm);
+        return (
+          card.keyWords.toLowerCase().includes(this.filterTerm) ||
+          card.frontText.toLowerCase().includes(this.filterTerm)
+        );
       });
     },
   },
   methods: {
     deckName(id) {
-      return this.decks.find((deck) => deck.deckId === id);
+      return this.decks.find((deck) => deck.deckId === id).name;
     },
-    getAllCards() {
-    cardService.getAllCards().then((response) => {
-      this.$store.commit("SET_ALL_CARDS", response.data);
-    });
   },
-  },
-
-
-  created () {
-    this.getAllCards();
-  }
 };
 </script>
 

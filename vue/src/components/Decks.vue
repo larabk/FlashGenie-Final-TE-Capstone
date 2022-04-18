@@ -14,12 +14,12 @@
           v-bind:key="deck.deckId"
         >
           <div id="flex-text">
-
             <div id="deck-title">
               <router-link
                 class="deck-name"
                 :to="{ name: 'cards', params: { id: deck.deckId } }"
-                >{{ deck.name }}</router-link>
+                >{{ deck.name }}</router-link
+              >
             </div>
 
             <div id="edit">
@@ -54,6 +54,7 @@
 
 <script>
 import deckService from "@/services/DeckService";
+import cardService from '@/services/CardService';
 export default {
   name: "decksPage",
   data() {
@@ -90,10 +91,16 @@ export default {
         this.$store.commit("SET_DECKS", response.data);
       });
     },
+    getAllCards() {
+      cardService.getAllCards().then((response) => {
+        this.$store.commit("SET_ALL_CARDS", response.data);
+      });
+    },
   },
 
   created() {
     this.getDecks();
+    this.getAllCards();
   },
 };
 </script>
