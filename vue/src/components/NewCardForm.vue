@@ -27,7 +27,7 @@
             <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>
             <button id="save" type="submit">Submit</button>
           </div>
-
+<!-- 
           <input
             type="text"
             id="card-back-text"
@@ -39,7 +39,7 @@
               <div class="alert" v-if="creationErrors">{{ creationErrorMessage }}</div>  
               <button id="cancel" type="cancel" @click.prevent="cancelForm">Cancel</button>
               <button id="save" type="submit">Submit</button>
-            </div>
+            </div> -->
         </form>
       </div>
     </div>

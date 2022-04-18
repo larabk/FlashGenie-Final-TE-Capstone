@@ -1,9 +1,7 @@
 <template>
   <div class="editCardPage">
     <div class="card-details-container">
-      <h3>Term: {{ currentCard.frontText }}</h3>
-      <h3>Definition: {{currentCard.backText}}</h3>
-      <h3>KeyWords: {{currentCard.keyWords.split(" ").join(", ")}}</h3>
+      
     </div>
     <div class="form-container">
       <div class="header">
@@ -11,6 +9,12 @@
         <h3>Edit Card</h3>
         <img id="bolt" src="/bolt.png" alt="">
       </div>
+
+    
+      <h4>Term: {{ currentCard.frontText }}</h4>
+      <h4>Definition: {{currentCard.backText}}</h4>
+      <h4>KeyWords: {{currentCard.keyWords.split(" ").join(", ")}}</h4>
+
 
       <div class="form">   
         <form @submit.prevent="updateCard" class="update-card-form">
@@ -136,6 +140,19 @@ h3 {
   margin: 15px;
 }
 
+h4 {
+  text-align: center;
+  color: #ebeb85;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0px;
+}
+
+h4:hover {
+  color: yellow;
+}
+
+
 div.form {
   display: flex;
   flex-direction: row;
@@ -151,13 +168,7 @@ div.form {
   row-gap: 20px;
 }
 
-<<<<<<< HEAD
 input.front-text, input.back-text, input.key-words  {
-=======
-input.front-text,
-input.back-text,
-input.key-words {
->>>>>>> 1ea9b28e16c9d9bee441ca1e956120012a6fc571
   width: 100%;
   font-family: monospace;
   margin-bottom: 10px;
@@ -167,14 +178,9 @@ input.key-words {
   border-color: #05445e;
   background-color: rgba(241, 241, 241, 0.959);
 }
-<<<<<<< HEAD
 
 input.front-text:hover, 
 input.back-text:hover, 
-=======
-input.front-text:hover,
-input.back-text:hover,
->>>>>>> 1ea9b28e16c9d9bee441ca1e956120012a6fc571
 input.key-words:hover {
   background-color: white;
 }

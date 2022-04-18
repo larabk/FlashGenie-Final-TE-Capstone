@@ -8,9 +8,11 @@
           <h3>cards about {{currentDeckName}}</h3>
           <img id="bolt" src="/bolt.png" alt="">
         </div>
+
         <router-link class="back-to-decks" :to="{name: 'home'}">Back to Decks</router-link>
         <hr>
         <router-link class="edit-deck" :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit Deck</router-link>
+      
       </div>
       
       <div class="cards">

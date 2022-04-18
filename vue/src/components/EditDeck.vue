@@ -196,7 +196,6 @@ button#cancel {
   font-weight: bold;
 }
 
-<<<<<<< HEAD
 button#delete {
    background-color: #b8b8b8;
   /* background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%); */
@@ -238,9 +237,4 @@ button#delete:hover {
 	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
 }
 
-=======
-/* button#save:hover, button#cancel:hover {
-
-} */
->>>>>>> 1ea9b28e16c9d9bee441ca1e956120012a6fc571
 </style>
