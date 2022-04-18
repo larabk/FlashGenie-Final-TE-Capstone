@@ -56,6 +56,9 @@ export default new Vuex.Store({
     },
     SET_ALL_CARDS(state, data){
       state.allCards = data;
+    },
+    UPDATE_ALL_CARDS(state, card){
+      state.allCards.push(card)
     }
   }
 })

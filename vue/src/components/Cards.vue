@@ -2,37 +2,64 @@
   <div class="cardsPage">
     <div class="cards-container">
       <div id="title-links">
-        
         <div class="my-cards">
-          <img id="bolt" src="/bolt.png" alt="">
-          <h3>cards about {{currentDeckName}}</h3>
-          <img id="bolt" src="/bolt.png" alt="">
+          <img id="bolt" src="/bolt.png" alt="" />
+          <h3>cards about {{ currentDeck.name }}</h3>
+          <img id="bolt" src="/bolt.png" alt="" />
         </div>
 
-        <router-link class="back-to-decks" :to="{name: 'home'}">Back to Decks</router-link>
-        <hr>
-        <router-link class="edit-deck" :to="{name: 'edit-deck', params: {id: this.$route.params.id}}">Edit Deck</router-link>
-      
+        <div class="subtitle">
+          <h4>subject : {{ currentDeck.subject }}</h4>
+        </div>
+
+        <router-link class="back-to-decks" :to="{ name: 'home' }"
+          >Back to Decks</router-link
+        >
+        <hr />
+        <router-link
+          class="edit-deck"
+          :to="{ name: 'edit-deck', params: { id: this.$route.params.id } }"
+          >Edit Deck</router-link
+        >
       </div>
-      
-      <div class="cards">
-        <div class="card" v-for="card in cards.slice(0, displayLength)" v-bind:key="card.cardId">
-        <div id="flex-text">
-        <div id="card-title">
-          {{ card.frontText }}
-        </div>
-        <div id="edit">
-          <router-link class="edit-card" :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Details/Edit</router-link>
-        </div>
-        </div>
 
+      <div class="cards">
+        <div
+          class="card"
+          v-for="card in cards.slice(0, displayLength)"
+          v-bind:key="card.cardId"
+        >
+          <div id="flex-text">
+            <div id="card-title">
+              {{ card.frontText }}
+            </div>
+            <div id="edit">
+              <router-link
+                class="edit-card"
+                :to="{
+                  name: 'edit-card',
+                  params: { deckId: card.deckId, cardId: card.cardId },
+                }"
+                >Details/Edit</router-link
+              >
+            </div>
+          </div>
         </div>
 
         <div id="flex-show-button">
-          <router-link :to="{name: 'new-card', params: {id: this.$route.params.id}}" class="addCard addCardDetails">+</router-link>
+          <router-link
+            :to="{ name: 'new-card', params: { id: this.$route.params.id } }"
+            class="addCard addCardDetails"
+            >+</router-link
+          >
           <div id="button">
-            <button id="show-all" v-if="deckSize > minDisplayLength" @click="partialDisplay = 
-            !partialDisplay ">{{partialDisplay ? "Show All" : "Show Less"}}</button>
+            <button
+              id="show-all"
+              v-if="deckSize > minDisplayLength"
+              @click="partialDisplay = !partialDisplay"
+            >
+              {{ partialDisplay ? "Show All" : "Show Less" }}
+            </button>
           </div>
         </div>
       </div>
@@ -50,11 +77,11 @@ export default {
       partialDisplay: true,
       deckId: 0,
       active: false,
-      currentDeck: this.$store.state.decks,
+      decks: this.$store.state.decks,
     };
   },
   computed: {
-    deckSize(){
+    deckSize() {
       return this.$store.state.cards.length;
     },
     displayLength() {
@@ -64,23 +91,23 @@ export default {
         return this.$store.state.cards.length;
       }
     },
-    cards(){
+    cards() {
       return this.$store.state.cards;
     },
-    currentDeckId(){
+    currentDeckId() {
       return Number(this.$route.params.id);
     },
-    currentDeckName(){
-      return this.currentDeck.find(deck => 
-        deck.deckId === this.currentDeckId
-      ).name;
-    }
+    currentDeck() {
+      return this.decks.find((deck) => deck.deckId === this.currentDeckId);
+    },
   },
   methods: {
     getCards() {
-      cardService.getAllCardsByDeckId(this.$route.params.id).then((response) => {
-        this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
-      });
+      cardService
+        .getAllCardsByDeckId(this.$route.params.id)
+        .then((response) => {
+          this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
+        });
     },
   },
   created() {
@@ -107,8 +134,7 @@ div#title-links {
 
 .cards-container {
   background-color: #537895;
-  background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%);
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
   max-width: 1080px;
@@ -117,21 +143,20 @@ div#title-links {
   padding: 30px;
   padding-top: 40px;
   width: 75%;
-
 }
 div.my-cards {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    vertical-align: middle;
-    margin-top:10px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  vertical-align: middle;
+  margin-top: 10px;
 }
 
 img#bolt {
   width: 30px;
-  opacity: .85;
+  opacity: 0.85;
   padding: 0px;
   margin: 0px;
 }
@@ -149,7 +174,6 @@ hr {
   width: 150px;
   color: #ebeb85;
 }
-
 
 .cards {
   display: flex;
@@ -180,10 +204,10 @@ hr {
 .card {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #BDBDBD 1px; 
-	box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, .93); 
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
@@ -230,21 +254,21 @@ div#flex-text {
   text-overflow: ellipsis;
 }
 
-a.card-name, a {
+a.card-name,
+a {
   text-decoration: none;
   color: black;
 }
 
 
-a.card-name:visited, a:visited {
-   color: black;
-
+a.card-name:visited,
+a:visited {
+  color: black;
 }
 
 div#card-title {
   display: flex;
   justify-content: center;
-  
 }
 
 div#edit {
@@ -308,11 +332,13 @@ button#show-all:hover, button#show-all:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
-a.back-to-decks, a.edit-deck {
+a.back-to-decks,
+a.edit-deck {
   text-align: center;
 }
 
-a.back-to-decks, a.edit-deck {
+a.back-to-decks,
+a.edit-deck {
   color: #ebeb85;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -337,4 +363,14 @@ a.edit-deck:hover {
 } */
 
 
+.subtitle {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  vertical-align: middle;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
 </style>
