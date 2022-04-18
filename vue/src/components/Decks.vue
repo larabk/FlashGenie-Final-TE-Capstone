@@ -14,11 +14,13 @@
           v-bind:key="deck.deckId"
         >
           <div id="flex-text">
-            <router-link
-              class="deck-name"
-              :to="{ name: 'cards', params: { id: deck.deckId } }"
-              >{{ deck.name }}</router-link
-            >
+
+            <div id="deck-title">
+              <router-link
+                class="deck-name"
+                :to="{ name: 'cards', params: { id: deck.deckId } }"
+                >{{ deck.name }}</router-link>
+            </div>
 
             <div id="edit">
               <router-link
@@ -221,6 +223,10 @@ a:visited {
   color: black;
 }
 
+div#deck-title {
+  display: flex;
+  justify-content: center;
+}
 div#edit {
   display: flex;
   justify-content: flex-end;

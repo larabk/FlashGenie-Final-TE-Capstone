@@ -128,7 +128,7 @@ div.header {
 
 img#bolt {
   width: 30px;
-  opacity: 0.5;
+  opacity: .85;
 }
 
 h3 {
@@ -142,16 +142,13 @@ h3 {
 
 h4 {
   text-align: center;
-  color: #ebeb85;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 0px;
+  margin-top: 15px;
+  line-height: 1px;
 }
-
-h4:hover {
-  color: yellow;
-}
-
 
 div.form {
   display: flex;
@@ -163,7 +160,7 @@ div.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px;
+  margin: 20px 50px 50px 50px;
   width: 325px;
   row-gap: 20px;
 }

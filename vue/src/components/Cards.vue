@@ -18,9 +18,9 @@
       <div class="cards">
         <div class="card" v-for="card in cards.slice(0, displayLength)" v-bind:key="card.cardId">
         <div id="flex-text">
-          
+        <div id="card-title">
           {{ card.frontText }}
-
+        </div>
         <div id="edit">
           <router-link class="edit-card" :to="{name: 'edit-card', params: {deckId: card.deckId, cardId: card.cardId}}">Details/Edit</router-link>
         </div>
@@ -216,6 +216,12 @@ a.card-name {
 a.card-name:visited, a:visited {
    color: black;
 
+}
+
+div#card-title {
+  display: flex;
+  justify-content: center;
+  
 }
 
 div#flex-text {
