@@ -12,17 +12,17 @@
       </div>
     </div>
     <timer ref="timer" :timeValue="this.countDown" v-if="this.isLightningRound" @timerZero="nextCard"></timer>
+  
+  
   <div class="flipperPage" v-if="timerChoiceMade">
     <div class="flipper-container">
       <router-link class="end-session" :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
       <div class="flip-card">
         <div class="flip-card-inner">
-          
           <div class="flip-card-front" >
-              <div class="front-card-text">
-              {{ currentCards[currentIndex].frontText }}
-              
-              </div>
+            <div class="front-card-text">
+            {{ currentCards[currentIndex].frontText }}
+            </div>
           </div>
       
           <div class="flip-card-back">
@@ -31,14 +31,13 @@
             </div>
           </div>
         </div>
-
+      </div>
+      
       <div class=study-buttons>
 
-        
         <button class=incorrect  @click="markIncorrect">Wrong
                   <img id="click-x" src="/redX.png"/></button>
         
-
         <div class="buttonControl">
           <button class="decrease" v-if="!isLightningRound" @click="previousCard">Previous</button>
             <div class="cardTracker">
@@ -46,18 +45,15 @@
             </div>
             <button class="increase" @click="nextCard">Next</button>
           </div>
-        </div>
         
-       
+
+
         <button class="correct" @click="markCorrect">Correct
                   <img id="click-bolt" src="/bolt.png" alt=""/></button>
-        
+        </div>
       
-      </div>
-
     </div>
-    </div>
-      
+    </div> 
   </div>
 </template>
 
