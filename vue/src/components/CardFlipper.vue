@@ -5,18 +5,20 @@
         <div class="flip-card-inner">
           
           <div class="flip-card-front">
-              <div class="card-text">
+              <div class="front-card-text">
               {{ currentCards[currentIndex].frontText }}
               </div>
 
               <div class="scoreButtons">
-                <button class="incorrect" @click="markIncorrect">Incorrect</button>
-                <button class="correct" @click="markCorrect">Correct</button>
+                
+                <a href="incorrect" class=incorrect @click="markIncorrect"><img id="click-x" src="/redX.png"/></a>
+                <a href="correct" class="correct" @click="markCorrect"><img id="click-bolt" src="/bolt.png" alt=""/></a>
+                                
               </div>
           </div>
       
           <div class="flip-card-back">
-            <div class="card-text">
+            <div class="back-card-text">
             {{ currentCards[currentIndex].backText }}
             </div>
               <div class="scoreButtons">
@@ -157,19 +159,10 @@ div.flip-card {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
-  
 }
-
-/* div.flip-card-inner {
-  display: flex;
-  row-gap: 80px;
-  justify-content: center;
-
-} */
 
 .flip-card:hover {
   cursor: pointer; 
-  
 }
 
 div.study-buttons {
@@ -178,13 +171,13 @@ div.study-buttons {
 
 div.scoreButtons {
   display: flex;
+  justify-content: space-between;
+  width: 90%;
   height: 40px;
-  column-gap: 20px;
-  align-self: flex-end;
-  width: 100%;
-  justify-content: right;
-  padding-top: -20px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  vertical-align: middle;
+
 }
 
 div.buttonControl {
@@ -200,13 +193,37 @@ a{
     display:flex;
 }
 
-.card-text {
-  margin-top: 120px;
+.front-card-text, .back-card-text {
+  text-align: center;
+  /* margin-top: 100px; */
+  /* letter-spacing: 1vh; */
+  /* padding: 20px; */
 }
 
+.front-card-text {
+  font-size: 50px;
+  text-transform: uppercase;
+  /* line-height: 1; */
+  
+}
 
+/* .back-card-text {
 
+} */
 
+img#click-bolt {
+  width: 30px;
+  height: 45px;
+  /* padding: 10px; */
+}
+
+img#click-x {
+  width: auto;
+  height: 30px;
+  /* padding: 10px; */
+  /* height: 65px; */
+  margin-top: 5px;
+}
 
 
 
@@ -231,21 +248,24 @@ a{
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+/* .flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
-}
+} */
 
 /* Position the front and back side */
 .flip-card-front, .flip-card-back {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 80px;
-  position: absolute;
+  align-items: center;
+  row-gap: 65px;
+  position: absolute; 
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+  /* width: fit-content; */
+   text-align: center;
 }
 
 /* Style the front side (fallback if image is missing) */
