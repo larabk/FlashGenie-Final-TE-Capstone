@@ -46,16 +46,20 @@
 </template>
 
 <script>
+import cardService from "@/services/CardService";
 export default {
   data() {
     return {
       displayFront: true,
       currentIndex: 0,
       deckId: Number(this.$route.params.id),
-      cards: this.$store.state.allCards,
+      // cards: this.$store.state.allCards,
     };
   },
   computed: {
+    cards(){
+      return this.$store.state.allCards;
+    },
     currentCards() {
       return this.cards.filter((card) => card.deckId === this.deckId);
     },
@@ -103,9 +107,17 @@ export default {
     markIncorrect() {
       this.currentCards[this.currentIndex].isMarked = true;
     },
+     getAllCards() {
+      if (this.$store.state.allCards.length === 0) {
+        cardService.getAllCards().then((response) => {
+          this.$store.commit("SET_ALL_CARDS", response.data);
+        });
+      }
+    },
    
   },
   created() {
+    this.getAllCards();
     this.addMarkedProperty();
     this.setMaxScore();
     this.resetScore(0);

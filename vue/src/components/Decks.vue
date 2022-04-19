@@ -54,7 +54,7 @@
 
 <script>
 import deckService from "@/services/DeckService";
-import cardService from '@/services/CardService';
+import cardService from "@/services/CardService";
 export default {
   name: "decksPage",
   data() {
@@ -87,14 +87,18 @@ export default {
   },
   methods: {
     getDecks() {
-      deckService.getAllDecks().then((response) => {
-        this.$store.commit("SET_DECKS", response.data);
-      });
+      if (this.$store.state.decks.length === 0) {
+        deckService.getAllDecks().then((response) => {
+          this.$store.commit("SET_DECKS", response.data);
+        });
+      }
     },
     getAllCards() {
-      cardService.getAllCards().then((response) => {
-        this.$store.commit("SET_ALL_CARDS", response.data);
-      });
+      if (this.$store.state.allCards.length === 0) {
+        cardService.getAllCards().then((response) => {
+          this.$store.commit("SET_ALL_CARDS", response.data);
+        });
+      }
     },
   },
 
@@ -179,7 +183,6 @@ h3 {
   border-radius: 10px;
   justify-content: center;
   font-size: larger;
-  
 }
 
 .deck {
@@ -196,7 +199,7 @@ h3 {
 
 .deck:hover {
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .addDeck {
@@ -209,7 +212,7 @@ h3 {
 
 .addDeck:hover {
   background-color: rgb(236, 231, 231);
- }
+}
 
 .addDeckDetails {
   font-size: 3em;
@@ -249,7 +252,6 @@ a:visited {
 div#deck-title {
   display: flex;
   justify-content: center;
-  
 }
 div#edit {
   display: flex;
@@ -262,7 +264,7 @@ a.edit-deck {
   font-size: 10px;
   text-align: right;
   padding-top: 0px;
-  color:rgb(134, 134, 134);
+  color: rgb(134, 134, 134);
   margin-right: -8px;
   margin-top: 3px;
 }
@@ -290,27 +292,27 @@ button#show-all {
   /* background-image: linear-gradient(315deg, 
   #537895 0%, #09203f 74%); */
   border: none;
-  color:#09203f;
+  color: #09203f;
   margin-bottom: 100px;
 
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-button#show-all:hover, button#show-all:focus {
+button#show-all:hover,
+button#show-all:focus {
   text-decoration: none;
   color: #09203f;
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
-button#show-all:hover, button#show-all:focus {
-  color:#09203f;
-  cursor: pointer; 
+button#show-all:hover,
+button#show-all:focus {
+  color: #09203f;
+  cursor: pointer;
   box-shadow: inset 0 0 0 2em var(--hover);
 }
-
-
 
 /* a.deck-name:hover {
   overflow:visible;

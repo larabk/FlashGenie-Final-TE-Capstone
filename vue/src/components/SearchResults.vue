@@ -46,15 +46,22 @@
 </template>
 
 <script>
-
+import deckService from "@/services/DeckService";
+import cardService from "@/services/CardService";
 export default {
   data() {
     return {
-      decks: this.$store.state.decks,
-      cards: this.$store.state.allCards,
+      // decks: this.$store.state.decks,
+      // cards: this.$store.state.allCards,
     };
   },
   computed: {
+    decks(){
+      return this.$store.state.decks;
+    },
+    cards(){
+      return this.$store.state.allCards;
+    },
     filteredDecks() {
       return this.decks.filter((deck) => {
         return (
@@ -79,7 +86,25 @@ export default {
     deckName(id) {
       return this.decks.find((deck) => deck.deckId === id).name;
     },
+      getDecks() {
+      if (this.$store.state.decks.length === 0) {
+        deckService.getAllDecks().then((response) => {
+          this.$store.commit("SET_DECKS", response.data);
+        });
+      }
+    },
+    getAllCards() {
+      if (this.$store.state.allCards.length === 0) {
+        cardService.getAllCards().then((response) => {
+          this.$store.commit("SET_ALL_CARDS", response.data);
+        });
+      }
+    },
   },
+  created(){
+    this.getDecks();
+    this.getAllCards();
+  }
 };
 </script>
 

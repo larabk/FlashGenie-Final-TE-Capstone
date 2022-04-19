@@ -41,6 +41,7 @@
 
 <script>
 import deckService from "@/services/DeckService";
+import cardService from "@/services/CardService";
 export default {
   data() {
     return {
@@ -50,10 +51,13 @@ export default {
         subject: "",
         clickCount: 0,
       },
-      decks: this.$store.state.decks,
+      // decks: this.$store.state.decks,
     };
   },
   computed: {
+    decks(){
+      return this.$store.state.decks;
+    },
    currentDeckId(){
       return Number(this.$route.params.id);
     },
@@ -88,7 +92,25 @@ export default {
         }
       }
     },
+      getDecks() {
+      if (this.$store.state.decks.length === 0) {
+        deckService.getAllDecks().then((response) => {
+          this.$store.commit("SET_DECKS", response.data);
+        });
+      }
+    },
+    getAllCards() {
+      if (this.$store.state.allCards.length === 0) {
+        cardService.getAllCards().then((response) => {
+          this.$store.commit("SET_ALL_CARDS", response.data);
+        });
+      }
+    },
   },
+  created(){
+    this.getDecks();
+    this.getAllCards();
+  }
 };
 </script>
 
