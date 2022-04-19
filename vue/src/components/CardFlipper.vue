@@ -1,24 +1,45 @@
 <template>
-  <div class="cardFlipperDisplay">
-    <div class="card" @click="flipCard">
-      {{
-        displayFront
-          ? currentCards[currentIndex].frontText
-          : currentCards[currentIndex].backText
-      }}
-    </div>
-    <div class="scoreButtons">
-      <button class="incorrect" @click="markIncorrect">Incorrect</button>
-      <button class="correct" @click="markCorrect">Correct</button>
-    </div>
-    <div class="buttonControl">
-      <button class="decrease" @click="previousCard">Previous</button>
-      <div class="cardTracker">
-        {{ this.currentIndex + 1 }}/{{ this.currentCards.length}}
+  <div class="flipperPage">
+    <div class="flipper-container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          
+          <div class="flip-card-front">
+              <div class="card-text">
+              {{ currentCards[currentIndex].frontText }}
+              </div>
+
+              <div class="scoreButtons">
+                <button class="incorrect" @click="markIncorrect">Incorrect</button>
+                <button class="correct" @click="markCorrect">Correct</button>
+              </div>
+          </div>
+      
+          <div class="flip-card-back">
+            <div class="card-text">
+            {{ currentCards[currentIndex].backText }}
+            </div>
+              <div class="scoreButtons">
+              <button class="incorrect" @click="markIncorrect">Incorrect</button>
+              <button class="correct" @click="markCorrect">Correct</button>
+            </div>
+          </div>
       </div>
-      <button class="increase" @click="nextCard">Next</button>
+      </div>
+
+      <div class=study-buttons>
+        <div class="buttonControl">
+          <button class="decrease" @click="previousCard">Previous</button>
+            <div class="cardTracker">
+              {{ this.currentIndex + 1 }}/{{ this.currentCards.length}}
+            </div>
+          <button class="increase" @click="nextCard">Next</button>
+        </div>
+      </div>
     </div>
+
     <router-link :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
+      
   </div>
 </template>
 
@@ -103,22 +124,167 @@ export default {
 </script>
 
 <style scoped>
-/* just to see router link */
-a{
-  color: black;
-}
-.cardFlipperDisplay {
+
+.flipperPage {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
 }
-.card {
-  min-width: 500px;
-  min-height: 250px;
+
+.flipper-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
+  align-items: center;
+  min-width: 600px;
+  max-width: 1080px;
+  border-radius: 30px;
+  margin: 0px 0px 0px 0px;
+  padding: 65px 30px 65px 30px;
+  width: 75%;
+}
+
+div.flip-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 275px;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  padding: 15px;
+  margin: 0;
+  border: none;
+  color: rgb(0, 0, 0);
   text-align: center;
-  border: 1px solid red;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: larger;
+  font-size: x-large;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+  
 }
+
+/* div.flip-card-inner {
+  display: flex;
+  row-gap: 80px;
+  justify-content: center;
+
+} */
+
+.flip-card:hover {
+  cursor: pointer; 
+  
+}
+
+div.study-buttons {
+  display: flex;
+}
+
+div.scoreButtons {
+  display: flex;
+  height: 40px;
+  column-gap: 20px;
+  align-self: flex-end;
+  width: 100%;
+  justify-content: right;
+  padding-top: -20px;
+  margin-right: 10px;
+}
+
+div.buttonControl {
+  display: flex;
+  column-gap: 20px;
+}
+
+a{
+  color: black;
+}
+
 .buttonControl{
     display:flex;
 }
+
+.card-text {
+  margin-top: 120px;
+}
+
+
+
+
+
+
+
+
+/* CARD FLIP ACTION CSS */
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; 
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 80px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  color: black;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  border-radius: 10px;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  color: white;
+  transform: rotateY(180deg);
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  border-radius: 10px;
+}
+
+
+
+
+
 </style>
