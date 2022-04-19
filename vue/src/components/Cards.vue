@@ -18,7 +18,7 @@
         <hr />
         <router-link
           class="edit-deck"
-          :to="{ name: 'edit-deck', params: { id: this.$route.params.id } }"
+          :to="{ name: 'edit-deck', params: { id: currentDeckId } }"
           >Edit Deck</router-link
         >
       </div>
@@ -48,7 +48,7 @@
 
         <div id="flex-show-button">
           <router-link
-            :to="{ name: 'new-card', params: { id: this.$route.params.id } }"
+            :to="{ name: 'new-card', params: { id: currentDeckId } }"
             class="addCard addCardDetails"
             >+</router-link
           >
@@ -64,7 +64,17 @@
         </div>
       </div>
     </div>
-    <div class="study-session"><router-link :to="{name: 'study-session', params: {id: this.$route.params.id}}">Begin Study Session</router-link></div>
+    <div class="study-session">
+      <router-link
+        :to="{ name: 'study-session', params: { id: currentDeckId } }"
+        >Begin Study Session</router-link
+      >
+      |
+      <router-link
+        :to="{ name: 'study-session', params: { id: currentDeckId } }"
+        >Begin Study Session (randomized)</router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -104,11 +114,15 @@ export default {
   },
   methods: {
     getCards() {
-      cardService
-        .getAllCardsByDeckId(this.$route.params.id)
-        .then((response) => {
-          this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
-        });
+      cardService.getAllCardsByDeckId(this.currentDeckId).then((response) => {
+        this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
+      });
+    },
+    randomizedSession() {
+      this.$store.commit("SET_RANDOMIZED");
+    },
+    regularSession() {
+      this.$store.commit("SET_NOT_RANDOMIZED");
     },
   },
   created() {
@@ -216,7 +230,7 @@ hr {
 
 .card:hover {
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .addCard {
@@ -261,7 +275,6 @@ a {
   color: black;
 }
 
-
 a.card-name:visited,
 a:visited {
   color: black;
@@ -276,7 +289,6 @@ div#edit {
   display: flex;
   justify-content: center;
   vertical-align: bottom;
-  
 }
 
 a.edit-card {
@@ -284,7 +296,7 @@ a.edit-card {
   font-size: 10px;
   text-align: right;
   padding-top: 0px;
-  color:rgb(134, 134, 134);
+  color: rgb(134, 134, 134);
   margin-right: -8px;
   margin-top: 3px;
 }
@@ -299,7 +311,6 @@ div#flex-show-button {
   align-items: right;
 }
 
-
 button#show-all {
   font-family: monospace;
   letter-spacing: 1px;
@@ -313,23 +324,25 @@ button#show-all {
   /* background-image: linear-gradient(315deg, 
   #537895 0%, #09203f 74%); */
   border: none;
-  color:#09203f;
+  color: #09203f;
   margin-bottom: 100px;
 
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-button#show-all:hover, button#show-all:focus {
+button#show-all:hover,
+button#show-all:focus {
   text-decoration: none;
   color: #09203f;
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
-button#show-all:hover, button#show-all:focus {
-  color:#09203f;
-  cursor: pointer; 
+button#show-all:hover,
+button#show-all:focus {
+  color: #09203f;
+  cursor: pointer;
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
@@ -351,8 +364,6 @@ a.edit-deck:hover {
   color: yellow;
 }
 
-
-
 /* a.card-name:hover {
   overflow:visible;
   text-overflow: none;
@@ -362,7 +373,6 @@ a.edit-deck:hover {
   line-height: 1;
   text-align: center;
 } */
-
 
 .subtitle {
   display: flex;
