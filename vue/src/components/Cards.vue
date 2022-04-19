@@ -2,6 +2,8 @@
   <div class="cardsPage">
     <div class="cards-container">
       <div id="title-links">
+
+      <div class="header">
         <div class="my-cards">
           <img id="bolt" src="/bolt.png" alt="" />
           <h3>cards about {{ currentDeck.name }}</h3>
@@ -9,18 +11,10 @@
         </div>
 
         <div class="subtitle">
-          <h4>subject : {{ currentDeck.subject }}</h4>
+          <h4>subject: {{ currentDeck.subject }}</h4>
         </div>
+      </div>
 
-        <router-link class="back-to-decks" :to="{ name: 'home' }"
-          >Back to Decks</router-link
-        >
-        <hr />
-        <router-link
-          class="edit-deck"
-          :to="{ name: 'edit-deck', params: { id: currentDeckId } }"
-          >Edit Deck</router-link
-        >
       </div>
 
       <div class="cards">
@@ -63,19 +57,27 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="study-session">
-      <router-link
-        :to="{ name: 'study-session', params: { id: currentDeckId } }"
-        @click.native="regularSession"
-        >Begin Study Session</router-link
-      >
-      |
-      <router-link
-        :to="{ name: 'study-session', params: { id: currentDeckId } }"
-        @click.native="randomizedSession" 
-        >Begin Study Session (randomized)</router-link
-      >
+      
+      <div class="study-session">
+        <router-link class="study"
+          :to="{ name: 'study-session', params: { id: currentDeckId } }"
+          >Begin Study Session</router-link>
+        
+        <router-link class="random-study"
+          :to="{ name: 'study-session', params: { id: currentDeckId } } "
+          >Begin Randomized Study Session</router-link>
+      </div>
+            
+      <div class="back-edit">
+        <router-link class="back-to-decks" :to="{ name: 'home' }"
+          >Back to Decks</router-link
+        >
+        
+        <router-link
+          class="edit-deck"
+          :to="{ name: 'edit-deck', params: { id: currentDeckId } }"
+          >Edit Deck</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -176,8 +178,7 @@ div#title-links {
   max-width: 1080px;
   border-radius: 30px;
   margin: 30px 0px 0px 0px;
-  padding: 30px;
-  padding-top: 40px;
+  padding: 40px 30px 20px 30px;
   width: 75%;
 }
 div.my-cards {
@@ -203,7 +204,11 @@ h3 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.75px;
-  margin: 15px;
+  margin: 0px 15px 0px 15px;
+}
+
+h4 {
+  margin-top: -10px;
 }
 
 hr {
@@ -272,6 +277,52 @@ hr {
   color: rgb(95, 95, 95);
 }
 
+.study-session {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+a.study, a.random-study {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px; 
+  width: 200px;
+  height: 30px;
+  margin: 10px 10px 60px 10px;
+  /* display: inline-block; */
+  padding: 12px;
+  text-decoration: none;
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+}
+
+.study:hover, .random-study:hover,
+.study:focus, .random-study:focus {
+  text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
+}
+
 div#flex-text {
   display: flex;
   flex-direction: column;
@@ -290,14 +341,12 @@ div#flex-text {
   text-overflow: ellipsis;
 }
 
-a.card-name,
-a {
+a.card-name, a {
   text-decoration: none;
   color: black;
 }
 
-a.card-name:visited,
-a:visited {
+a.card-name:visited {
   color: black;
 }
 
@@ -306,9 +355,9 @@ div#card-title {
   justify-content: center;
 }
 
+
+
 div#edit {
-  display: flex;
-  justify-content: center;
   vertical-align: bottom;
 }
 
@@ -366,10 +415,18 @@ button#show-all:focus {
   cursor: pointer;
   box-shadow: inset 0 0 0 2em var(--hover);
 }
+div.back-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 20px;
+  margin-bottom: 0px;
+  
+}
 
 a.back-to-decks,
 a.edit-deck {
-  text-align: center;
+  /* text-align: center; */
 }
 
 a.back-to-decks,
@@ -385,15 +442,11 @@ a.edit-deck:hover {
   color: yellow;
 }
 
-/* a.card-name:hover {
-  overflow:visible;
-  text-overflow: none;
-  white-space: pre-wrap;
-  font-size: 1vw;
-  padding: 0px;
-  line-height: 1;
-  text-align: center;
-} */
+.header {
+  display: flex;
+  flex-direction: column;
+
+}
 
 .subtitle {
   display: flex;
@@ -401,8 +454,8 @@ a.edit-deck:hover {
   justify-content: center;
   align-items: center;
   color: white;
-  vertical-align: middle;
-  margin-top: 10px;
+  /* vertical-align: middle; */
+  /* margin-top: 10px; */
   text-transform: uppercase;
 }
 </style>
