@@ -1,13 +1,19 @@
 <template>
-  <card-flipper></card-flipper>
+<div>
+
+  <study-session></study-session>
+</div>
+
 </template>
 
 <script>
-import CardFlipper from "@/components/CardFlipper";
+import StudySession from "@/components/StudySession";
 export default {
     components:{
-        CardFlipper
-    }
+        StudySession,
+      
+    },
+
 
 }
 </script>

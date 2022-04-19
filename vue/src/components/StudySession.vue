@@ -1,60 +1,79 @@
 <template>
-  <div class="flipperPage">
-    <div class="flipper-container">
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div class="card-text">
-              {{ currentCards[currentIndex].frontText }}
-            </div>
-
-            <div class="scoreButtons">
-              <button class="incorrect" @click="markIncorrect">
-                Incorrect
-              </button>
-              <button class="correct" @click="markCorrect">Correct</button>
-            </div>
-          </div>
-
-          <div class="flip-card-back">
-            <div class="card-text">
-              {{ currentCards[currentIndex].backText }}
-            </div>
-            <div class="scoreButtons">
-              <button class="incorrect" @click="markIncorrect">
-                Incorrect
-              </button>
-              <button class="correct" @click="markCorrect">Correct</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="study-buttons">
-        <div class="buttonControl">
-          <button class="decrease" @click="previousCard">Previous</button>
-          <div class="cardTracker">
-            {{ this.currentIndex + 1 }}/{{ this.currentCards.length }}
-          </div>
-          <button class="increase" @click="nextCard">Next</button>
-        </div>
+  <div class="study-session-container">
+    <div class="choose-lightning-round" v-if="!timerChoiceMade">
+      <h1>
+        Would you like to study in a 'Lightning Round?' This will give you ten
+        seconds for each question!
+      </h1>
+      <div class="lightning-buttons">
+        <button id="no-lightning" @click="regularRound">No</button>
+        <button id="yes-lightning" @click="lightningRound">Yes</button>
       </div>
     </div>
+    <timer v-if="this.isLightningRound" @timerZero="nextCard"></timer>
+    <div class="flipperPage" v-if="timerChoiceMade">
+      <div class="flipper-container">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="card-text">
+                {{ currentCards[currentIndex].frontText }}
+              </div>
 
-    <router-link :to="{ name: 'score-summary', params: { id: this.deckId } }"
-      >End Session</router-link
-    >
+              <div class="scoreButtons">
+                <button class="incorrect" @click="markIncorrect">
+                  Incorrect
+                </button>
+                <button class="correct" @click="markCorrect">Correct</button>
+              </div>
+            </div>
+
+            <div class="flip-card-back">
+              <div class="card-text">
+                {{ currentCards[currentIndex].backText }}
+              </div>
+              <div class="scoreButtons">
+                <button class="incorrect" @click="markIncorrect">
+                  Incorrect
+                </button>
+                <button class="correct" @click="markCorrect">Correct</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="study-buttons">
+          <div class="buttonControl">
+            <button class="decrease" @click="previousCard">Previous</button>
+            <div class="cardTracker">
+              {{ this.currentIndex + 1 }}/{{ this.currentCards.length }}
+            </div>
+            <button class="increase" @click="nextCard">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <router-link :to="{ name: 'score-summary', params: { id: this.deckId } }"
+        >End Session</router-link
+      >
+    </div>
   </div>
 </template>
 
 <script>
 import cardService from "@/services/CardService";
+import Timer from "./Timer.vue";
 export default {
+  components: {
+    Timer,
+  },
   data() {
     return {
       displayFront: true,
       currentIndex: 0,
       deckId: Number(this.$route.params.id),
+      timerChoiceMade: false,
+      isLightningRound: false,
       // cards: this.$store.state.allCards,
     };
   },
@@ -122,9 +141,22 @@ export default {
         });
       }
     },
-    shuffle(deck){
-      return deck.map(value => ({value, sort: Math.random()})).sort((a, b) => a.sort - b.sort).map(({value}) => value);
-    }
+    shuffle(deck) {
+      return deck
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    },
+    regularRound() {
+      this.isLightningRound = false;
+      this.timerChoiceMade = true;
+      this.$store.commit("DISABLE_TIMER");
+    },
+    lightningRound() {
+      this.isLightningRound = true;
+      this.timerChoiceMade = true;
+      this.$store.commit("ENABLE_TIMER");
+    },
   },
   created() {
     this.getAllCards();

@@ -26,7 +26,8 @@ export default new Vuex.Store({
     currentScore: 0,
     maxScore: 0,
     isRandomized: false,
-    shuffledDeck: []
+    shuffledDeck: [],
+    timerEnabled: true,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -71,6 +72,12 @@ export default new Vuex.Store({
     },
     SHUFFLE_DECK(state, deck){
       state.shuffledDeck = deck
+    },
+    ENABLE_COUNTDOWN(state){
+      state.timerEnabled = true;
+    },
+    DISABLE_COUNTDOWN(state){
+      state.timerEnabled = false;
     }
   }
 })
