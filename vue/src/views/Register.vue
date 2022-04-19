@@ -210,16 +210,11 @@ a#router-account.button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-decoration: none;
   color: white;
   padding-top: 0px; 
-}
-
-a#router-account.button {
   width: 150px;
   height: 50px;
   margin: 10px 10px 20px 10px;
-  text-decoration: none;
   letter-spacing: 1.75px;
   text-align: center;
   font-size: 14px;
@@ -230,7 +225,6 @@ a#router-account.button {
   background-image: linear-gradient(315deg, 
   #d2e6f9 0%, #6b8fa7 74%);
   text-decoration: none;
-  color: white;
   margin-bottom: 100px;
   box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);

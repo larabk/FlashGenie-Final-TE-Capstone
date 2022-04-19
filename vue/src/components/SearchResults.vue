@@ -183,6 +183,7 @@ h1#deck-results, h1#card-results {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
+  
 }
 
 .deck-link:hover {
@@ -226,7 +227,8 @@ h1#deck-results, h1#card-results {
 a {
   color: black;
   text-align: left;
-  padding: 30px;
+  padding: 20px;
+  text-decoration: none;
 }
 
 div#header {
