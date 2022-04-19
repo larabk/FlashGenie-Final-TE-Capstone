@@ -67,11 +67,13 @@
     <div class="study-session">
       <router-link
         :to="{ name: 'study-session', params: { id: currentDeckId } }"
+        @click.native="regularSession"
         >Begin Study Session</router-link
       >
       |
       <router-link
         :to="{ name: 'study-session', params: { id: currentDeckId } }"
+        @click.native="randomizedSession" 
         >Begin Study Session (randomized)</router-link
       >
     </div>

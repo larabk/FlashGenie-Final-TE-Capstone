@@ -26,6 +26,7 @@ export default new Vuex.Store({
     currentScore: 0,
     maxScore: 0,
     isRandomized: false,
+    shuffledDeck: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -67,6 +68,9 @@ export default new Vuex.Store({
     },
     SET_NOT_RANDOMIZED(state){
       state.isRandomized = false;
+    },
+    SHUFFLE_DECK(state, deck){
+      state.shuffledDeck = deck
     }
   }
 })

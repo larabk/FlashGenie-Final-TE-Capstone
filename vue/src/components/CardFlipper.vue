@@ -3,43 +3,47 @@
     <div class="flipper-container">
       <div class="flip-card">
         <div class="flip-card-inner">
-          
           <div class="flip-card-front">
-              <div class="card-text">
-              {{ currentCards[currentIndex].frontText }}
-              </div>
-
-              <div class="scoreButtons">
-                <button class="incorrect" @click="markIncorrect">Incorrect</button>
-                <button class="correct" @click="markCorrect">Correct</button>
-              </div>
-          </div>
-      
-          <div class="flip-card-back">
             <div class="card-text">
-            {{ currentCards[currentIndex].backText }}
+              {{ currentCards[currentIndex].frontText }}
             </div>
-              <div class="scoreButtons">
-              <button class="incorrect" @click="markIncorrect">Incorrect</button>
+
+            <div class="scoreButtons">
+              <button class="incorrect" @click="markIncorrect">
+                Incorrect
+              </button>
               <button class="correct" @click="markCorrect">Correct</button>
             </div>
           </div>
-      </div>
+
+          <div class="flip-card-back">
+            <div class="card-text">
+              {{ currentCards[currentIndex].backText }}
+            </div>
+            <div class="scoreButtons">
+              <button class="incorrect" @click="markIncorrect">
+                Incorrect
+              </button>
+              <button class="correct" @click="markCorrect">Correct</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class=study-buttons>
+      <div class="study-buttons">
         <div class="buttonControl">
           <button class="decrease" @click="previousCard">Previous</button>
-            <div class="cardTracker">
-              {{ this.currentIndex + 1 }}/{{ this.currentCards.length}}
-            </div>
+          <div class="cardTracker">
+            {{ this.currentIndex + 1 }}/{{ this.currentCards.length }}
+          </div>
           <button class="increase" @click="nextCard">Next</button>
         </div>
       </div>
     </div>
 
-    <router-link :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
-      
+    <router-link :to="{ name: 'score-summary', params: { id: this.deckId } }"
+      >End Session</router-link
+    >
   </div>
 </template>
 
@@ -55,11 +59,17 @@ export default {
     };
   },
   computed: {
-    cards(){
+    cards() {
       return this.$store.state.allCards;
     },
     currentCards() {
-      return this.cards.filter((card) => card.deckId === this.deckId);
+      if (this.$store.state.isRandomized) {
+        return this.shuffle(
+          this.cards.filter((card) => card.deckId === this.deckId)
+        );
+      } else {
+        return this.cards.filter((card) => card.deckId === this.deckId);
+      }
     },
 
     currentScore() {
@@ -89,9 +99,9 @@ export default {
     resetScore(score) {
       this.$store.commit("SET_SCORE", score);
     },
-    setMaxScore(){
+    setMaxScore() {
       let score = this.currentCards.length;
-      this.$store.commit("SET_MAX_SCORE", score)
+      this.$store.commit("SET_MAX_SCORE", score);
     },
     addMarkedProperty() {
       return this.currentCards.forEach((card) => (card.isMarked = false));
@@ -105,14 +115,16 @@ export default {
     markIncorrect() {
       this.currentCards[this.currentIndex].isMarked = true;
     },
-     getAllCards() {
+    getAllCards() {
       if (this.$store.state.allCards.length === 0) {
         cardService.getAllCards().then((response) => {
           this.$store.commit("SET_ALL_CARDS", response.data);
         });
       }
     },
-   
+    shuffle(deck){
+      return deck.map(value => ({value, sort: Math.random()})).sort((a, b) => a.sort - b.sort).map(({value}) => value);
+    }
   },
   created() {
     this.getAllCards();
@@ -124,7 +136,6 @@ export default {
 </script>
 
 <style scoped>
-
 .flipperPage {
   display: flex;
   flex-direction: column;
@@ -169,7 +180,6 @@ div.flip-card {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
-  
 }
 
 /* div.flip-card-inner {
@@ -180,8 +190,7 @@ div.flip-card {
 } */
 
 .flip-card:hover {
-  cursor: pointer; 
-  
+  cursor: pointer;
 }
 
 div.study-buttons {
@@ -204,24 +213,17 @@ div.buttonControl {
   column-gap: 20px;
 }
 
-a{
+a {
   color: black;
 }
 
-.buttonControl{
-    display:flex;
+.buttonControl {
+  display: flex;
 }
 
 .card-text {
   margin-top: 120px;
 }
-
-
-
-
-
-
-
 
 /* CARD FLIP ACTION CSS */
 .flip-card {
@@ -229,7 +231,7 @@ a{
   width: 300px;
   height: 200px;
   border: 1px solid #f1f1f1;
-  perspective: 1000px; 
+  perspective: 1000px;
 }
 
 /* This container is needed to position the front and back side */
@@ -248,7 +250,8 @@ a{
 }
 
 /* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -282,9 +285,4 @@ a{
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   border-radius: 10px;
 }
-
-
-
-
-
 </style>
