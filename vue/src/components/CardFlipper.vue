@@ -80,6 +80,7 @@ export default {
     markIncorrect() {
       this.currentCards[this.currentIndex].isMarked = true;
     },
+   
   },
   created() {
     this.addMarkedProperty();

@@ -21,17 +21,11 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     decks: [],
-    activeDeck: {
-      deckId: 0,
-      userId: 0,
-      deckName: '',
-      subject: '',
-      clickCount: 0,
-    },
     cards:[],
     allCards:[],
     currentScore: 0,
     maxScore: 0,
+    isRandomized: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -67,6 +61,12 @@ export default new Vuex.Store({
     },
     SET_MAX_SCORE(state,score){
       state.maxScore = score;
+    },
+    SET_RANDOMIZED(state){
+      state.isRandomized = true;
+    },
+    SET_NOT_RANDOMIZED(state){
+      state.isRandomized = false;
     }
   }
 })
