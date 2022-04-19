@@ -11,7 +11,7 @@
         <button id="yes-lightning" @click="lightningRound">Yes</button>
       </div>
     </div>
-    <timer v-if="this.isLightningRound" @timerZero="nextCard"></timer>
+    <timer ref="timer" :timeValue="this.countDown" v-if="this.isLightningRound" @timerZero="nextCard"></timer>
   <div class="flipperPage" v-if="timerChoiceMade">
     <div class="flipper-container">
       <router-link class="end-session" :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
@@ -55,9 +55,6 @@
       
       </div>
 
-      <router-link :to="{ name: 'score-summary', params: { id: this.deckId } }"
-        >End Session</router-link
-      >
     </div>
     </div>
       
@@ -78,7 +75,7 @@ export default {
       deckId: Number(this.$route.params.id),
       timerChoiceMade: false,
       isLightningRound: false,
-      // cards: this.$store.state.allCards,
+      countDown: 10,
     };
   },
   computed: {
@@ -107,6 +104,10 @@ export default {
       if (this.currentIndex < this.currentCards.length - 1) {
         this.displayFront = true;
         this.currentIndex++;
+        //reset the timer here-- need to access child component 
+        if(this.isLightningRound){
+            this.$refs.timer.resetTimer();
+        }
       }
     },
     previousCard() {
@@ -154,12 +155,12 @@ export default {
     regularRound() {
       this.isLightningRound = false;
       this.timerChoiceMade = true;
-      this.$store.commit("DISABLE_TIMER");
+      this.$store.commit("DISABLE_COUNTDOWN");
     },
     lightningRound() {
       this.isLightningRound = true;
       this.timerChoiceMade = true;
-      this.$store.commit("ENABLE_TIMER");
+      this.$store.commit("ENABLE_COUNTDOWN");
     },
   },
   created() {

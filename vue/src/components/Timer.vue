@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'Timer',
   data() {
     return {
       countDown: 10,
@@ -15,6 +16,7 @@ export default {
     isTimerEnabled() {
       return this.$store.state.timerEnabled;
     },
+
   },
   methods: {
     countDownTimer() {
@@ -31,8 +33,12 @@ export default {
         }, 1000);
       }
     },
+    resetTimer(){
+      this.countDown = 10;
+    },
     passEvent() {
-      this.$emit('timerZero')
+      this.$emit('timerZero');
+      
     }
   },
   created() {
