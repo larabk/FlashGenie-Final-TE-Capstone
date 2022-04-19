@@ -2,8 +2,8 @@
   <div class="container">
     <div id="site-nav" v-if="$store.state.token != ''">
       <nav id="site-nav">
-        <ul id-site-nav>
-          <li><img id="logo" src="flash-genie-logo.png" /></li>
+        <ul id="site-nav">
+          <li><img id="logo" src="/flash-genie-logo.png" /></li>
 
           <div id="search-home">
             <li id="search-bar">
@@ -19,7 +19,7 @@
             </li>
             <li id="home-logout">
               <router-link v-bind:to="{ name: 'home' }">Home</router-link
-              ><img id="pipe-bolt" src="bolt.png" alt="" /><router-link
+              ><img id="pipe-bolt" src="/bolt.png" alt="" /><router-link
                 id="logout"
                 v-bind:to="{ name: 'logout' }"
               >

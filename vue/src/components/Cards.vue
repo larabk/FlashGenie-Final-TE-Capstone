@@ -80,6 +80,7 @@
 
 <script>
 import cardService from "@/services/CardService";
+import deckService from "@/services/DeckService";
 export default {
   name: "cardsPage",
   data() {
@@ -88,10 +89,12 @@ export default {
       partialDisplay: true,
       deckId: 0,
       active: false,
-      decks: this.$store.state.decks,
     };
   },
   computed: {
+    decks(){
+      return this.$store.state.decks;
+    },
     deckSize() {
       return this.$store.state.cards.length;
     },
@@ -109,7 +112,7 @@ export default {
       return Number(this.$route.params.id);
     },
     currentDeck() {
-      return this.decks.find((deck) => deck.deckId === this.currentDeckId);
+      return this.decks.find((deck) => deck.deckId == this.currentDeckId);
     },
   },
   methods: {
@@ -124,8 +127,24 @@ export default {
     regularSession() {
       this.$store.commit("SET_NOT_RANDOMIZED");
     },
+    getDecks() {
+      if (this.$store.state.decks.length === 0) {
+        deckService.getAllDecks().then((response) => {
+          this.$store.commit("SET_DECKS", response.data);
+        });
+      }
+    },
+    getAllCards() {
+      if (this.$store.state.allCards.length === 0) {
+        cardService.getAllCards().then((response) => {
+          this.$store.commit("SET_ALL_CARDS", response.data);
+        });
+      }
+    },
   },
   created() {
+    this.getDecks();
+    this.getAllCards();
     this.getCards();
   },
 };
