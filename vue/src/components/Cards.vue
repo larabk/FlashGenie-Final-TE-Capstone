@@ -19,16 +19,16 @@
         <div 
           class="card"
           v-for="card in cards.slice(0, displayLength)"
-          v-bind:key="card.cardId"
-        >
+          v-bind:key="card.cardId">
+          
           <div id="flex-text">
             <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" >
-            <div class="row-gap">
-            <div unselectable="on" class="front-card-text">
-            {{ card.frontText }}
-             </div> 
+              <div class="flip-card-inner">
+                <div class="flip-card-front" >
+                  <div class="row-gap">
+                  <div class="front-card-text">
+                  {{ card.frontText }}
+                  </div> 
               
               <div id="edit">
               <router-link
@@ -37,13 +37,13 @@
                   name: 'edit-card',
                   params: { deckId: card.deckId, cardId: card.cardId },
                 }"
-                >Details/Edit</router-link
-              >
+                >Details/Edit</router-link>
+
             </div>
           </div>
           </div>  
           <div class="flip-card-back">
-            <div unselectable="on" class="back-card-text">
+            <div class="back-card-text">
             {{ card.backText }}
             </div>
             
@@ -52,21 +52,10 @@
         </div>
         
       </div>
-            
-            
-            
 
-                <div class="flip-card-back">
-                  <div class="back-card-text">
-                    {{ card.backText }}
-                  </div>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div id="flex-show-button">
+<div id="flex-show-button">
           <router-link
             :to="{ name: 'new-card', params: { id: currentDeckId } }"
             class="addCard addCardDetails"
@@ -82,9 +71,9 @@
             </button>
           </div>
         </div>
-      
-
-      <div class="study-session" v-if="cards.length > 0">
+            
+          </div>
+                    <div class="study-session" v-if="cards.length > 0">
         <router-link
           class="study"
           :to="{ name: 'study-session', params: { id: currentDeckId } }"
@@ -105,7 +94,7 @@
           >You need cards for a study session.</router-link
         >
       </div>
-      <div class="back-edit">
+<div class="back-edit">
         <router-link class="back-to-decks" :to="{ name: 'home' }"
           >Back to Decks</router-link
         >
@@ -116,9 +105,17 @@
           >Edit Deck</router-link
         >
       </div>
-    </div>
-  <!-- </div>
+
+
+        
+        </div>
+        <!-- </div>
   </div> -->
+
+
+      
+    </div>
+
 </template>
 
 <script>
@@ -210,7 +207,7 @@ div#title-links {
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
-  max-width: 1080px;
+  max-width: 980px;
   border-radius: 30px;
   margin: 30px 0px 0px 0px;
   padding: 40px 30px 20px 30px;

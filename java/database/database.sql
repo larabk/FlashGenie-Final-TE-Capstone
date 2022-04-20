@@ -101,6 +101,15 @@ VALUES (3, 'SAT Words', 'Vocabulary');
 INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Botany', 'Plants');
 
+INSERT INTO decks (user_id, deck_name, subject)
+VALUES (3, 'Technology', 'IT');
+
+INSERT INTO decks (user_id, deck_name, subject)
+VALUES (3, 'Stars', 'Astrology');
+
+INSERT INTO decks (user_id, deck_name, subject)
+VALUES (3, 'Basketball', 'Sports');
+
 COMMIT;
 
 START TRANSACTION;
@@ -221,6 +230,7 @@ VALUES (5, 'Rosette', 'The beginning formation of a plant after the seedling sta
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES (5, 'Rhizome', 'A root-like stem that grows horizontally underground and produces new leaves and shoots.', 'Plants');
+
 
 
 COMMIT;

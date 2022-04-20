@@ -11,8 +11,8 @@
         <div
           class="deck"
           v-for="deck in decks.slice(0, displayLength)"
-          v-bind:key="deck.deckId"
-        >
+          v-bind:key="deck.deckId">
+          
           <div id="flex-text">
             <div id="deck-title">
               <router-link

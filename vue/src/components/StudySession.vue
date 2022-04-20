@@ -62,6 +62,8 @@
 
         <button class="correct" @click="markCorrect">Correct
                   <img id="click-bolt" src="/bolt.png" alt=""/></button>
+
+                  
         </div>
       </div>
     </div>
