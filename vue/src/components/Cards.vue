@@ -18,25 +18,25 @@
       </div>
 
       <div class="cards">
-        <div
+        <div 
           class="card"
           v-for="card in cards.slice(0, displayLength)"
           v-bind:key="card.cardId"
         >
           <div id="flex-text">
-            <!-- <div id="card-title">
-              {{ card.frontText }}
-            </div> -->
-
-            <!-- this block is a hard maybe -->
             <div class="flip-card">
         <div class="flip-card-inner">
           
           <div class="flip-card-front" >
             
-            <div class="front-card-text">
+
+
+          <div class="row-gap">
+            <div unselectable="on" class="front-card-text">
             {{ card.frontText }}
-                        <div id="edit">
+             </div> 
+              
+              <div id="edit">
               <router-link
                 class="edit-card"
                 :to="{
@@ -46,11 +46,14 @@
                 >Details/Edit</router-link
               >
             </div>
-            </div>
+          </div>
+
+
+
           </div>
       
           <div class="flip-card-back">
-            <div class="back-card-text">
+            <div unselectable="on" class="back-card-text">
             {{ card.backText }}
             </div>
             
@@ -349,8 +352,9 @@ a.study, a.random-study {
 
 div#flex-text {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
+  
   line-height: 20px;
 }
 
@@ -380,19 +384,26 @@ div#card-title {
   justify-content: center;
 }
 
-
-
 div#edit {
+  display: flex;
+
+  justify-content: center;
+
   vertical-align: bottom;
 }
 
 a.edit-card {
   font-size: 10px;
-  text-align: right;
-  padding-top: 0px;
+  text-align: center;
+  padding:0px;
   color: rgb(134, 134, 134);
-  margin-right: -8px;
+  /* margin-right: -8px; */
   margin-top: 3px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 a.edit-card:hover {
@@ -494,14 +505,15 @@ a.edit-deck:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-    width: 180px;
+  width: 180px;
   height: 80px;
-
+  flex: 1;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
+
 }
 
 /* Position the front and back side */
@@ -521,10 +533,21 @@ a.edit-deck:hover {
    border-radius: 10px;
   padding: 15px;
   margin: 15px;
+
 }
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
+
+display: flex;
+flex-direction: column;
+
+  align-items: center;
+  
+  /* padding: 15px;
+  margin: 15px; */
+ 
+
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
   border: solid #bdbdbd 1px;
@@ -540,11 +563,32 @@ a.edit-deck:hover {
 
 .front-card-text {
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 16px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+    display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+   
+}
+
+.row-gap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-top: 25px;
 }
 
 /* Style the back side */
 .flip-card-back {
+  display: flex;
+  flex-wrap: wrap;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   color: black;
@@ -554,20 +598,23 @@ a.edit-deck:hover {
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   width: 150px;
   height: 50px;
-  flex: 1;
-
-
 }
 
 .back-card-text {
-  display: flex;
   font-size: 12px;
   line-height: 1.25;
-  flex: 1;
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
   margin:0px;
- 
-}
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+
+
 </style>

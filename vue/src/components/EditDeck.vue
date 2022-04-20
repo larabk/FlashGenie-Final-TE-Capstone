@@ -10,9 +10,11 @@
         <img id="bolt" src="/bolt.png" alt="">
       </div>
 
-      <h4>Deck Name: {{currentDeck.name}}</h4>
-      <h4>Deck Subject: {{currentDeck.subject}}</h4>
-
+    <div class="deck-details">
+      <h4 class="name">DECK NAME: {{currentDeck.name}}</h4>
+      <h4 class="subject">DECK SUBJECT: {{currentDeck.subject}}</h4>
+    </div>
+      <h5>EDIT CARD</h5>
      <div class="form">   
         <form @submit.prevent="updateDeck" class="update-deck-form">
           <input
@@ -126,6 +128,9 @@ export default {
 }
 
 .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #537895;
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   min-width: 600px;
@@ -156,19 +161,56 @@ h3 {
   color: white;
   font-size: 45px;
   text-align: center;
-  text-transform: uppercase;
   letter-spacing: 1.75px;
   margin: 15px;
 }
 
+
 h4 {
   text-align: center;
-  color: white;
-  text-transform: uppercase;
+  color: black;
   letter-spacing: 1px;
   padding: 0px;
-  margin-top: 15px;
-  line-height: 1px;
+  margin: 0px;
+  font-size: 12.5px;
+}
+
+h5 {
+  font-size: 18px;
+  margin: 0px;
+  margin-top: 40px;
+  color: white;
+}
+
+.name, .subject {
+  font-weight: bold;
+}
+
+.deck-details {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100px;
+  font-size: larger; 
+  border-radius: 10px;
+  padding: 25px;
+  margin: 15px;
+  border: none;
+  line-height: 3;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;  
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  font-size: x-large;
+  letter-spacing: 1.75px;
+  font-weight: bold;
 }
 
 div.form {
@@ -182,7 +224,7 @@ div.form {
   flex-direction: column;
   align-items: center;
   margin: 20px 50px 50px 50px;
-  width: 325px;
+  width: 400px;
   row-gap: 20px;
 }
 

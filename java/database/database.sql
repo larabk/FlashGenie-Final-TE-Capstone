@@ -110,7 +110,7 @@ INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES(1, 'Encapsulation', 'The concept of hiding values or the state of data in a class and limiting the points of access.', 'Java');
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
-VALUES (1, 'Inheritence', 'The practice of creating a hierarchy for classes in which descendants obtain the attributes and behaviors of their parents/grandparents with the ability to override.', 'Java');
+VALUES (1, 'Inheritance', 'The practice of creating a hierarchy for classes in which descendants obtain the attributes and behaviors of their parents/grandparents with the ability to override.', 'Java');
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES(1, 'Polymorphism', 'The ability for code to take different forms. Treating classes generically and getting specific results (like a blueprint that creates one kind of building. Structurally those buildings are the same kind of building, but they may have a different number of windows or may be painted different colors.', 'Java');
@@ -122,7 +122,7 @@ INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES (1, 'Unit Test', 'Testing methods and classes to make sure your code works as expected and produces accurate and repeatable results.', 'Java');
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
-VALUES (1, 'HTTP Request/Response', 'How data is exchanged between serverr and client. Requests are sent by client to trigger an action on the server - responses are the answer back to the client.', 'Java');
+VALUES (1, 'HTTP Request and Response', 'How data is exchanged between serverr and client. Requests are sent by client to trigger an action on the server - responses are the answer back to the client.', 'Java');
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES (1, 'Authorization', 'Permissions to access data such as user roles.', 'Java');

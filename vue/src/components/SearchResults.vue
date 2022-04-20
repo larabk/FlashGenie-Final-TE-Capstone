@@ -14,7 +14,7 @@
       <div class="decks" v-for="deck in filteredDecks" v-bind:key="deck.id">
         <div class="deck-link">
           <router-link :to="{ name: 'cards', params: { id: deck.deckId } }">
-            Deck Name: <em>{{ deck.name }}</em><br> Subject: <em>{{ deck.subject }}</em>
+            DECK NAME: <em>{{ deck.name }}</em><br> SUBJECT: <em>{{ deck.subject }}</em>
           </router-link>
         </div>
       </div>
@@ -34,8 +34,8 @@
       <div class="cards" v-for="card in filteredCards" v-bind:key="card.id">
         <div class="card-link">
           <router-link :to="{ name: 'cards', params: { id: card.deckId } }">
-            Deck Name: <em>{{ deckName(card.deckId) }}</em> <br> Term:
-            <em>{{ card.frontText }}</em> <br> Definition: <em>{{ card.backText }}</em> <br> Keywords:
+            DECK NAME: <em>{{ deckName(card.deckId) }}</em> <br> Term:
+            <em>{{ card.frontText }}</em> <br>KEYWORDS:
             <em>{{ card.keyWords.split(" ").join(", ") }}</em></router-link
           >
         </div>
@@ -162,7 +162,7 @@ h1#deck-results, h1#card-results {
   flex-direction: column;
   flex-wrap: wrap;
   width: 300px;
-  height: 100px;
+  height: 150px;
   align-items: center;
   padding: 15px;
   margin: 15px;
@@ -196,7 +196,7 @@ h1#deck-results, h1#card-results {
   flex-direction: column;
   flex-wrap: wrap;
   width: 300px;
-  height: 125px;
+  height: 150px;
   align-items: center;
   padding: 15px;
   margin: 15px;
@@ -225,10 +225,20 @@ h1#deck-results, h1#card-results {
 }
 
 a {
+  display: flex;
+  flex-direction: column;
+  
+  width: 100%;
   color: black;
   text-align: left;
-  padding: 20px;
+  padding: 15px;
   text-decoration: none;
+  font-size: 13px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 div#header {

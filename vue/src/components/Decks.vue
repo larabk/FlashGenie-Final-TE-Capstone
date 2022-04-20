@@ -175,7 +175,7 @@ h3 {
   align-items: center;
   padding: 15px;
   margin: 15px;
-  margin-left: 20px;
+  margin-left: 15px;
   border: none;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -260,13 +260,17 @@ div#edit {
 }
 
 a.edit-deck {
-  /* position: absolute; */
   font-size: 10px;
   text-align: right;
   padding-top: 0px;
   color: rgb(134, 134, 134);
-  margin-right: -8px;
+  /* margin-right: -8px; */
   margin-top: 3px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 a.edit-deck:hover {
@@ -287,14 +291,10 @@ button#show-all {
   border-radius: 10px;
   margin-left: 102px;
   margin-top: 15px;
-
   background-color: #ffffff;
-  /* background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%); */
   border: none;
   color: #09203f;
   margin-bottom: 100px;
-
   box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);

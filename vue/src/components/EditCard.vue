@@ -9,9 +9,9 @@
       </div>
 
       <div class="card-details">
-        <h4>TERM: {{ currentCard.frontText }}</h4>
-        <h4>DEFINITION: {{ currentCard.backText }}</h4>
-        <h4>KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}</h4>
+        <h4 class="term">TERM: {{ currentCard.frontText }}</h4>
+        <h4 class="definition">DEFINITION: {{ currentCard.backText }}</h4>
+        <h4 class="keywords">KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}</h4>
       </div>
       <h5>EDIT CARD</h5>
       <div class="form">
@@ -173,11 +173,32 @@ h3 {
   margin: 15px;
 }
 
+h4 {
+  text-align: center;
+  color: black;
+  letter-spacing: 1px;
+  padding: 0px;
+  margin: 0px;
+  font-size: 12.5px;
+
+}
+
+h5 {
+  font-size: 18px;
+  margin: 0px;
+  margin-top: 40px;
+  color: white;
+}
+
+.term, .definition, .keywords {
+  font-weight: bold;
+}
+
 .card-details {
   display: flex;
   flex-wrap: wrap;
   width: 400px;
-  height: 200px;
+  height: 150px;
   align-items: center;
   padding: 25px;
   margin: 15px;
@@ -188,7 +209,6 @@ h3 {
   border-radius: 10px;
   justify-content: center;
   font-size: larger;
-
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #bdbdbd 1px;
@@ -198,24 +218,6 @@ h3 {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
-}
-
-h4 {
-  text-align: center;
-  color: black;
-  /* text-transform: uppercase; */
-  letter-spacing: 1px;
-  padding: 0px;
-  margin: 0px;
-  font-size: 12.5px;
-  /* line-height: 1px; */
-}
-
-h5 {
-  font-size: 18px;
-  margin-top: 40px;
-  margin: 0px;
-  color: white;
 }
 
 div.form {

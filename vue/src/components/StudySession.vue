@@ -14,14 +14,16 @@
         </div>    
     </div>
     
-    <div class="timer">
-    <timer ref="timer" :timeValue="this.countDown" v-if="this.isLightningRound" @timerZero="nextCard"></timer>
-    </div>
+
   
   <div class="flipperPage" v-if="timerChoiceMade">
     <div class="flipper-container">
       <router-link class="end-session" :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
       
+          <div class="timer" v-if="this.isLightningRound"><h6>TIME REMAINING: </h6>
+          <timer ref="timer" :timeValue="this.countDown" v-if="this.isLightningRound" 
+          @timerZero="nextCard" class="number-counter"></timer>
+          </div>
       
       <div class="flip-card">
         <div class="flip-card-inner">
@@ -44,15 +46,18 @@
         <button class=incorrect  @click="markIncorrect">Wrong
                   <img id="click-x" src="/redX.png"/></button>
         
+        <div class="counter-buttons">
         <div class="buttonControl">
           <button class="decrease" v-if="!isLightningRound" @click="previousCard">Previous</button>
-            <div class="cardTracker">
+            
+            
+            <button class="increase" @click="nextCard">Next</button>
+        
+          </div>
+        <div class="cardTracker">
               {{ this.currentIndex + 1 }}/{{ this.currentCards.length }}
             </div>
-            <button class="increase" @click="nextCard">Next</button>
-          </div>
-        
-
+        </div>
 
         <button class="correct" @click="markCorrect">Correct
                   <img id="click-bolt" src="/bolt.png" alt=""/></button>
@@ -267,12 +272,59 @@ a.end-session {
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 0px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 a.end-session:hover {
   color: yellow;
 } 
+
+.timer {
+ background-color: #f8f9d2;
+    background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  border: solid #747474 1px; 
+  width: 200px;
+  margin-bottom: 12px;
+  display: inline-block;
+  padding: 12px;
+  text-decoration: none;
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 40px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7); 
+  animation: pulse-orange 2s infinite;
+}
+
+@keyframes pulse-orange {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 121, 63, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 15px rgba(255, 121, 63, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 121, 63, 0);
+	}
+}
+
+
+h6 {
+  font-size: 16px;
+  margin: 0px;
+}
 
 div.flip-card {
   display: flex;
@@ -318,6 +370,13 @@ div.scoreButtons {
 
 }
 
+.counter-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
 div.buttonControl {
   display: flex;
   column-gap: 20px;
@@ -328,6 +387,7 @@ div.buttonControl {
 div.cardTracker {
   padding-top: 10px;
   font-size: 16px;
+  color: white;
 }
 
 button.increase, button.decrease {
@@ -376,6 +436,11 @@ a {
 .front-card-text, .back-card-text {
   text-align: center;
   padding: 20px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .front-card-text {
