@@ -253,7 +253,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   margin: 30px 0px 30px 0px;
-  justify-content: center;
+  justify-content: left;
 }
 
 .card {

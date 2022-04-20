@@ -12,7 +12,7 @@
           class="deck"
           v-for="deck in decks.slice(0, displayLength)"
           v-bind:key="deck.deckId">
-          
+
           <div id="flex-text">
             <div id="deck-title">
               <router-link
@@ -159,7 +159,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   margin: 30px 0px 30px 0px;
-  justify-content: center;
+  justify-content: left;
 }
 
 .deck,
