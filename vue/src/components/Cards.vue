@@ -24,10 +24,19 @@
           v-bind:key="card.cardId"
         >
           <div id="flex-text">
-            <div id="card-title">
+            <!-- <div id="card-title">
               {{ card.frontText }}
-            </div>
-            <div id="edit">
+            </div> -->
+
+            <!-- this block is a hard maybe -->
+            <div class="flip-card">
+        <div class="flip-card-inner">
+          
+          <div class="flip-card-front" >
+            
+            <div class="front-card-text">
+            {{ card.frontText }}
+                        <div id="edit">
               <router-link
                 class="edit-card"
                 :to="{
@@ -37,6 +46,23 @@
                 >Details/Edit</router-link
               >
             </div>
+            </div>
+          </div>
+      
+          <div class="flip-card-back">
+            <div class="back-card-text">
+            {{ card.backText }}
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+            
+            
+            
+
           </div>
         </div>
 
@@ -205,10 +231,11 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 1.75px;
   margin: 0px 15px 0px 15px;
+  line-height: .85;
 }
 
 h4 {
-  margin-top: -10px;
+  margin-top: auto;
 }
 
 hr {
@@ -221,9 +248,26 @@ hr {
   flex-wrap: wrap;
   margin: 30px 0px 30px 0px;
   justify-content: center;
+  
 }
 
-.card,
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 150px;
+  height: 50px; */
+  align-items: center;
+  /* padding: 15px;
+  margin: 15px;
+  margin-left: 20px; */
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  justify-content: center;
+  font-size: larger;
+}
 .addCard {
   display: flex;
   flex-wrap: wrap;
@@ -232,7 +276,7 @@ hr {
   align-items: center;
   padding: 15px;
   margin: 15px;
-  margin-left: 20px;
+  margin-left: 15px;
   border: none;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -242,7 +286,7 @@ hr {
   font-size: larger;
 }
 
-.card {
+/* .card {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #bdbdbd 1px;
@@ -252,10 +296,9 @@ hr {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
-}
+} */
 
 .card:hover {
-  background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
   cursor: pointer;
 }
 
@@ -294,7 +337,8 @@ a.study, a.random-study {
   border: solid #747474 1px; 
   width: 200px;
   height: 30px;
-  margin: 10px 10px 60px 10px;
+  margin: 10px 15px 60px 10px;
+  
   /* display: inline-block; */
   padding: 12px;
   text-decoration: none;
@@ -325,12 +369,12 @@ a.study, a.random-study {
 
 div#flex-text {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   line-height: 20px;
 }
 
-#card-title {
+div#card-title {
   text-transform: uppercase;
   padding: 10px;
   font-size: 16px;
@@ -339,6 +383,7 @@ div#flex-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin:0px;
 }
 
 a.card-name, a {
@@ -457,5 +502,107 @@ a.edit-deck:hover {
   /* vertical-align: middle; */
   /* margin-top: 10px; */
   text-transform: uppercase;
+}
+
+/* CARD FLIP ACTION CSS */
+.flip-card {
+  background-color: transparent;
+  width: 182px;
+  height: 82px;
+  /* border: 1px solid #f1f1f1; */
+  perspective: 1000px;
+  margin: 15px;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    width: 180px;
+  height: 80px;
+
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* row-gap: 65px; */
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+  border:none;
+   text-align: center;
+   border-radius: 10px;
+  padding: 15px;
+  margin: 15px;
+
+
+}
+
+
+
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
+
+
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  font-size: x-large;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+
+    /* padding: 15px;
+  margin: 15px;
+  margin-left: -20px; */
+      width: 150px;
+  height: 50px;
+}
+
+/* Style the back side */
+.flip-card-back {
+
+
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+
+  color: black;
+  transform: rotateY(180deg);
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+
+
+      width: 150px;
+  height: 50px;
+    /* padding: 15px;
+  margin: 15px;
+  margin-left: 20px; */
+
+  
 }
 </style>

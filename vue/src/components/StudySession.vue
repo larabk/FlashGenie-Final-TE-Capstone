@@ -2,21 +2,27 @@
 
   <div class="study-session-container">
     <div class="choose-lightning-round" v-if="!timerChoiceMade">
+      <div class="lightning-container">
       <h1>
         Would you like to study in a 'Lightning Round?' This will give you ten
         seconds for each question!
       </h1>
-      <div class="lightning-buttons">
-        <button id="no-lightning" @click="regularRound">No</button>
-        <button id="yes-lightning" @click="lightningRound">Yes</button>
       </div>
+        <div class="lightning-buttons">
+          <button id="no-lightning" @click="regularRound">No</button>
+          <button id="yes-lightning" @click="lightningRound">Yes</button>
+        </div>    
     </div>
+    
+    <div class="timer">
     <timer ref="timer" :timeValue="this.countDown" v-if="this.isLightningRound" @timerZero="nextCard"></timer>
-  
+    </div>
   
   <div class="flipperPage" v-if="timerChoiceMade">
     <div class="flipper-container">
       <router-link class="end-session" :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
+      
+      
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front" >
@@ -169,7 +175,7 @@ export default {
 </script>
 
 <style scoped>
-.flipperPage {
+.flipperPage, .study-session-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,7 +185,7 @@ export default {
   min-height: 100vh;
 }
 
-.flipper-container {
+.flipper-container, .choose-lightning-round {
   display: flex;
   flex-direction: column;
   background-color: #537895;
@@ -191,6 +197,68 @@ export default {
   margin: 30px 0px 0px 0px;
   padding: 45px 30px 65px 30px;
   width: 75%;
+}
+
+.choose-lightning-round {
+  margin: 30px;
+  padding: 60px 60px 40px 60px;
+}
+
+.lightning-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  color: black;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  border-radius: 10px;
+  padding: 20px;
+  
+}
+
+div.lightning-buttons {
+  display: flex;
+  column-gap: 10px;
+  padding-top: 40px;
+  
+}
+
+button#no-lightning, button#yes-lightning {
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px; 
+  width: 120px;
+  margin: 10px 10px 10px 10px;
+  display: inline-block;
+  padding: 12px;
+  text-decoration: none;
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+}
+
+button#no-lightning:hover, button#yes-lightning:hover,
+button#no-lightning:focus, button#yes-lightning:focus {
+  text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
 }
 
 a.end-session {
@@ -378,7 +446,7 @@ img#click-x {
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+.flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
 }
 

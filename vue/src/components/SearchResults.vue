@@ -234,7 +234,12 @@ a {
 div#header {
   display: flex;
   justify-content: space-between;
+  
   align-items:flex-end;
+}
+
+h1#deck-results, h1#card-results {
+  margin-bottom: 5px;
 }
 
 img#bolt {

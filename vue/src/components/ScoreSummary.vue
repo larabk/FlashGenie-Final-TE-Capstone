@@ -18,7 +18,7 @@
     </div>
 
     <div class="homeButton">
-    <router-link :to="{ name: 'home' }">Home</router-link>
+    <router-link class="homeButton" :to="{ name: 'home' }">Return Home</router-link>
     </div>
     
     </div>
@@ -122,13 +122,41 @@ div.score {
 }
 
 
-a.router-link-active {
-  color: white;
+a.homeButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-decoration: none;
+  color: white;
+  width: 150px;
+  height: 50px;
+  margin: 10px 10px 20px 10px;
+  text-decoration: none;
+  letter-spacing: 1.75px;
+  text-align: center;
+  font-size: 14px;
+  font-family: monospace;
+  border-radius: 12px;
+  font-weight: bold;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, 
+  #d2e6f9 0%, #6b8fa7 74%);
+  text-decoration: none;
+  color: white;
+  margin-bottom: 50px;
+  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
 }
 
-.homeButton:visited {
-  color: white;
+a.homeButton:hover, 
+a.homeButton:focus {
   text-decoration: none;
+  background-image: linear-gradient(315deg, 
+  #dbec8e 0%, #d8b30e 85%);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  color:#09203f;
+  font-weight: bold;
+  cursor: pointer; 
 }
 </style>

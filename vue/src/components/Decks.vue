@@ -314,13 +314,5 @@ button#show-all:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
-/* a.deck-name:hover {
-  overflow:visible;
-  text-overflow: none;
-  white-space: pre-wrap;
-  font-size: 1vw;
-  padding: 0px;
-  line-height: 1;
-  text-align: center;
-} */
+
 </style>
