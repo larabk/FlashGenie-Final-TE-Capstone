@@ -12,89 +12,86 @@
           <div class="subtitle">
             <h4>subject: {{ currentDeck.subject }}</h4>
           </div>
-        </div>
-      </div>
 
-      <div class="cards">
-        <div 
-          class="card"
-          v-for="card in cards.slice(0, displayLength)"
-          v-bind:key="card.cardId">
-          
-          <div id="flex-text">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front" >
-                  <div class="row-gap">
-                  <div class="front-card-text">
-                  {{ card.frontText }}
-                  </div> 
-              
-              <div id="edit">
-              <router-link
-                class="edit-card"
-                :to="{
-                  name: 'edit-card',
-                  params: { deckId: card.deckId, cardId: card.cardId },
-                }"
-                >Details/Edit</router-link>
-
-            </div>
-          </div>
-          </div>  
-          <div class="flip-card-back">
-            <div class="back-card-text">
-            {{ card.backText }}
-            </div>
-            
-          </div>
-          
-        </div>
-        
-      </div>
-
-              </div>
-            </div>
-<div id="flex-show-button">
-          <router-link
-            :to="{ name: 'new-card', params: { id: currentDeckId } }"
-            class="addCard addCardDetails"
-            >+</router-link
-          >
-          <div id="button">
-            <button
-              id="show-all"
-              v-if="deckSize > minDisplayLength"
-              @click="partialDisplay = !partialDisplay"
-            >
-              {{ partialDisplay ? "Show All" : "Show Less" }}
-            </button>
-          </div>
-        </div>
-            
-          </div>
-                    <div class="study-session" v-if="cards.length > 0">
-        <router-link
+                <div class="study-session">
+        <router-link v-if="cards.length > 0"
           class="study"
           :to="{ name: 'study-session', params: { id: currentDeckId } }"
           >Begin Study Session</router-link
         >
 
-        <router-link
+        <router-link v-if="cards.length > 0"
           class="random-study"
           :to="{ name: 'study-session', params: { id: currentDeckId } }"
           >Begin Randomized Study Session</router-link
         >
-      </div>
 
-      <div class="study-session" v-if="cards.length === 0">
-        <router-link
+        <router-link v-if="cards.length === 0"
           class="study"
           :to="{ name: 'new-card', params: { id: this.currentDeckId } }"
           >You need cards for a study session.</router-link
         >
       </div>
-<div class="back-edit">
+        </div>
+      </div>
+
+      <div class="cards">
+        <div
+          class="card"
+          v-for="card in cards.slice(0, displayLength)"
+          v-bind:key="card.cardId"
+        >
+          <div id="flex-text">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="row-gap">
+                    <div class="front-card-text">
+                      {{ card.frontText }}
+                    </div>
+
+                    <div id="edit">
+                      <router-link
+                        class="edit-card"
+                        :to="{
+                          name: 'edit-card',
+                          params: { deckId: card.deckId, cardId: card.cardId },
+                        }"
+                        >Details/Edit</router-link
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="back-card-text">
+                    {{ card.backText }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <router-link
+          :to="{ name: 'new-card', params: { id: currentDeckId } }"
+          class="addCard addCardDetails"
+          >+</router-link
+        >
+        
+      </div>
+
+      <div id="button">
+          <button
+            id="show-all"
+            v-if="deckSize > minDisplayLength"
+            @click="partialDisplay = !partialDisplay"
+          >
+            {{ partialDisplay ? "Show All" : "Show Less" }}
+          </button>
+        </div>
+
+
+      <div class="back-edit">
         <router-link class="back-to-decks" :to="{ name: 'home' }"
           >Back to Decks</router-link
         >
@@ -105,17 +102,10 @@
           >Edit Deck</router-link
         >
       </div>
-
-
-        
-        </div>
-        <!-- </div>
-  </div> -->
-
-
-      
     </div>
-
+    <!-- </div>
+  </div> -->
+  </div>
 </template>
 
 <script>
@@ -253,7 +243,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   margin: 30px 0px 30px 0px;
-  justify-content: left;
+  justify-content: center;
 }
 
 .card {
@@ -324,7 +314,7 @@ a.random-study {
   border: solid #747474 1px;
   width: 200px;
   height: 30px;
-  margin: 10px 15px 60px 10px;
+  margin: 10px 15px 0px 10px;
   padding: 12px;
   text-decoration: none;
   letter-spacing: 1.75px;
@@ -357,7 +347,7 @@ div#flex-text {
   display: flex;
   flex-direction: column;
   width: 100%;
-  
+
   line-height: 20px;
 }
 
@@ -399,7 +389,7 @@ div#edit {
 a.edit-card {
   font-size: 10px;
   text-align: center;
-  padding:0px;
+  padding: 0px;
   color: rgb(134, 134, 134);
   /* margin-right: -8px; */
   margin-top: 3px;
@@ -414,10 +404,9 @@ a.edit-card:hover {
   color: black;
 }
 
-div#flex-show-button {
+div#button {
   display: flex;
-  flex-direction: column;
-  align-items: right;
+  justify-content: right;
 }
 
 button#show-all {
@@ -426,12 +415,11 @@ button#show-all {
   width: 100px;
   height: 40px;
   border-radius: 10px;
-  margin-left: 102px;
   margin-top: 15px;
+  margin-bottom: 20px;
   background-color: #ffffff;
   border: none;
   color: #09203f;
-  margin-bottom: 100px;
   box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
@@ -514,7 +502,6 @@ a.edit-deck:hover {
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
-
 }
 
 /* Position the front and back side */
@@ -534,20 +521,17 @@ a.edit-deck:hover {
   border-radius: 10px;
   padding: 15px;
   margin: 15px;
-
 }
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
   align-items: center;
-  
+
   /* padding: 15px;
   margin: 15px; */
- 
 
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
@@ -570,13 +554,12 @@ flex-direction: column;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
-    display: -webkit-box;
+  display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-   
 }
 
 .row-gap {
@@ -604,7 +587,7 @@ flex-direction: column;
 .back-card-text {
   font-size: 12px;
   line-height: 1.25;
-  margin:0px;
+  margin: 0px;
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -615,7 +598,5 @@ flex-direction: column;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-} 
-
-
+}
 </style>

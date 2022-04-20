@@ -34,7 +34,7 @@
             type="text"
             class="key-words"
             v-model="card.keyWords"
-            placeholder="New keywords (Separate with commas)"
+            placeholder="New keywords (Separate with spaces)"
           />
 
           <div class="buttons">
@@ -184,9 +184,9 @@ h4 {
   text-align: center;
   color: black;
   letter-spacing: 1px;
-  padding: 0px;
+  padding: 5px;
   margin: 0px;
-  font-size: 12.5px;
+  font-size: 16px;
 
 }
 
@@ -203,18 +203,18 @@ h5 {
 
 .card-details {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  flex-grow: 1;
+  flex-basis: auto;
   width: 400px;
-  height: 150px;
-  align-items: center;
+  height: auto;
   padding: 25px;
   margin: 15px;
   border: none;
   color: rgb(0, 0, 0);
-  text-align: center;
   text-decoration: none;
   border-radius: 10px;
-  justify-content: center;
   font-size: larger;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
