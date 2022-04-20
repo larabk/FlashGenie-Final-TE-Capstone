@@ -254,12 +254,7 @@ hr {
 .card {
   display: flex;
   flex-wrap: wrap;
-  /* width: 150px;
-  height: 50px; */
   align-items: center;
-  /* padding: 15px;
-  margin: 15px;
-  margin-left: 20px; */
   border: none;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -285,18 +280,6 @@ hr {
   justify-content: center;
   font-size: larger;
 }
-
-/* .card {
-  background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-  border: solid #bdbdbd 1px;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
-  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
-  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
-  font-size: x-large;
-  letter-spacing: 1.75px;
-  font-weight: bold;
-} */
 
 .card:hover {
   cursor: pointer;
@@ -324,7 +307,6 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 a.study, a.random-study {
@@ -338,8 +320,6 @@ a.study, a.random-study {
   width: 200px;
   height: 30px;
   margin: 10px 15px 60px 10px;
-  
-  /* display: inline-block; */
   padding: 12px;
   text-decoration: none;
   letter-spacing: 1.75px;
@@ -407,7 +387,6 @@ div#edit {
 }
 
 a.edit-card {
-  /* position: absolute; */
   font-size: 10px;
   text-align: right;
   padding-top: 0px;
@@ -434,14 +413,10 @@ button#show-all {
   border-radius: 10px;
   margin-left: 102px;
   margin-top: 15px;
-
   background-color: #ffffff;
-  /* background-image: linear-gradient(315deg, 
-  #537895 0%, #09203f 74%); */
   border: none;
   color: #09203f;
   margin-bottom: 100px;
-
   box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
@@ -471,11 +446,6 @@ div.back-edit {
 
 a.back-to-decks,
 a.edit-deck {
-  /* text-align: center; */
-}
-
-a.back-to-decks,
-a.edit-deck {
   color: #ebeb85;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -499,8 +469,6 @@ a.edit-deck:hover {
   justify-content: center;
   align-items: center;
   color: white;
-  /* vertical-align: middle; */
-  /* margin-top: 10px; */
   text-transform: uppercase;
 }
 
@@ -509,7 +477,6 @@ a.edit-deck:hover {
   background-color: transparent;
   width: 182px;
   height: 82px;
-  /* border: 1px solid #f1f1f1; */
   perspective: 1000px;
   margin: 15px;
 }
@@ -544,7 +511,6 @@ a.edit-deck:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* row-gap: 65px; */
   position: absolute; 
   width: 100%;
   height: 100%;
@@ -555,19 +521,12 @@ a.edit-deck:hover {
    border-radius: 10px;
   padding: 15px;
   margin: 15px;
-
-
 }
-
-
-
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
-
-
   border: solid #bdbdbd 1px;
   box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
@@ -575,34 +534,21 @@ a.edit-deck:hover {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
-
-    /* padding: 15px;
-  margin: 15px;
-  margin-left: -20px; */
-      width: 150px;
+  width: 150px;
   height: 50px;
 }
 
 /* Style the back side */
 .flip-card-back {
-
-
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
-
   color: black;
   transform: rotateY(180deg);
   box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
-
-
-      width: 150px;
+  width: 150px;
   height: 50px;
-    /* padding: 15px;
-  margin: 15px;
-  margin-left: 20px; */
 
-  
 }
 </style>
