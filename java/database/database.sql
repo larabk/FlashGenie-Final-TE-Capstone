@@ -33,8 +33,8 @@ CREATE TABLE decks (
 CREATE TABLE cards (
 	card_id serial NOT NULL,
 	deck_id int NOT NULL,
-	front_text varchar(500) NOT NULL,
-	back_text varchar(500) NOT NULL,
+	front_text varchar(50) NOT NULL,
+	back_text varchar(300) NOT NULL,
 	keywords varchar(50) NOT NULL,
 	CONSTRAINT PK_card PRIMARY KEY (card_id),
 	CONSTRAINT FK_deck FOREIGN KEY(deck_id) REFERENCES decks(deck_id)
