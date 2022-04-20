@@ -1,13 +1,11 @@
 <template>
   <div class="editDeckPage">
-    <div class="details-container">
-      
-    </div>
+    <div class="details-container"></div>
     <div class="form-container">
       <div class="header">
-        <img id="bolt" src="/bolt.png" alt="">  
+        <img id="bolt" src="/bolt.png" alt="" />
         <h3>Edit Deck</h3>
-        <img id="bolt" src="/bolt.png" alt="">
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
 
     <div class="deck-details">
@@ -21,22 +19,25 @@
             type="text"
             class="name"
             placeholder="New deck name"
-            v-model="deck.name"/>
-          
+            v-model="deck.name"
+          />
+
           <input
             type="text"
             class="subject"
             placeholder="New subject"
-            v-model="deck.subject"/>
+            v-model="deck.subject"
+          />
 
           <div class="buttons">
             <button id="delete" @click.prevent="deleteDeck">DELETE DECK</button>
-            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
+            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
+              Cancel
+            </button>
             <button id="save" type="submit">Submit</button>
           </div>
-
         </form>
-     </div>
+      </div>
     </div>
   </div>
 </template>
@@ -57,17 +58,15 @@ export default {
     };
   },
   computed: {
-    decks(){
+    decks() {
       return this.$store.state.decks;
     },
-   currentDeckId(){
+    currentDeckId() {
       return Number(this.$route.params.id);
     },
-    currentDeck(){
-      return this.decks.find(deck => 
-        deck.deckId === this.currentDeckId
-      );
-    }
+    currentDeck() {
+      return this.decks.find((deck) => deck.deckId === this.currentDeckId);
+    },
   },
   methods: {
     updateDeck() {
@@ -89,30 +88,31 @@ export default {
         )
       ) {
         if (confirm("Are you sure? This action cannot be undone!")) {
-          deckService.delete(this.deck.deckId);
-          this.$router.push("/");
+          deckService.delete(this.deck.deckId).then((response) => {
+            if (response.status === 204) {
+              this.getDecks();
+              this.getAllCards();
+              this.$router.push("/");
+            }
+          });
         }
       }
     },
-      getDecks() {
-      if (this.$store.state.decks.length === 0) {
-        deckService.getAllDecks().then((response) => {
-          this.$store.commit("SET_DECKS", response.data);
-        });
-      }
+    getDecks() {
+      deckService.getAllDecks().then((response) => {
+        this.$store.commit("SET_DECKS", response.data);
+      });
     },
     getAllCards() {
-      if (this.$store.state.allCards.length === 0) {
-        cardService.getAllCards().then((response) => {
-          this.$store.commit("SET_ALL_CARDS", response.data);
-        });
-      }
+      cardService.getAllCards().then((response) => {
+        this.$store.commit("SET_ALL_CARDS", response.data);
+      });
     },
   },
-  created(){
+  created() {
     this.getDecks();
     this.getAllCards();
-  }
+  },
 };
 </script>
 
@@ -154,7 +154,7 @@ div.header {
 
 img#bolt {
   width: 30px;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 h3 {
@@ -252,9 +252,8 @@ div.buttons {
 button#save,
 button#cancel {
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, 
-  #d2e6f9 0%, #6b8fa7 74%);
-  border: solid #747474 1px; 
+  background-image: linear-gradient(315deg, #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px;
   width: 120px;
   margin: 10px 10px 20px 10px;
   display: inline-block;
@@ -268,25 +267,26 @@ button#cancel {
   font-weight: bold;
   border: none;
   color: white;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-button#save:hover, button#save:focus,
-button#cancel:hover, button#cancel:focus {
+button#save:hover,
+button#save:focus,
+button#cancel:hover,
+button#cancel:focus {
   text-decoration: none;
-  background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
-  color:#09203f;
+  color: #09203f;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 button#delete {
   background-color: #b8b8b8;
-  border: solid #BDBDBD 1px; 
+  border: solid #bdbdbd 1px;
   width: 80px;
   margin: 10px 10px 20px 10px;
   text-decoration: none;
@@ -300,13 +300,13 @@ button#delete {
   font-size: 12px;
   letter-spacing: 1.75px;
   font-weight: bold;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
 button#delete:hover {
   background-color: red;
-  cursor: pointer; 
+  cursor: pointer;
   width: 80px;
   margin: 10px 10px 20px 10px;
   text-decoration: none;
@@ -320,9 +320,8 @@ button#delete:hover {
   font-size: 12px;
   letter-spacing: 1.75px;
   font-weight: bold;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
-
 </style>

@@ -1,17 +1,16 @@
 <template>
-
   <div class="study-session-container">
     <div class="choose-lightning-round" v-if="!timerChoiceMade">
       <div class="lightning-container">
-      <h1>
-        Would you like to study in a 'Lightning Round?' This will give you ten
-        seconds for each question!
-      </h1>
+        <h1>
+          Would you like to study in a 'Lightning Round?' This will give you ten
+          seconds for each question!
+        </h1>
       </div>
-        <div class="lightning-buttons">
-          <button id="no-lightning" @click="regularRound">No</button>
-          <button id="yes-lightning" @click="lightningRound">Yes</button>
-        </div>    
+      <div class="lightning-buttons">
+        <button id="no-lightning" @click="regularRound">No</button>
+        <button id="yes-lightning" @click="lightningRound">Yes</button>
+      </div>
     </div>
     
 
@@ -21,8 +20,13 @@
       <router-link class="end-session" :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
       
           <div class="timer" v-if="this.isLightningRound"><h6>TIME REMAINING: </h6>
-          <timer ref="timer" :timeValue="this.countDown" v-if="this.isLightningRound" 
-          @timerZero="nextCard" class="number-counter"></timer>
+          <timer
+        ref="timer"
+        :lastCard="this.lastCard"
+        v-if="this.isLightningRound"
+        @timerZero="nextCard"
+        @endLightningRound="goToSummary"
+      ></timer>
           </div>
       
       <div class="flip-card">
@@ -31,17 +35,14 @@
             <div class="front-card-text">
             {{ currentCards[currentIndex].frontText }}
             </div>
-          </div>
-      
-          <div class="flip-card-back">
-            <div class="back-card-text">
-            {{ currentCards[currentIndex].backText }}
+
+            <div class="flip-card-back">
+              <div class="back-card-text">
+                {{ currentCards[currentIndex].backText }}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div class=study-buttons>
 
         <button class=incorrect  @click="markIncorrect">Wrong
                   <img id="click-x" src="/redX.png"/></button>
@@ -62,9 +63,8 @@
         <button class="correct" @click="markCorrect">Correct
                   <img id="click-bolt" src="/bolt.png" alt=""/></button>
         </div>
-      
+      </div>
     </div>
-    </div> 
   </div>
 </template>
 
@@ -102,18 +102,23 @@ export default {
     currentScore() {
       return this.$store.state.currentScore;
     },
+    lastCard() {
+      return this.currentIndex === this.currentCards.length - 1;
+    },
   },
   methods: {
     flipCard() {
       this.displayFront = !this.displayFront;
     },
     nextCard() {
-      if (this.currentIndex < this.currentCards.length - 1) {
+      if (this.currentIndex === this.currentCards.length - 1) {
+        this.goToSummary();
+      } else if (this.currentIndex < this.currentCards.length - 1) {
         this.displayFront = true;
         this.currentIndex++;
-        //reset the timer here-- need to access child component 
-        if(this.isLightningRound){
-            this.$refs.timer.resetTimer();
+        //reset the timer here-- need to access child component
+        if (this.isLightningRound) {
+          this.$refs.timer.resetTimer();
         }
       }
     },
@@ -141,10 +146,12 @@ export default {
       if (this.currentCards[this.currentIndex].isMarked === false) {
         this.setScore();
         this.currentCards[this.currentIndex].isMarked = true;
+        this.nextCard();
       }
     },
     markIncorrect() {
       this.currentCards[this.currentIndex].isMarked = true;
+      this.nextCard();
     },
     getAllCards() {
       if (this.$store.state.allCards.length === 0) {
@@ -169,6 +176,9 @@ export default {
       this.timerChoiceMade = true;
       this.$store.commit("ENABLE_COUNTDOWN");
     },
+    goToSummary() {
+      this.$router.push(`/deck/${this.deckId}/score-summary`);
+    },
   },
   created() {
     this.getAllCards();
@@ -180,7 +190,8 @@ export default {
 </script>
 
 <style scoped>
-.flipperPage, .study-session-container {
+.flipperPage,
+.study-session-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,7 +201,8 @@ export default {
   min-height: 100vh;
 }
 
-.flipper-container, .choose-lightning-round {
+.flipper-container,
+.choose-lightning-round {
   display: flex;
   flex-direction: column;
   background-color: #537895;
@@ -222,21 +234,19 @@ export default {
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   border-radius: 10px;
   padding: 20px;
-  
 }
 
 div.lightning-buttons {
   display: flex;
   column-gap: 10px;
   padding-top: 40px;
-  
 }
 
-button#no-lightning, button#yes-lightning {
+button#no-lightning,
+button#yes-lightning {
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, 
-  #d2e6f9 0%, #6b8fa7 74%);
-  border: solid #747474 1px; 
+  background-image: linear-gradient(315deg, #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px;
   width: 120px;
   margin: 10px 10px 10px 10px;
   display: inline-block;
@@ -250,20 +260,21 @@ button#no-lightning, button#yes-lightning {
   font-weight: bold;
   border: none;
   color: white;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-button#no-lightning:hover, button#yes-lightning:hover,
-button#no-lightning:focus, button#yes-lightning:focus {
+button#no-lightning:hover,
+button#yes-lightning:hover,
+button#no-lightning:focus,
+button#yes-lightning:focus {
   text-decoration: none;
-  background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
-  color:#09203f;
+  color: #09203f;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 a.end-session {
@@ -277,7 +288,7 @@ a.end-session {
 
 a.end-session:hover {
   color: yellow;
-} 
+}
 
 .timer {
  background-color: #f8f9d2;
@@ -367,7 +378,6 @@ div.scoreButtons {
   margin-left: 20px;
   margin-right: 20px;
   vertical-align: middle;
-
 }
 
 .counter-buttons {
@@ -390,11 +400,11 @@ div.cardTracker {
   color: white;
 }
 
-button.increase, button.decrease {
+button.increase,
+button.decrease {
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, 
-  #d2e6f9 0%, #6b8fa7 74%);
-  border: solid #747474 1px; 
+  background-image: linear-gradient(315deg, #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px;
   height: 40px;
   display: inline-block;
   padding: 5px;
@@ -407,22 +417,23 @@ button.increase, button.decrease {
   font-weight: bold;
   border: none;
   color: white;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   width: 100px;
   border-radius: 10px;
 }
 
-button.increase:hover, button.decrease:hover,
-button.increase:focus, button.decrease:focus {
+button.increase:hover,
+button.decrease:hover,
+button.increase:focus,
+button.decrease:focus {
   text-decoration: none;
-  background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
-  color:#09203f;
+  color: #09203f;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 a {
@@ -433,7 +444,8 @@ a {
   display: flex;
 }
 
-.front-card-text, .back-card-text {
+.front-card-text,
+.back-card-text {
   text-align: center;
   padding: 20px;
   user-select: none;
@@ -449,7 +461,8 @@ a {
   line-height: 1;
 }
 
-button.correct, button.incorrect {
+button.correct,
+button.incorrect {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -458,12 +471,12 @@ button.correct, button.incorrect {
   border-radius: 10px;
   width: 70px;
   height: 70px;
-  cursor: pointer; 
+  cursor: pointer;
   border: none;
   font-family: monospace;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 button.incorrect:hover {
   background-color: rgb(197, 169, 169);
@@ -472,7 +485,6 @@ button.incorrect:hover {
 button.correct:hover {
   background-color: rgb(183, 224, 183);
 }
-
 
 img#click-bolt {
   width: 25px;
@@ -489,7 +501,6 @@ img#click-x {
   margin-top: 5px;
   padding-bottom: 5px;
 }
-
 
 /* CARD FLIP ACTION CSS */
 .flip-card {
@@ -523,20 +534,20 @@ img#click-x {
   justify-content: center;
   align-items: center;
   row-gap: 65px;
-  position: absolute; 
+  position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
-  
-   text-align: center;
+
+  text-align: center;
 }
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
-  
+
   color: white;
   box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);

@@ -87,18 +87,14 @@ export default {
   },
   methods: {
     getDecks() {
-      if (this.$store.state.decks.length === 0) {
-        deckService.getAllDecks().then((response) => {
-          this.$store.commit("SET_DECKS", response.data);
-        });
-      }
+      deckService.getAllDecks().then((response) => {
+        this.$store.commit("SET_DECKS", response.data);
+      });
     },
     getAllCards() {
-      if (this.$store.state.allCards.length === 0) {
-        cardService.getAllCards().then((response) => {
-          this.$store.commit("SET_ALL_CARDS", response.data);
-        });
-      }
+      cardService.getAllCards().then((response) => {
+        this.$store.commit("SET_ALL_CARDS", response.data);
+      });
     },
   },
 
@@ -313,6 +309,4 @@ button#show-all:focus {
   cursor: pointer;
   box-shadow: inset 0 0 0 2em var(--hover);
 }
-
-
 </style>

@@ -37,11 +37,13 @@
             placeholder="New keywords (Separate with commas)"
           />
 
-            <div class="buttons">
-              <button id="delete"  @click.prevent="deleteCard">DELETE CARD</button>
-              <button id="cancel" type="cancel" @click.prevent="cancelUpdate">Cancel</button>
-              <button id="save" type="submit">Submit</button>
-            </div>
+          <div class="buttons">
+            <button id="delete" @click.prevent="deleteCard">DELETE CARD</button>
+            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
+              Cancel
+            </button>
+            <button id="save" type="submit">Submit</button>
+          </div>
         </form>
       </div>
     </div>
@@ -65,7 +67,7 @@ export default {
     };
   },
   computed: {
-    cards(){
+    cards() {
       return this.$store.state.cards;
     },
     currentCard() {
@@ -91,11 +93,16 @@ export default {
       if (
         confirm("Do you really want to delete the card? This cannot be undone.")
       ) {
-        cardService.delete(this.card.cardId);
-        this.$router.push(`/deck/${this.card.deckId}/cards`);
+        cardService.delete(this.card.cardId).then((response) => {
+          if (response.status === 204) {
+            this.getDecks();
+            this.getCards();
+            this.$router.push(`/deck/${this.card.deckId}/cards`);
+          }
+        });
       }
     },
-      getDecks() {
+    getDecks() {
       if (this.$store.state.decks.length === 0) {
         deckService.getAllDecks().then((response) => {
           this.$store.commit("SET_DECKS", response.data);
@@ -115,11 +122,11 @@ export default {
       });
     },
   },
-  created(){
+  created() {
     this.getDecks();
     this.getAllCards();
     this.getCards();
-  }
+  },
 };
 </script>
 
@@ -262,9 +269,8 @@ div.buttons {
 button#save,
 button#cancel {
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, 
-  #d2e6f9 0%, #6b8fa7 74%);
-  border: solid #747474 1px; 
+  background-image: linear-gradient(315deg, #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px;
   width: 120px;
   margin: 10px 10px 20px 10px;
   display: inline-block;
@@ -278,25 +284,26 @@ button#cancel {
   font-weight: bold;
   border: none;
   color: white;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-button#save:hover, button#save:focus,
-button#cancel:hover, button#cancel:focus {
+button#save:hover,
+button#save:focus,
+button#cancel:hover,
+button#cancel:focus {
   text-decoration: none;
-  background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
-  color:#09203f;
+  color: #09203f;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 button#delete {
   background-color: #b8b8b8;
-  border: solid #BDBDBD 1px; 
+  border: solid #bdbdbd 1px;
   width: 80px;
   margin: 10px 10px 20px 10px;
   text-decoration: none;
@@ -310,13 +317,13 @@ button#delete {
   font-size: 12px;
   letter-spacing: 1.75px;
   font-weight: bold;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
 button#delete:hover {
   background-color: red;
-  cursor: pointer; 
+  cursor: pointer;
   width: 80px;
   margin: 10px 10px 20px 10px;
   text-decoration: none;
@@ -330,8 +337,8 @@ button#delete:hover {
   font-size: 12px;
   letter-spacing: 1.75px;
   font-weight: bold;
-  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
-	-moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93); 
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
 </style>
