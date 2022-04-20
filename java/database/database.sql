@@ -101,9 +101,6 @@ VALUES (3, 'SAT Words', 'Vocabulary');
 INSERT INTO decks (user_id, deck_name, subject)
 VALUES (3, 'Botany', 'Plants');
 
-INSERT INTO decks (user_id, deck_name, subject)
-VALUES (3, 'Geography', 'Geography');
-
 COMMIT;
 
 START TRANSACTION;
@@ -123,9 +120,6 @@ VALUES (1, 'Classes', 'Blueprints for creating objects.', 'Java');
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES (1, 'Unit Test', 'Testing methods and classes to make sure your code works as expected and produces accurate and repeatable results.', 'Java');
-
-INSERT INTO cards (deck_id, front_text, back_text, keywords)
-VALUES (1, 'Classes', 'Blueprints for creating objects.', 'Java');
 
 INSERT INTO cards (deck_id, front_text, back_text, keywords)
 VALUES (1, 'HTTP Request/Response', 'How data is exchanged between serverr and client. Requests are sent by client to trigger an action on the server - responses are the answer back to the client.', 'Java');

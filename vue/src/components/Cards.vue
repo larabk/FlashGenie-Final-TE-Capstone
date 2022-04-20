@@ -479,6 +479,7 @@ a.edit-deck:hover {
   height: 82px;
   perspective: 1000px;
   margin: 15px;
+
 }
 
 /* This container is needed to position the front and back side */
@@ -499,14 +500,13 @@ a.edit-deck:hover {
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+.flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
 }
 
 /* Position the front and back side */
 .flip-card-front,
 .flip-card-back {
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -538,6 +538,11 @@ a.edit-deck:hover {
   height: 50px;
 }
 
+.front-card-text {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
 /* Style the back side */
 .flip-card-back {
   background-color: #f8f9d2;
@@ -549,6 +554,20 @@ a.edit-deck:hover {
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
   width: 150px;
   height: 50px;
+  flex: 1;
 
+
+}
+
+.back-card-text {
+  display: flex;
+  font-size: 12px;
+  line-height: 1.25;
+  flex: 1;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  margin:0px;
+ 
 }
 </style>

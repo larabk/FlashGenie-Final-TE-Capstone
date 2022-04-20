@@ -4,14 +4,16 @@
     <div class="form-container">
       <div class="header">
         <img id="bolt" src="/bolt.png" alt="" />
-        <h3>Edit Card</h3>
+        <h3>CARD DETAILS</h3>
         <img id="bolt" src="/bolt.png" alt="" />
       </div>
 
-      <h4>Term: {{ currentCard.frontText }}</h4>
-      <h4>Definition: {{ currentCard.backText }}</h4>
-      <h4>KeyWords: {{ currentCard.keyWords.split(" ").join(", ") }}</h4>
-
+      <div class="card-details">
+        <h4>TERM: {{ currentCard.frontText }}</h4>
+        <h4>DEFINITION: {{ currentCard.backText }}</h4>
+        <h4>KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}</h4>
+      </div>
+      <h5>EDIT CARD</h5>
       <div class="form">
         <form @submit.prevent="updateCard" class="update-card-form">
           <input
@@ -133,6 +135,9 @@ export default {
 }
 
 .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #537895;
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   min-width: 600px;
@@ -168,14 +173,49 @@ h3 {
   margin: 15px;
 }
 
+.card-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 200px;
+  align-items: center;
+  padding: 25px;
+  margin: 15px;
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  justify-content: center;
+  font-size: larger;
+
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  border: solid #bdbdbd 1px;
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.93);
+  font-size: x-large;
+  letter-spacing: 1.75px;
+  font-weight: bold;
+}
+
 h4 {
   text-align: center;
-  color: white;
-  text-transform: uppercase;
+  color: black;
+  /* text-transform: uppercase; */
   letter-spacing: 1px;
   padding: 0px;
-  margin-top: 15px;
-  line-height: 1px;
+  margin: 0px;
+  font-size: 12.5px;
+  /* line-height: 1px; */
+}
+
+h5 {
+  font-size: 18px;
+  margin-top: 40px;
+  margin: 0px;
+  color: white;
 }
 
 div.form {
@@ -188,8 +228,8 @@ div.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 50px 50px 50px;
-  width: 325px;
+  margin: 20px 10px 50px 10px;
+  width: 400px;
   row-gap: 20px;
 }
 
