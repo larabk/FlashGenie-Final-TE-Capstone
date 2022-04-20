@@ -62,6 +62,7 @@ export default {
     cards(){
       return this.$store.state.allCards;
     },
+    //creates array containing decks that match search term
     filteredDecks() {
       return this.decks.filter((deck) => {
         return (
@@ -70,9 +71,11 @@ export default {
         );
       });
     },
+    //passes search term from search bar
     filterTerm() {
       return this.$route.params.searchInput.toLowerCase();
     },
+    //creates array containing cards that match search term
     filteredCards() {
       return this.cards.filter((card) => {
         return (
@@ -86,6 +89,7 @@ export default {
     deckName(id) {
       return this.decks.find((deck) => deck.deckId === id).name;
     },
+    //retrieves decks from data store
       getDecks() {
       if (this.$store.state.decks.length === 0) {
         deckService.getAllDecks().then((response) => {
@@ -93,6 +97,7 @@ export default {
         });
       }
     },
+    //retrieves cards from data store
     getAllCards() {
       if (this.$store.state.allCards.length === 0) {
         cardService.getAllCards().then((response) => {

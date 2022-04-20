@@ -2,19 +2,17 @@
   <div class="cardsPage">
     <div class="cards-container">
       <div id="title-links">
+        <div class="header">
+          <div class="my-cards">
+            <img id="bolt" src="/bolt.png" alt="" />
+            <h3>cards about {{ currentDeck.name }}</h3>
+            <img id="bolt" src="/bolt.png" alt="" />
+          </div>
 
-      <div class="header">
-        <div class="my-cards">
-          <img id="bolt" src="/bolt.png" alt="" />
-          <h3>cards about {{ currentDeck.name }}</h3>
-          <img id="bolt" src="/bolt.png" alt="" />
+          <div class="subtitle">
+            <h4>subject: {{ currentDeck.subject }}</h4>
+          </div>
         </div>
-
-        <div class="subtitle">
-          <h4>subject: {{ currentDeck.subject }}</h4>
-        </div>
-      </div>
-
       </div>
 
       <div class="cards">
@@ -30,39 +28,30 @@
 
             <!-- this block is a hard maybe -->
             <div class="flip-card">
-        <div class="flip-card-inner">
-          
-          <div class="flip-card-front" >
-            
-            <div class="front-card-text">
-            {{ card.frontText }}
-                        <div id="edit">
-              <router-link
-                class="edit-card"
-                :to="{
-                  name: 'edit-card',
-                  params: { deckId: card.deckId, cardId: card.cardId },
-                }"
-                >Details/Edit</router-link
-              >
-            </div>
-            </div>
-          </div>
-      
-          <div class="flip-card-back">
-            <div class="back-card-text">
-            {{ card.backText }}
-            </div>
-            
-          </div>
-          
-        </div>
-        
-      </div>
-            
-            
-            
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="front-card-text">
+                    {{ card.frontText }}
+                    <div id="edit">
+                      <router-link
+                        class="edit-card"
+                        :to="{
+                          name: 'edit-card',
+                          params: { deckId: card.deckId, cardId: card.cardId },
+                        }"
+                        >Details/Edit</router-link
+                      >
+                    </div>
+                  </div>
+                </div>
 
+                <div class="flip-card-back">
+                  <div class="back-card-text">
+                    {{ card.backText }}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -83,26 +72,39 @@
           </div>
         </div>
       </div>
-      
-      <div class="study-session">
-        <router-link class="study"
+
+      <div class="study-session" v-if="cards.length > 0">
+        <router-link
+          class="study"
           :to="{ name: 'study-session', params: { id: currentDeckId } }"
-          >Begin Study Session</router-link>
-        
-        <router-link class="random-study"
-          :to="{ name: 'study-session', params: { id: currentDeckId } } "
-          >Begin Randomized Study Session</router-link>
+          >Begin Study Session</router-link
+        >
+
+        <router-link
+          class="random-study"
+          :to="{ name: 'study-session', params: { id: currentDeckId } }"
+          >Begin Randomized Study Session</router-link
+        >
       </div>
-            
+
+      <div class="study-session" v-if="cards.length === 0">
+        <router-link
+          class="study"
+          :to="{ name: 'new-card', params: { id: this.currentDeckId } }"
+          >You need cards for a study session.</router-link
+        >
+      </div>
+
       <div class="back-edit">
         <router-link class="back-to-decks" :to="{ name: 'home' }"
           >Back to Decks</router-link
         >
-        
+
         <router-link
           class="edit-deck"
           :to="{ name: 'edit-deck', params: { id: currentDeckId } }"
-          >Edit Deck</router-link>
+          >Edit Deck</router-link
+        >
       </div>
     </div>
   </div>
@@ -122,7 +124,7 @@ export default {
     };
   },
   computed: {
-    decks(){
+    decks() {
       return this.$store.state.decks;
     },
     deckSize() {
@@ -158,18 +160,14 @@ export default {
       this.$store.commit("SET_NOT_RANDOMIZED");
     },
     getDecks() {
-      if (this.$store.state.decks.length === 0) {
-        deckService.getAllDecks().then((response) => {
-          this.$store.commit("SET_DECKS", response.data);
-        });
-      }
+      deckService.getAllDecks().then((response) => {
+        this.$store.commit("SET_DECKS", response.data);
+      });
     },
     getAllCards() {
-      if (this.$store.state.allCards.length === 0) {
-        cardService.getAllCards().then((response) => {
-          this.$store.commit("SET_ALL_CARDS", response.data);
-        });
-      }
+      cardService.getAllCards().then((response) => {
+        this.$store.commit("SET_ALL_CARDS", response.data);
+      });
     },
   },
   created() {
@@ -231,7 +229,7 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 1.75px;
   margin: 0px 15px 0px 15px;
-  line-height: .85;
+  line-height: 0.85;
 }
 
 h4 {
@@ -248,7 +246,6 @@ hr {
   flex-wrap: wrap;
   margin: 30px 0px 30px 0px;
   justify-content: center;
-  
 }
 
 .card {
@@ -309,14 +306,14 @@ hr {
   align-items: center;
 }
 
-a.study, a.random-study {
+a.study,
+a.random-study {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, 
-  #d2e6f9 0%, #6b8fa7 74%);
-  border: solid #747474 1px; 
+  background-image: linear-gradient(315deg, #d2e6f9 0%, #6b8fa7 74%);
+  border: solid #747474 1px;
   width: 200px;
   height: 30px;
   margin: 10px 15px 60px 10px;
@@ -330,21 +327,22 @@ a.study, a.random-study {
   font-weight: bold;
   border: none;
   color: white;
-  
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-.study:hover, .random-study:hover,
-.study:focus, .random-study:focus {
+.study:hover,
+.random-study:hover,
+.study:focus,
+.random-study:focus {
   text-decoration: none;
-  background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
-  color:#09203f;
+  color: #09203f;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 div#flex-text {
@@ -363,10 +361,11 @@ div#card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin:0px;
+  margin: 0px;
 }
 
-a.card-name, a {
+a.card-name,
+a {
   text-decoration: none;
   color: black;
 }
@@ -379,8 +378,6 @@ div#card-title {
   display: flex;
   justify-content: center;
 }
-
-
 
 div#edit {
   vertical-align: bottom;
@@ -441,7 +438,6 @@ div.back-edit {
   justify-content: space-between;
   column-gap: 20px;
   margin-bottom: 0px;
-  
 }
 
 a.back-to-decks,
@@ -460,7 +456,6 @@ a.edit-deck:hover {
 .header {
   display: flex;
   flex-direction: column;
-
 }
 
 .subtitle {
@@ -479,7 +474,6 @@ a.edit-deck:hover {
   height: 82px;
   perspective: 1000px;
   margin: 15px;
-
 }
 
 /* This container is needed to position the front and back side */
@@ -494,9 +488,8 @@ a.edit-deck:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-    width: 180px;
+  width: 180px;
   height: 80px;
-
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
@@ -511,14 +504,14 @@ a.edit-deck:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute; 
+  position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; 
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border:none;
-   text-align: center;
-   border-radius: 10px;
+  border: none;
+  text-align: center;
+  border-radius: 10px;
   padding: 15px;
   margin: 15px;
 }
@@ -555,8 +548,6 @@ a.edit-deck:hover {
   width: 150px;
   height: 50px;
   flex: 1;
-
-
 }
 
 .back-card-text {
@@ -567,7 +558,6 @@ a.edit-deck:hover {
   /* white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; */
-  margin:0px;
- 
+  margin: 0px;
 }
 </style>
