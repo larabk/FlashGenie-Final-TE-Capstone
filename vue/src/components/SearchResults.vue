@@ -178,7 +178,6 @@ h1#deck-results, h1#card-results {
   text-decoration: none;
   border-radius: 10px;
   justify-content: center;
-  font-size: larger;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #bdbdbd 1px;
@@ -201,7 +200,7 @@ h1#deck-results, h1#card-results {
   flex-direction: column;
   flex-wrap: wrap;
   width: 300px;
-  height: 150px;
+  height: 175px;
   align-items: center;
   padding: 15px;
   margin: 15px;
@@ -232,13 +231,12 @@ h1#deck-results, h1#card-results {
 a {
   display: flex;
   flex-direction: column;
-  
   width: 100%;
   color: black;
   text-align: left;
   padding: 15px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 16px;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;

@@ -172,7 +172,7 @@ h4 {
   letter-spacing: 1px;
   padding: 0px;
   margin: 0px;
-  font-size: 12.5px;
+  font-size: 16px;
 }
 
 h5 {
@@ -189,8 +189,11 @@ h5 {
 .deck-details {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  flex-basis: auto;
   width: 400px;
-  height: 100px;
+  height: auto;
+  min-height: 100px;
   font-size: larger; 
   border-radius: 10px;
   padding: 25px;

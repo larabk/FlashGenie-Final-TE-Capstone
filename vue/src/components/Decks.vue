@@ -11,8 +11,8 @@
         <div
           class="deck"
           v-for="deck in decks.slice(0, displayLength)"
-          v-bind:key="deck.deckId">
-
+          v-bind:key="deck.deckId"
+        >
           <div id="flex-text">
             <div id="deck-title">
               <router-link
@@ -31,22 +31,18 @@
             </div>
           </div>
         </div>
-
-        <div id="flex-show-button">
-          <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }"
-            >+</router-link
-          >
-
-          <div id="button">
-            <button
-              id="show-all"
-              @click="partialDisplay = !partialDisplay"
-              v-if="decksAvailable > minDisplayLength"
-            >
-              {{ partialDisplay ? "Show All" : "Show Less" }}
-            </button>
-          </div>
-        </div>
+        <router-link class="addDeck addDeckDetails" :to="{ name: 'new-deck' }"
+          >+</router-link
+        >
+      </div>
+      <div id="button">
+        <button
+          id="show-all"
+          @click="partialDisplay = !partialDisplay"
+          v-if="decksAvailable > minDisplayLength"
+        >
+          {{ partialDisplay ? "Show All" : "Show Less" }}
+        </button>
       </div>
     </div>
   </div>
@@ -121,7 +117,7 @@ export default {
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   justify-content: center;
   min-width: 600px;
-  max-width: 1080px;
+  max-width: 980px;
   border-radius: 30px;
   margin: 30px 0px 0px 0px;
   padding: 30px;
@@ -159,7 +155,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   margin: 30px 0px 30px 0px;
-  justify-content: left;
+  justify-content: center;
 }
 
 .deck,
@@ -273,10 +269,9 @@ a.edit-deck:hover {
   color: black;
 }
 
-div#flex-show-button {
+div#button {
   display: flex;
-  flex-direction: column;
-  align-items: right;
+  justify-content: right;
 }
 
 button#show-all {
@@ -285,12 +280,10 @@ button#show-all {
   width: 100px;
   height: 40px;
   border-radius: 10px;
-  margin-left: 102px;
   margin-top: 15px;
   background-color: #ffffff;
   border: none;
   color: #09203f;
-  margin-bottom: 100px;
   box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
