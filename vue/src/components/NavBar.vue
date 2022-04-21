@@ -41,6 +41,7 @@ export default {
     };
   },
   methods: {
+    //sends user to search results page
     submitSearch(searchInput) {
       if (searchInput !== "") {
         this.searchInput = "";

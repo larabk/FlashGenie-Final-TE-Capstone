@@ -62,6 +62,7 @@ export default {
   methods: {
     saveCard() {
       if (
+        //checks to make sure nothing is empty
         this.card.frontText === "" ||
         this.card.backText === "" ||
         this.card.keyWords === ""

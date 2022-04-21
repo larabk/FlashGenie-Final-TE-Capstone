@@ -69,7 +69,6 @@ export default {
         backText: "",
         keyWords: "",
       },
-      // cards: this.$store.state.cards,
     };
   },
   computed: {
@@ -110,6 +109,7 @@ export default {
     },
     getDecks() {
       if (this.$store.state.decks.length === 0) {
+        //done for refreshes
         deckService.getAllDecks().then((response) => {
           this.$store.commit("SET_DECKS", response.data);
         });
