@@ -67,10 +67,6 @@ nav ul {
   background-clip: content-box, border-box;
   background-color: #537895;
   background-image: linear-gradient(315deg, #09203f 0%, #bed1eb 74%);
-
-  /* border gradient
-  background-image: linear-gradient(white, white), 
-  radial-gradient(circle at top left, rgb(34, 53, 114), #537895); */
 }
 
 div#search-home {
@@ -94,6 +90,7 @@ a {
 a:hover {
   color: yellow;
 }
+
 a#logout {
   padding-right: 20px;
   padding-left: 10px;
@@ -107,11 +104,11 @@ a#logout {
   padding: 5px;
   box-sizing: border-box;
   resize: vertical;
-  /* text-transform: uppercase; */
   font-family: monospace;
   letter-spacing: 1px;
   margin-right: 12px;
 }
+
 #search:hover {
   background-color: white;
 }

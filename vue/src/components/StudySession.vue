@@ -12,64 +12,69 @@
         <button id="yes-lightning" @click="lightningRound">Yes</button>
       </div>
     </div>
-    
 
-  
-  <div class="flipperPage" v-if="timerChoiceMade">
-    <div class="flipper-container">
-      
-      
-      <router-link class="end-session" :to="{name: 'score-summary', params: {id: this.deckId}}">End Session</router-link>
-      
-          <div class="timer" v-if="this.isLightningRound"><h6>TIME REMAINING: </h6>
-          
-            <timer
-              ref="timer"
-              :lastCard="this.lastCard"
-              v-if="this.isLightningRound"
-              @timerZero="nextCard"
-              @endLightningRound="goToSummary">
-            </timer>
-          </div>
-      
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" >
-            <div class="front-card-text">
-            {{ currentCards[currentIndex].frontText }}
-            </div>
-            </div>
+    <div class="flipperPage" v-if="timerChoiceMade">
+      <div class="flipper-container">
+        <router-link
+          class="end-session"
+          :to="{ name: 'score-summary', params: { id: this.deckId } }"
+          >End Session</router-link
+        >
 
+        <div class="timer" v-if="this.isLightningRound">
+          <h6>TIME REMAINING:</h6>
+
+          <timer
+            ref="timer"
+            :lastCard="this.lastCard"
+            v-if="this.isLightningRound"
+            @timerZero="nextCard"
+            @endLightningRound="goToSummary"
+          >
+          </timer>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="front-card-text">
+                {{ currentCards[currentIndex].frontText }}
+              </div>
+            </div>
 
             <div class="flip-card-back">
               <div class="back-card-text">
                 {{ currentCards[currentIndex].backText }}
               </div>
             </div>
+          </div>
         </div>
-      </div>
 
-        <div class=study-buttons>
-                <button class=incorrect  @click="markIncorrect">Wrong
-                          <img id="click-x" src="/redX.png"/></button>
-                
-                <div class="counter-buttons">
-                <div class="buttonControl">
-                  <button class="decrease" v-if="!isLightningRound" @click="previousCard">Previous</button>
-                    
-                    
-                    <button class="increase" @click="nextCard">Next</button>
-                
-                  </div>
-                <div class="cardTracker">
-                      {{ this.currentIndex + 1 }}/{{ this.currentCards.length }}
-                    </div>
-                </div>
+        <div class="study-buttons">
+          <button class="incorrect" @click="markIncorrect">
+            Wrong <img id="click-x" src="/redX.png" />
+          </button>
 
-                <button class="correct" @click="markCorrect">Correct
-                          <img id="click-bolt" src="/bolt.png" alt=""/></button>
+          <div class="counter-buttons">
+            <div class="buttonControl">
+              <button
+                class="decrease"
+                v-if="!isLightningRound"
+                @click="previousCard"
+              >
+                Previous
+              </button>
 
-                  
+              <button class="increase" @click="nextCard">Next</button>
+            </div>
+            <div class="cardTracker">
+              {{ this.currentIndex + 1 }}/{{ this.currentCards.length }}
+            </div>
+          </div>
+
+          <button class="correct" @click="markCorrect">
+            Correct <img id="click-bolt" src="/bolt.png" alt="" />
+          </button>
         </div>
       </div>
     </div>
@@ -299,10 +304,9 @@ a.end-session:hover {
 }
 
 .timer {
- background-color: #f8f9d2;
-    background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
-  border: solid #747474 1px; 
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
+  border: solid #747474 1px;
   width: 200px;
   margin-bottom: 12px;
   display: inline-block;
@@ -316,29 +320,28 @@ a.end-session:hover {
   font-weight: bold;
   border: none;
   color: white;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7); 
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   animation: pulse-orange 2s infinite;
 }
 
 @keyframes pulse-orange {
-	0% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(255, 121, 63, 0.7);
-	}
-	
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 15px rgba(255, 121, 63, 0);
-	}
-	
-	100% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(255, 121, 63, 0);
-	}
-}
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 121, 63, 0.7);
+  }
 
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(255, 121, 63, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 121, 63, 0);
+  }
+}
 
 h6 {
   font-size: 16px;
@@ -505,7 +508,6 @@ img#click-x {
   width: auto;
   height: 25px;
   padding-top: 3px;
-  /* height: 65px; */
   margin-top: 5px;
   padding-bottom: 5px;
 }

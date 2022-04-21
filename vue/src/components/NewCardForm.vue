@@ -98,10 +98,10 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     this.getDecks();
     this.getAllCards();
-  }
+  },
 };
 </script>
 
@@ -127,6 +127,7 @@ export default {
   width: 75%;
   max-width: 1200px;
 }
+
 div.header {
   display: flex;
   text-align: center;

@@ -256,7 +256,6 @@ a.edit-deck {
   text-align: right;
   padding-top: 0px;
   color: rgb(134, 134, 134);
-  /* margin-right: -8px; */
   margin-top: 3px;
   user-select: none;
   -moz-user-select: none;

@@ -13,25 +13,28 @@
             <h4>subject: {{ currentDeck.subject }}</h4>
           </div>
 
-                <div class="study-session">
-        <router-link v-if="cards.length > 0"
-          class="study"
-          :to="{ name: 'study-session', params: { id: currentDeckId } }"
-          >Begin Study Session</router-link
-        >
+          <div class="study-session">
+            <router-link
+              v-if="cards.length > 0"
+              class="study"
+              :to="{ name: 'study-session', params: { id: currentDeckId } }"
+              >Begin Study Session</router-link
+            >
 
-        <router-link v-if="cards.length > 0"
-          class="random-study"
-          :to="{ name: 'study-session', params: { id: currentDeckId } }"
-          >Begin Randomized Study Session</router-link
-        >
+            <router-link
+              v-if="cards.length > 0"
+              class="random-study"
+              :to="{ name: 'study-session', params: { id: currentDeckId } }"
+              >Begin Randomized Study Session</router-link
+            >
 
-        <router-link v-if="cards.length === 0"
-          class="study"
-          :to="{ name: 'new-card', params: { id: this.currentDeckId } }"
-          >You need cards for a study session.</router-link
-        >
-      </div>
+            <router-link
+              v-if="cards.length === 0"
+              class="study"
+              :to="{ name: 'new-card', params: { id: this.currentDeckId } }"
+              >You need cards for a study session.</router-link
+            >
+          </div>
         </div>
       </div>
 
@@ -77,19 +80,17 @@
           class="addCard addCardDetails"
           >+</router-link
         >
-        
       </div>
 
       <div id="button">
-          <button
-            id="show-all"
-            v-if="deckSize > minDisplayLength"
-            @click="partialDisplay = !partialDisplay"
-          >
-            {{ partialDisplay ? "Show All" : "Show Less" }}
-          </button>
-        </div>
-
+        <button
+          id="show-all"
+          v-if="deckSize > minDisplayLength"
+          @click="partialDisplay = !partialDisplay"
+        >
+          {{ partialDisplay ? "Show All" : "Show Less" }}
+        </button>
+      </div>
 
       <div class="back-edit">
         <router-link class="back-to-decks" :to="{ name: 'home' }"
@@ -103,8 +104,6 @@
         >
       </div>
     </div>
-    <!-- </div>
-  </div> -->
   </div>
 </template>
 
@@ -325,7 +324,6 @@ a.random-study {
   font-weight: bold;
   border: none;
   color: white;
-
   box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
@@ -391,7 +389,6 @@ a.edit-card {
   text-align: center;
   padding: 0px;
   color: rgb(134, 134, 134);
-  /* margin-right: -8px; */
   margin-top: 3px;
   user-select: none;
   -moz-user-select: none;
@@ -527,12 +524,7 @@ a.edit-deck:hover {
 .flip-card-front {
   display: flex;
   flex-direction: column;
-
   align-items: center;
-
-  /* padding: 15px;
-  margin: 15px; */
-
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
   border: solid #bdbdbd 1px;

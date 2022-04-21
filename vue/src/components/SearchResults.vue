@@ -2,45 +2,45 @@
   <div class="searchResultsPage">
     <div class="decks-container">
       <div id="header">
-      <h1 id="deck-results">Deck Results</h1>
-      <img id="bolt" src="/bolt.png" alt="">
-      </div>
-
-<div class="results-container">
-
-      <div class="no-decks" v-if="filteredDecks.length === 0">
-        No deck subjects match this search
-      </div>
-      <div class="decks" v-for="deck in filteredDecks" v-bind:key="deck.id">
-        <div class="deck-link">
-          <router-link :to="{ name: 'cards', params: { id: deck.deckId } }">
-            DECK NAME: <em>{{ deck.name }}</em><br> SUBJECT: <em>{{ deck.subject }}</em>
-          </router-link>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="cards-container">
-      <div id="header">
-      <h1 id="card-results">Card Results</h1>
-      <img id="bolt" src="/bolt.png" alt="">
+        <h1 id="deck-results">Deck Results</h1>
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
 
       <div class="results-container">
-
-        <div class="no-cards" v-if="filteredCards.length === 0">
-      No card keywords match this search
-    </div>
-      <div class="cards" v-for="card in filteredCards" v-bind:key="card.id">
-        <div class="card-link">
-          <router-link :to="{ name: 'cards', params: { id: card.deckId } }">
-            DECK NAME: <em>{{ deckName(card.deckId) }}</em> <br> Term:
-            <em>{{ card.frontText }}</em> <br>KEYWORDS:
-            <em>{{ card.keyWords.split(" ").join(", ") }}</em></router-link
-          >
+        <div class="no-decks" v-if="filteredDecks.length === 0">
+          No deck subjects match this search
+        </div>
+        <div class="decks" v-for="deck in filteredDecks" v-bind:key="deck.id">
+          <div class="deck-link">
+            <router-link :to="{ name: 'cards', params: { id: deck.deckId } }">
+              DECK NAME: <em>{{ deck.name }}</em
+              ><br />
+              SUBJECT: <em>{{ deck.subject }}</em>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
+    <div class="cards-container">
+      <div id="header">
+        <h1 id="card-results">Card Results</h1>
+        <img id="bolt" src="/bolt.png" alt="" />
+      </div>
+
+      <div class="results-container">
+        <div class="no-cards" v-if="filteredCards.length === 0">
+          No card keywords match this search
+        </div>
+        <div class="cards" v-for="card in filteredCards" v-bind:key="card.id">
+          <div class="card-link">
+            <router-link :to="{ name: 'cards', params: { id: card.deckId } }">
+              DECK NAME: <em>{{ deckName(card.deckId) }}</em> <br />
+              Term: <em>{{ card.frontText }}</em> <br />KEYWORDS:
+              <em>{{ card.keyWords.split(" ").join(", ") }}</em></router-link
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,10 +56,10 @@ export default {
     };
   },
   computed: {
-    decks(){
+    decks() {
       return this.$store.state.decks;
     },
-    cards(){
+    cards() {
       return this.$store.state.allCards;
     },
     //creates array containing decks that match search term
@@ -90,7 +90,7 @@ export default {
       return this.decks.find((deck) => deck.deckId === id).name;
     },
     //retrieves decks from data store
-      getDecks() {
+    getDecks() {
       if (this.$store.state.decks.length === 0) {
         deckService.getAllDecks().then((response) => {
           this.$store.commit("SET_DECKS", response.data);
@@ -106,23 +106,22 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     this.getDecks();
     this.getAllCards();
-  }
+  },
 };
 </script>
 
 <style scoped>
-
 .searchResultsPage {
   display: flex;
   flex-direction: column;
   align-items: center;
-    width: 100%;
+  width: 100%;
   min-height: 100vh;
-  
 }
+
 .decks-container {
   background-color: #537895;
   background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
@@ -154,10 +153,10 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
 }
 
-h1#deck-results, h1#card-results {
+h1#deck-results,
+h1#card-results {
   margin: 0px;
   margin-left: 25px;
 }
@@ -187,12 +186,11 @@ h1#deck-results, h1#card-results {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
-  
 }
 
 .deck-link:hover {
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .card-link {
@@ -225,7 +223,7 @@ h1#deck-results, h1#card-results {
 
 .card-link:hover {
   background-image: linear-gradient(315deg, #e6e9a1 0%, #c6b1e6 74%);
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 a {
@@ -241,17 +239,17 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 div#header {
   display: flex;
   justify-content: space-between;
-  
-  align-items:flex-end;
+
+  align-items: flex-end;
 }
 
-h1#deck-results, h1#card-results {
+h1#deck-results,
+h1#card-results {
   margin-bottom: 5px;
 }
 
@@ -262,6 +260,4 @@ img#bolt {
   margin: 0px;
   margin-right: 25px;
 }
-
-
 </style>

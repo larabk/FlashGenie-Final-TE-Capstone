@@ -87,10 +87,10 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     this.getDecks();
     this.getAllCards();
-  }
+  },
 };
 </script>
 

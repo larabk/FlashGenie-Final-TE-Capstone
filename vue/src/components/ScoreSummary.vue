@@ -1,26 +1,25 @@
 <template>
   <div class="scoreSummary">
-    <div class="summary-container"> 
-     <div id="title-links">
-
-      <div class="header">
-        <div class="my-cards">
-          <img id="bolt" src="/bolt.png" alt="" />
-          <h3>Summary</h3>
-          <img id="bolt" src="/bolt.png" alt="" />
+    <div class="summary-container">
+      <div id="title-links">
+        <div class="header">
+          <div class="my-cards">
+            <img id="bolt" src="/bolt.png" alt="" />
+            <h3>Summary</h3>
+            <img id="bolt" src="/bolt.png" alt="" />
+          </div>
         </div>
       </div>
-     </div>
-      
 
-     <div class="score"> 
-    <h4>Your Score: {{ this.currentScore }} out of {{ this.maxScore }}</h4>
-    </div>
+      <div class="score">
+        <h4>Your Score: {{ this.currentScore }} out of {{ this.maxScore }}</h4>
+      </div>
 
-    <div class="homeButton">
-    <router-link class="homeButton" :to="{ name: 'home' }">Return Home</router-link>
-    </div>
-    
+      <div class="homeButton">
+        <router-link class="homeButton" :to="{ name: 'home' }"
+          >Return Home</router-link
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +36,6 @@ export default {
 </script>
 
 <style scoped>
-
 .scoreSummary {
   display: flex;
   flex-direction: column;
@@ -101,7 +99,6 @@ div.score {
   align-items: center;
   padding: 25px;
   margin: 35px;
-  /* margin-left: 20px; */
   border: none;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -118,9 +115,7 @@ div.score {
   font-size: x-large;
   letter-spacing: 1.75px;
   font-weight: bold;
- 
 }
-
 
 a.homeButton {
   display: flex;
@@ -139,24 +134,22 @@ a.homeButton {
   border-radius: 12px;
   font-weight: bold;
   background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, 
-  #d2e6f9 0%, #6b8fa7 74%);
+  background-image: linear-gradient(315deg, #d2e6f9 0%, #6b8fa7 74%);
   text-decoration: none;
   color: white;
   margin-bottom: 50px;
-  box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
-  -moz-box-shadow: 5px 5px 18px 0px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 5px 5px 18px 0px rgba(0, 0, 0, 0.7);
 }
 
-a.homeButton:hover, 
+a.homeButton:hover,
 a.homeButton:focus {
   text-decoration: none;
-  background-image: linear-gradient(315deg, 
-  #dbec8e 0%, #d8b30e 85%);
+  background-image: linear-gradient(315deg, #dbec8e 0%, #d8b30e 85%);
   box-shadow: inset 0 0 0 2em var(--hover);
-  color:#09203f;
+  color: #09203f;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 </style>

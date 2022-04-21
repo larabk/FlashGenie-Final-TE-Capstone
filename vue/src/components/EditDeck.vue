@@ -8,12 +8,12 @@
         <img id="bolt" src="/bolt.png" alt="" />
       </div>
 
-    <div class="deck-details">
-      <h4 class="name">DECK NAME: {{currentDeck.name}}</h4>
-      <h4 class="subject">DECK SUBJECT: {{currentDeck.subject}}</h4>
-    </div>
+      <div class="deck-details">
+        <h4 class="name">DECK NAME: {{ currentDeck.name }}</h4>
+        <h4 class="subject">DECK SUBJECT: {{ currentDeck.subject }}</h4>
+      </div>
       <h5>EDIT CARD</h5>
-     <div class="form">   
+      <div class="form">
         <form @submit.prevent="updateDeck" class="update-deck-form">
           <input
             type="text"
@@ -165,7 +165,6 @@ h3 {
   margin: 15px;
 }
 
-
 h4 {
   text-align: center;
   color: black;
@@ -182,7 +181,8 @@ h5 {
   color: white;
 }
 
-.name, .subject {
+.name,
+.subject {
   font-weight: bold;
 }
 
@@ -194,7 +194,7 @@ h5 {
   width: 400px;
   height: auto;
   min-height: 100px;
-  font-size: larger; 
+  font-size: larger;
   border-radius: 10px;
   padding: 25px;
   margin: 15px;
@@ -204,7 +204,7 @@ h5 {
   justify-content: center;
   color: rgb(0, 0, 0);
   text-align: center;
-  text-decoration: none;  
+  text-decoration: none;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   border: solid #bdbdbd 1px;
@@ -307,6 +307,7 @@ button#delete {
   -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
+
 button#delete:hover {
   background-color: red;
   cursor: pointer;

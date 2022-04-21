@@ -1,50 +1,56 @@
 <template>
   <div class="editCardPage">
-    <div class="card-details-container"></div>
-    <div class="form-container">
-      <div class="header">
-        <img id="bolt" src="/bolt.png" alt="" />
-        <h3>CARD DETAILS</h3>
-        <img id="bolt" src="/bolt.png" alt="" />
-      </div>
+    <div class="card-details-container">
+      <div class="form-container">
+        <div class="header">
+          <img id="bolt" src="/bolt.png" alt="" />
+          <h3>CARD DETAILS</h3>
+          <img id="bolt" src="/bolt.png" alt="" />
+        </div>
 
-      <div class="card-details">
-        <h4 class="term">TERM: {{ currentCard.frontText }}</h4>
-        <h4 class="definition">DEFINITION: {{ currentCard.backText }}</h4>
-        <h4 class="keywords">KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}</h4>
-      </div>
-      <h5>EDIT CARD</h5>
-      <div class="form">
-        <form @submit.prevent="updateCard" class="update-card-form">
-          <input
-            type="text"
-            class="front-text"
-            placeholder="New term"
-            v-model="card.frontText"
-          />
+        <div class="card-details">
+          <h4 class="term">TERM: {{ currentCard.frontText }}</h4>
+          <h4 class="definition">DEFINITION: {{ currentCard.backText }}</h4>
+          <h4 class="keywords">
+            KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}
+          </h4>
+        </div>
 
-          <input
-            type="text"
-            class="back-text"
-            placeholder="New definition"
-            v-model="card.backText"
-          />
+        <h5>EDIT CARD</h5>
+        <div class="form">
+          <form @submit.prevent="updateCard" class="update-card-form">
+            <input
+              type="text"
+              class="front-text"
+              placeholder="New term"
+              v-model="card.frontText"
+            />
 
-          <input
-            type="text"
-            class="key-words"
-            v-model="card.keyWords"
-            placeholder="New keywords (Separate with spaces)"
-          />
+            <input
+              type="text"
+              class="back-text"
+              placeholder="New definition"
+              v-model="card.backText"
+            />
 
-          <div class="buttons">
-            <button id="delete" @click.prevent="deleteCard">DELETE CARD</button>
-            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
-              Cancel
-            </button>
-            <button id="save" type="submit">Submit</button>
-          </div>
-        </form>
+            <input
+              type="text"
+              class="key-words"
+              v-model="card.keyWords"
+              placeholder="New keywords (Separate with spaces)"
+            />
+
+            <div class="buttons">
+              <button id="delete" @click.prevent="deleteCard">
+                DELETE CARD
+              </button>
+              <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
+                Cancel
+              </button>
+              <button id="save" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -187,7 +193,6 @@ h4 {
   padding: 5px;
   margin: 0px;
   font-size: 16px;
-
 }
 
 h5 {
@@ -197,7 +202,9 @@ h5 {
   color: white;
 }
 
-.term, .definition, .keywords {
+.term,
+.definition,
+.keywords {
   font-weight: bold;
 }
 
@@ -321,6 +328,7 @@ button#delete {
   -webkit-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
   -moz-box-shadow: 5px 5px 18px rgba(0, 0, 0, 1.93);
 }
+
 button#delete:hover {
   background-color: red;
   cursor: pointer;
