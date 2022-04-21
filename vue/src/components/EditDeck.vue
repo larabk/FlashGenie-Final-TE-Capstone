@@ -1,5 +1,5 @@
 <template>
-  <div class="editDeckPage">
+  <div class="editDeckPage" v-if="!isLoading">
     <div class="form-container">
       <div class="header">
         <img id="bolt" src="/bolt.png" alt="" />
@@ -47,6 +47,7 @@ import cardService from "@/services/CardService";
 export default {
   data() {
     return {
+      getCount: 0,
       deck: {
         deckId: Number(this.$route.params.id),
         name: "",
@@ -66,6 +67,9 @@ export default {
     currentDeck() {
       return this.decks.find((deck) => deck.deckId === this.currentDeckId);
     },
+    isLoading() {
+      return this.getCount !== 2;
+    }
   },
   methods: {
     updateDeck() {
@@ -100,11 +104,13 @@ export default {
     getDecks() {
       deckService.getAllDecks().then((response) => {
         this.$store.commit("SET_DECKS", response.data);
+        this.getCount++;
       });
     },
     getAllCards() {
       cardService.getAllCards().then((response) => {
         this.$store.commit("SET_ALL_CARDS", response.data);
+        this.getCount++;
       });
     },
   },
@@ -124,6 +130,11 @@ export default {
   margin: 0;
   width: 100%;
   min-height: 100vh;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .form-container {

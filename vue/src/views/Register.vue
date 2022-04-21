@@ -7,7 +7,7 @@
 
       <label for="email" class="sr-only"></label>
         <input
-          type="text"
+          type="email"
           id="email"
           class="form-control"
           placeholder="Email"

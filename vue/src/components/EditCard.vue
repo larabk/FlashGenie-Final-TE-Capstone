@@ -1,57 +1,54 @@
 <template>
-  <div class="editCardPage">
-      <div class="form-container">
-        <div class="header">
-          <img id="bolt" src="/bolt.png" alt="" />
-          <h3>CARD DETAILS</h3>
-          <img id="bolt" src="/bolt.png" alt="" />
-        </div>
-
-        <div class="card-details">
-          <h4 class="term">TERM: {{ currentCard.frontText }}</h4>
-          <h4 class="definition">DEFINITION: {{ currentCard.backText }}</h4>
-          <h4 class="keywords">
-            KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}
-          </h4>
-        </div>
-
-        <h5>EDIT CARD</h5>
-        <div class="form">
-          <form @submit.prevent="updateCard" class="update-card-form">
-            <input
-              type="text"
-              class="front-text"
-              placeholder="New term"
-              v-model="card.frontText"
-            />
-
-            <input
-              type="text"
-              class="back-text"
-              placeholder="New definition"
-              v-model="card.backText"
-            />
-
-            <input
-              type="text"
-              class="key-words"
-              v-model="card.keyWords"
-              placeholder="New keywords (Separate with spaces)"
-            />
-
-            <div class="buttons">
-              <button id="delete" @click.prevent="deleteCard">
-                DELETE CARD
-              </button>
-              <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
-                Cancel
-              </button>
-              <button id="save" type="submit">Submit</button>
-            </div>
-          </form>
-        </div>
+  <div class="editCardPage" v-if="!isLoading">
+    <div class="form-container">
+      <div class="header">
+        <img id="bolt" src="/bolt.png" alt="" />
+        <h3>CARD DETAILS</h3>
+        <img id="bolt" src="/bolt.png" alt="" />
       </div>
-    
+
+      <div class="card-details">
+        <h4 class="term">TERM: {{ currentCard.frontText }}</h4>
+        <h4 class="definition">DEFINITION: {{ currentCard.backText }}</h4>
+        <h4 class="keywords">
+          KEYWORDS: {{ currentCard.keyWords.split(" ").join(", ") }}
+        </h4>
+      </div>
+
+      <h5>EDIT CARD</h5>
+      <div class="form">
+        <form @submit.prevent="updateCard" class="update-card-form">
+          <input
+            type="text"
+            class="front-text"
+            placeholder="New term"
+            v-model="card.frontText"
+          />
+
+          <input
+            type="text"
+            class="back-text"
+            placeholder="New definition"
+            v-model="card.backText"
+          />
+
+          <input
+            type="text"
+            class="key-words"
+            v-model="card.keyWords"
+            placeholder="New keywords (Separate with spaces)"
+          />
+
+          <div class="buttons">
+            <button id="delete" @click.prevent="deleteCard">DELETE CARD</button>
+            <button id="cancel" type="cancel" @click.prevent="cancelUpdate">
+              Cancel
+            </button>
+            <button id="save" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,6 +58,7 @@ import deckService from "@/services/DeckService";
 export default {
   data() {
     return {
+      getCount: 0,
       card: {
         cardId: Number(this.$route.params.cardId),
         deckId: Number(this.$route.params.deckId),
@@ -76,6 +74,9 @@ export default {
     },
     currentCard() {
       return this.cards.find((card) => card.cardId == this.card.cardId);
+    },
+    isLoading() {
+      return this.getCount !== 3;
     },
   },
   methods: {
@@ -107,23 +108,23 @@ export default {
       }
     },
     getDecks() {
-      if (this.$store.state.decks.length === 0) {
         //done for refreshes
         deckService.getAllDecks().then((response) => {
           this.$store.commit("SET_DECKS", response.data);
+          this.getCount++;
         });
-      }
     },
     getAllCards() {
-      if (this.$store.state.allCards.length === 0) {
         cardService.getAllCards().then((response) => {
           this.$store.commit("SET_ALL_CARDS", response.data);
+          this.getCount++;
         });
-      }
+      
     },
     getCards() {
       cardService.getAllCardsByDeckId(this.card.deckId).then((response) => {
         this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
+        this.getCount++;
       });
     },
   },

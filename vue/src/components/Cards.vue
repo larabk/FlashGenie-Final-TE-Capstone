@@ -1,6 +1,6 @@
 <template>
   <div class="cardsPage">
-    <div class="cards-container">
+    <div class="cards-container" v-if="!isLoading">
       <div id="title-links">
         <div class="header">
           <div class="my-cards">
@@ -18,6 +18,7 @@
               v-if="cards.length > 0"
               class="study"
               :to="{ name: 'study-session', params: { id: currentDeckId } }"
+              @click.native="regularSession"
               >Begin Study Session</router-link
             >
 
@@ -25,6 +26,7 @@
               v-if="cards.length > 0"
               class="random-study"
               :to="{ name: 'study-session', params: { id: currentDeckId } }"
+              @click.native="randomizedSession"
               >Begin Randomized Study Session</router-link
             >
 
@@ -114,6 +116,7 @@ export default {
   name: "cardsPage",
   data() {
     return {
+      getCount: 0,
       minDisplayLength: 11,
       partialDisplay: true,
       deckId: 0,
@@ -143,11 +146,15 @@ export default {
     currentDeck() {
       return this.decks.find((deck) => deck.deckId == this.currentDeckId);
     },
+    isLoading() {
+      return this.getCount !== 3;
+    },
   },
   methods: {
     getCards() {
       cardService.getAllCardsByDeckId(this.currentDeckId).then((response) => {
         this.$store.commit("SET_CARDS_BY_DECK_ID", response.data);
+        this.getCount++;
       });
     },
     randomizedSession() {
@@ -159,11 +166,13 @@ export default {
     getDecks() {
       deckService.getAllDecks().then((response) => {
         this.$store.commit("SET_DECKS", response.data);
+        this.getCount++;
       });
     },
     getAllCards() {
       cardService.getAllCards().then((response) => {
         this.$store.commit("SET_ALL_CARDS", response.data);
+        this.getCount++;
       });
     },
   },
@@ -184,6 +193,11 @@ export default {
   margin: 0;
   width: 100%;
   min-height: 100vh;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 div#title-links {

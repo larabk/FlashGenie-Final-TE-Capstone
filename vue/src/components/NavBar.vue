@@ -3,7 +3,11 @@
     <div id="site-nav" v-if="$store.state.token != ''">
       <nav id="site-nav">
         <ul id="site-nav">
-          <li><img id="logo" src="/flash-genie-logo.png" /></li>
+          <li>
+            <router-link :to="{ name: 'home' }"
+              ><img id="logo" src="/flash-genie-logo.png"
+            /></router-link>
+          </li>
 
           <div id="search-home">
             <li id="search-bar">
