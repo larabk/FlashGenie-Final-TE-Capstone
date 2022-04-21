@@ -1,6 +1,5 @@
 <template>
   <div class="editDeckPage">
-    <div class="details-container"></div>
     <div class="form-container">
       <div class="header">
         <img id="bolt" src="/bolt.png" alt="" />

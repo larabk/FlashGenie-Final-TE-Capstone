@@ -1,6 +1,5 @@
 <template>
   <div class="editCardPage">
-    <div class="card-details-container">
       <div class="form-container">
         <div class="header">
           <img id="bolt" src="/bolt.png" alt="" />
@@ -52,7 +51,7 @@
           </form>
         </div>
       </div>
-    </div>
+    
   </div>
 </template>
 
